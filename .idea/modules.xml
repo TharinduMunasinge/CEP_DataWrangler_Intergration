@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt/org.wso2.cep.wrangler.mgt.iml" filepath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt/org.wso2.cep.wrangler.mgt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.stub/org.wso2.cep.wrangler.mgt.stub.iml" filepath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.stub/org.wso2.cep.wrangler.mgt.stub.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/org.wso2.cep.wrangler.mgt.ui.iml" filepath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/org.wso2.cep.wrangler.mgt.ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wrangler-cep.iml" filepath="$PROJECT_DIR$/wrangler-cep.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wrangler-cep-components/wrangler-cep-components.iml" filepath="$PROJECT_DIR$/wrangler-cep-components/wrangler-cep-components.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wrangler-cep-features/wrangler-cep-features.iml" filepath="$PROJECT_DIR$/wrangler-cep-features/wrangler-cep-features.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wrangler-cep-repository/wrangler-cep-repository.iml" filepath="$PROJECT_DIR$/wrangler-cep-repository/wrangler-cep-repository.iml" />
+    </modules>
+  </component>
+</project>
