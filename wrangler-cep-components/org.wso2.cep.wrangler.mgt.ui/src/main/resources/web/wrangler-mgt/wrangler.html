@@ -17,6 +17,7 @@
 <script type="text/javascript" src="lib/datavore/datavore-r0.1.js">  </script>
 <script type="text/javascript" src="dw.js">  </script>
 <script type="text/javascript" src="test/crime.js">  </script>
+<script type="text/javascript" src="test/wso2_sample_gen.js">  </script>
 
 <script type="text/javascript">
 
@@ -116,23 +117,28 @@
 			var upload = dw.jq('div').attr('id', 'uploadContainer')
 
 
-			var select = dw.jq('select').addClass('wranglerExampleOptions');
-			var selectPrompt = dw.jq('span').append('Example Data:').addClass('wranglerPrompt');
+			//var select = dw.jq('select').addClass('wranglerExampleOptions');
+			//var selectPrompt = dw.jq('span').append('Example Data:').addClass('wranglerPrompt');
 			jQuery('#table').append(upload)
 
-			var prompt = dw.jq('div').attr('id','uploadPrompt').append('Paste data below to begin wrangling').addClass('wranglerPrompt');
+			/*var prompt = dw.jq('div').attr('id','uploadPrompt').append('Paste data below to begin wrangling').addClass('wranglerPrompt');
 			upload.append(prompt)
 
-			upload.append(selectPrompt).append(select)
+			upload.append(selectPrompt).append(select)*/
+		
+			
 
 			upload.append(dw.jq('button').attr('id','wranglerInputSubmit').append('Wrangle'))
 
 
 
-			var inputArea = dw.jq('textArea').attr('id','wranglerInput');
+			//var inputArea = dw.jq('textArea').attr('id','wranglerInput'); // moved to test/wso2_sample_gen.js
 			upload.append(inputArea)
-
-			inputArea.attr('value', crime)
+			//my code start
+			
+			//getSample(["STRING", "INT", "FLOAT", "LONG", "DOUBLE", "BOOL"]);
+			//my code end
+			//inputArea.attr('value', text); // moved to test/wso2_sample_gen.js
 
 			jQuery('button').click(function(){
 				var val = inputArea.attr(
@@ -148,7 +154,7 @@
 		}
 
 
-		var add_export_option = function(type, name){
+		/*var add_export_option = function(type, name){
 			dw.add_select_option(select, name, type);
 		}
 
@@ -161,9 +167,9 @@
 		add_export_option(crime, 'Crime');
 		add_export_option(labor, 'Labor');
 		add_export_option(migration, 'Migration');
+		*/
 
 	})
-
 
 
 </script>
@@ -172,6 +178,37 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
 	<title>DataWrangler</title>
+	<script>
+		function loadFunction(){
+			var path=window.location.href;
+			//alert(path);
+			//var path= "https://192.168.1.5:9443/carbon/wrangler-mgt/wrangler.html";
+			var param=0;
+			if(path.indexOf("?selected=")!=-1)
+				param=path.substring(path.indexOf("?selected=")+10,path.length);
+			else
+				param=0;
+			if(parent.checkStream()!=0)
+				stream=parent.getDataTypes(param);
+			else
+				stream=["empty"];
+			getSample(stream);
+			document.getElementById("def").innerHTML=def_prompt;
+			
+		}
+	</script>
+	<style>
+	input { float: left; width: 100px; }
+	label { margin: 0px 0px 0px 10px; float: left; }
+
+	p {
+    		display: block;
+    		margin-top: 1em;
+    		margin-bottom: 1em;
+    		margin-left: 50;
+    		margin-right: 0;
+	}
+	</style>
 
 </head>
 
@@ -182,7 +219,7 @@
 
 
 
-<body id="dt_example">
+<body id="dt_example" onload="loadFunction()">
 
 <div class="ui-layout-north" id='wranglerNorthPanel'>
 
@@ -205,8 +242,15 @@
 
 
 <div class="ui-layout-center" id='profilerCenterPanel'>
+	<form action=""><br>
+		<input type="radio" name="option" value="single" Checked 
+		       onClick="single=true;getSample(stream);">Single<br>
+		<input type="radio" name="option" value="multiple" 
+		       onClick="single=false;getSample(stream);">Multiple
+	</form>
 
-	<div id="table"></div>
+	<div id="table"><p id="def" margin-left="5"></p></div>
+		
 	<div id="preview"></div>
 	<div class="spacer"></div>
 

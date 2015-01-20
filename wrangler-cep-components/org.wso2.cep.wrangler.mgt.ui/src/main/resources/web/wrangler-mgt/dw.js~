@@ -8005,6 +8005,12 @@ dw.transform_editor = function(container, transform, options){
 	
 	return editor;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+var upload = dw.jq('div').attr('id', 'uploadContainer')
+var submitBtn = dw.jq('button').attr('id','wranglerInputSubmit').append('Back to Wrangling');
+var saveScriptBtn = dw.jq('button').attr('id','saveScript').append('save script');
+
 dw.wrangler = function(options){
 	var tContainer = options.tableContainer, previewContainer = options.previewContainer, transformContainer = options.transformContainer, table = options.table, originalTable = table.slice(), temporaryTable, vtable, afterTable, transform,
 		engine, suggestions, editor, wrangler = {}, script, w = dw.wrangle(), tableSelection, scriptContainer = jQuery(document.createElement('div')).attr('id','scriptContainer'), editorContainer = jQuery(document.createElement('div')).attr('id','editorContainer'), dashboardContainer = options.dashboardContainer;
@@ -8246,7 +8252,7 @@ dw.wrangler = function(options){
 
 
 		jQuery("#table").hide();
-		var upload = dw.jq('div').attr('id', 'uploadContainer')
+		//var upload = dw.jq('div').attr('id', 'uploadContainer')
 
 
 //		upload.append(buttons)
@@ -8267,27 +8273,40 @@ dw.wrangler = function(options){
 		add_export_option('lookup_table', 'Lookup Table (currently supports 2 column table)');
 
 */
+        //var submitBtn = dw.jq('button').attr('id','wranglerInputSubmit').append('Back to Wrangling');
+        //var saveScriptBtn = dw.jq('button').attr('id','saveScript').append('save script');
+
+        if($.browser.mozilla){
+            submitBtn.attr('id','wranglerInputSubmitMf');
+            saveScriptBtn.attr('id','saveScriptMf');
+        }
 
 
 
-
-		upload.append(dw.jq('button').attr('id','wranglerInputSubmit').append('Back to Wrangling')
-						.click(function(){
+		upload.append(submitBtn.click(function(){
 							upload.remove();
 							jQuery("#table").show()
 						})
 
 		)
 
-// save script button		
-		upload.append(dw.jq('button').attr('id','saveScript').append('save script')
-						.click(function(){
+// save script button
+
+		upload.append(saveScriptBtn.mousedown(function(){
+
 						//	alert(select.val());
 						//	alert(dw.wrangler_export(table, {format:"javascript", wrangler:w}));
+                        var script=dw.wrangler_export(table, {format:"javascript", wrangler:w});
 						$.ajax({
-type:"POST",
-url: "test.jsp",
-data:"name=john"
+                            type:"POST",
+                            url: "save.jsp",
+                            data:{name:script},
+                            error:function(a,b,c){
+                                alert(a+"  "+b+" "+c);
+                            },
+                            success :function(s){
+                            //    alert("Success");
+                            }
 });
 						})
 

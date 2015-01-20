@@ -1,38 +1,74 @@
-<%@ page import="org.apache.axis2.context.ConfigurationContext" %>
-<%@ page import="org.wso2.carbon.CarbonConstants" %>
-<%@ page import="org.wso2.carbon.ui.CarbonUIUtil" %>
-<%@ page import="org.wso2.carbon.utils.ServerConstants" %>
-<%@ page import="org.wso2.carbon.ui.CarbonUIMessage" %>
+<%@include file="getStream.jsp"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://wso2.org/projects/carbon/taglibs/carbontags.jar" prefix="carbon" %>
+
+<script>
+
+    function getAllStreamJSON() {
+        var jsonStream = <%=res%>;
+        return jsonStream;
+    }
+    function checkStream(){
+	return getAllStreamJSON().length;
+    }
+    function getStreamName(index){
+        var jsonStream = getAllStreamJSON();
+        return jsonStream[index].name;
+    }
+    function getStreamVersion(index){
+        var jsonStream = getAllStreamJSON();
+        return jsonStream[index].version;
+    }
+    function getDataTypes(index){
+        var jsonStream = getAllStreamJSON();
+        var dataTypes = [];
+        for(var i = 0 ; i < jsonStream[index].payloadData.length ; i++){
+            dataTypes[i] = jsonStream[index].payloadData[i].type;
+        }
+        return dataTypes;
+
+    }
+
+    function sendDataTypes(){
+        var index = document.getElementById("streamSelect").selectedIndex;
+        var dataTypes =getDataTypes(index);
+        var data="";
+        for(var i = 0 ; i < dataTypes.length ; i++){
+            data=data+" "+dataTypes[i];
+        }
+        alert(data);
+    }
+    function onchangeMenu(index){
+        document.getElementById("wranglerIframe").src = "wrangler.html?selected="+index;
+    }
+</script>
+
 <head>
 
     <script type="text/javascript" src="dw.js"></script>
 </head>
 
-
-
-<div id="middle">
-    <h2 id="wranglerHeader">Data Wrangler </h2>
-
 <div>
+        <select id="streamSelect" onchange="onchangeMenu(this.selectedIndex)">
+        <script>
+            var i =0;
+            for(var i = 0 ; i < getAllStreamJSON().length ; i++) {
+            var streamNameV = getStreamName(i).concat(" ",getStreamVersion(i));
 
+        document.write("<option>"+streamNameV+"</option>");
 
-<iframe id="pc" width="100%" height="400px" src="wrangler.html"
-   >
-</iframe>
+                    }
+            </script>
+        </select>
 </div>
+<iframe id="wranglerIframe" width="100%" height="500px" src="wrangler.html">
 
-  <!--<form action="getStream.jsp" method="post"  >
-      <input type="text" hidden="true" name="nm" value="Nisla Niroshana Nanayakkara"> </input>
-     <input type="submit" value="Save Script"> </input>
-  </form>-->
+</iframe>
 
-    <div>
+ <div>
         <button onclick="saveScript()" id="saveBtn" name="saveBtn">Save Script</button>
 
         <script>
-         function save(){
          $(document).ready(function(){
          $("#outputParams").submit(function(){
              alert("got Here");
@@ -43,10 +79,9 @@
              return false;
             })
             });
-         }
         </script>
 
-        <form name="outparamForm" id="outputParams">
+        <form name="outparamForm" id="outputParams" method="post" action="formdata.jsp">
         <table border="0">
             <tr>
                 <td>
@@ -82,7 +117,7 @@
             </tbody>
         </table>
 
-           <button id="saveScriptBtn" onclick="save()"> Save</button>
+           <input type="submit" value="Save">
     </div>
     </form>
 
@@ -91,11 +126,12 @@
         function saveScript(){
 
             var saveScript="";
-            saveScript=document.getElementById("pc").contentWindow.document.getElementById("wranglerInput").value;
+	    console.log(document.getElementById("wranglerIframe"));
+            saveScript=document.getElementById("wranglerIframe").contentWindow.document.getElementById("wranglerInput").value;
 
             saveScript=saveScript.slice(16,saveScript.length-16);
             var funcDef = "function myfunction(x){\n\nw = dw.wrangle()\n\ninitial_transforms = dw.raw_inference(x).transforms;\n\nvar data =dv.table(x);\n\nif(initial_transforms){\ninitial_transforms.forEach(function(t){\nw.add(t);\n})\nw.apply([data]);\n\n}";
-            var funcEnd = "w.apply([data])\n\nreturn dw.wrangler_export(data,{format:'rowjson'});\n}";
+            var funcEnd = "w.apply([data])\n\nreturn dw.wrangler_export(data,{});\n}";
 
             saveScript = funcDef + saveScript + funcEnd;
 
@@ -172,50 +208,9 @@
 
 
         }
-//        upload.append(
-//                //    console.log(dw.vtable.columns[1].sTitle);
-//                saveScriptBtn.mouseup(function() {
-//                            console.log("got here");
-//
-//                            var table = document.getElementById("paramTable");
-//                            var tableBody = document.createElement('tbody');
-//                            var oldTableBody = document.getElementById("paramTableBody");
-//                            //table.appendChild(tableBody);
-//
-//                            var temp=[];
-////            temp= window.localStorage.getItem("myItem");
-//
-//                            //           console.log(temp);
-//
-//                            temp=JSON.parse(localStorage["temp"]);
-//
-//                            for(var j=1;j<temp.length;j++){
-//                                var tableRow = document.createElement("TR");
-//                                var td = document.createElement('TD');
-//                                var tdI = document.createElement("TD");
-//                                var input=document.createElement("input");
-//
-//                                td.setAttribute('class','leftCol-med');
-//                                input.setAttribute('type','text');
-//                                input.setAttribute('class','initE')
-//                                input.setAttribute('style','width:50%');
-//                                tdI.appendChild(input);
-//                                td.appendChild(document.createTextNode(temp[j]));
-//                                tableRow.appendChild(td);
-//                                tableRow.appendChild(tdI);
-//                                tableBody.setAttribute('id','paramTableBody');
-//                                tableBody.appendChild(tableRow);
-//                            }
-//
-//                            table.replaceChild(tableBody,oldTableBody);
-//                            console.log(temp);
-//                            console.log("clicked");
-//                        }
-//                ))
+
 
     </script>
 
 
     </div>
-</div>
-

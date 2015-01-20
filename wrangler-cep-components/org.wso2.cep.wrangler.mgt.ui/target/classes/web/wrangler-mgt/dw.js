@@ -2,8 +2,6 @@
 
 var dw = {};
 
-window.columnw=[];
-
 dw.version = {
   major: 0,
   minor: 1
@@ -591,7 +589,7 @@ dw.wrangle = function(){
 		if(typeOf(tables)!='array'){
 			tables = [tables]	
 		}
-	//	console.log("tables"+tables);
+		console.log("tables"+tables);
 		w.forEach(function(t){
 			
 			if(t.active() || t.invalid()){
@@ -1183,7 +1181,7 @@ dw.drop = function(column){
 
 		var table = t.getTable(tables),
 			columns = t.columns(table);
-	//	console.log(table);
+		console.log(table);
 
 		if(t._drop){
 			columns.forEach(function(col){
@@ -4428,8 +4426,8 @@ dw.vtable = function(container, options){
 			return {"sTitle":name, "sWidth":"30px"}
 		}))
 
-        //sameera
-        var temp=[];
+///////////////////////////////////////////////////////////		
+	var temp=[];
 
         console.log(columns.length);
         //for(var j=0;j<columns.length;j++){
@@ -4441,11 +4439,11 @@ dw.vtable = function(container, options){
         }
 
         localStorage["temp"] = JSON.stringify(temp);
+//////////////////////////////////////////////////////////////
 
-    //    window.localStorage.setItem("myItem",temp);
+
 		return vtable;
 	}
-
 
 
 	vtable.draw = function(){
@@ -4462,6 +4460,11 @@ dw.vtable = function(container, options){
 
 
 
+
+
+
+
+		console.log(data)
 
 		container.html( '<table cellpadding="0" cellspacing="0" border="0" class="display" id="'  + containerID + '"></table>' );
 		otable = $('#'+containerID).dataTable( {
@@ -7876,7 +7879,7 @@ dw.tmenu = function(container, options){
 					
 					jQuery(this).height(subheight)
 					jQuery(this).addClass('openMenu')
-
+					
 
 					
 					
@@ -8020,6 +8023,7 @@ dw.transform_editor = function(container, transform, options){
 	return editor;
 }
 
+///////////////////////////////////////////////////////////////////////////////
 var upload = dw.jq('div').attr('id', 'uploadContainer')
 var submitBtn = dw.jq('button').attr('id','wranglerInputSubmit').append('Back to Wrangling');
 var saveScriptBtn = dw.jq('button').attr('id','saveScript').append('save script');

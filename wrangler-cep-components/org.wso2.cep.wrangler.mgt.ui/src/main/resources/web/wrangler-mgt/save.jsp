@@ -21,7 +21,7 @@
 
     Resource resource = registry.newResource();
     resource.setContent(s);
-    String resourcePath = "/_system/savedjs";
+    String resourcePath = "/_system/savedjs.js";
     registry.put(resourcePath, resource);
 
     String serverURL = CarbonUIUtil.getServerURL(config.getServletContext(), session);
