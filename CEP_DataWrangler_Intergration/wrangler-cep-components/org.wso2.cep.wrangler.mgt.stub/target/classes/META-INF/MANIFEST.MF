@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1421755413189
+Build-Jdk: 1.7.0_65
+Built-By: chathuranga
+Bundle-ManifestVersion: 2
+Bundle-Name: org.wso2.cep.wrangler.mgt.stub
+Bundle-SymbolicName: org.wso2.cep.wrangler.mgt.stub
+Bundle-Version: 1.0.0
+Created-By: Apache Maven Bundle Plugin
+DynamicImport-Package: *
+Export-Package: org.wso2.cep.wrangler.mgt;version="1.0.0",org.wso2.cep.w
+ rangler.mgt.stub;version="1.0.0"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.5))"
+Tool: Bnd-2.3.0.201405100607
