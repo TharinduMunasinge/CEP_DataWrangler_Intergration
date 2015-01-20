@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<parent>
+    <artifactId>wrangler-cep</artifactId>
+    <groupId>org.wso2.cep</groupId>
+    <version>1.0</version>
+</parent>
+<modelVersion>4.0.0</modelVersion>
+
+<artifactId>wrangler-cep-components</artifactId>
+
+<packaging>pom</packaging>
+<name>WSO2 CEP - Data Wrangler Components</name>
+
+<modules>
+    <module>org.wso2.cep.wrangler.mgt</module>
+    <module>org.wso2.cep.wrangler.mgt.ui</module>
+    <module>org.wso2.cep.wrangler.mgt.stub</module>
+    <!-- There are 2 more projects to be added here later in this tutorial stub, ui -->
+</modules>
+</project>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<parent>
+    <artifactId>wrangler-cep-components</artifactId>
+    <groupId>org.wso2.cep</groupId>
+    <version>1.0</version>
+</parent>
+<modelVersion>4.0.0</modelVersion>
+<artifactId>org.wso2.cep.wrangler.mgt.ui</artifactId>
+<packaging>bundle</packaging>
+<name>WSO2 CEP - Data Wrangler UI Component</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.wso2.cep</groupId>
+            <artifactId>org.wso2.cep.wrangler.mgt.stub</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.carbon</groupId>
+            <artifactId>org.wso2.carbon.registry.api</artifactId>
+            <version>4.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.carbon</groupId>
+            <artifactId>org.wso2.carbon.context</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.carbon</groupId>
+            <artifactId>org.wso2.carbon.ui</artifactId>
+            <version>4.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.carbon</groupId>
+            <artifactId>org.wso2.carbon.databridge.commons</artifactId>
+            <version>4.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.carbon</groupId>
+            <artifactId>org.wso2.carbon.databridge.streamdefn.registry</artifactId>
+            <version>4.2.1</version>
+        </dependency>
+    </dependencies>
+    <repositories>
+        <repository>
+            <id>wso2-maven2-repository</id>
+            <name>WSO2 Maven2 Repository</name>
+            <url>http://dist.wso2.org/maven2</url>
+        </repository>
+    </repositories>
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>maven-bundle-plugin</artifactId>
+            <extensions>true</extensions>
+            <configuration>
+                <instructions>
+                    <Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
+                    <Bundle-Name>${project.artifactId}</Bundle-Name>
+                    <Export-Package>
+                        org.wso2.cep.wrangler.mgt.*
+                    </Export-Package>
+                    <Import-Package>
+                        *;resolution:=optional
+                    </Import-Package>
+                    <Carbon-Component>UIBundle</Carbon-Component>
+                </instructions>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+</project>
