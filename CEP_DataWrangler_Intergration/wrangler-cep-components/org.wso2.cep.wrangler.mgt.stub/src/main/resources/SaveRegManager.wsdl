@@ -1,0 +1,60 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://mgt.wrangler.cep.wso2.org" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://mgt.wrangler.cep.wso2.org">
+    <wsdl:documentation>SaveRegManager</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://mgt.wrangler.cep.wso2.org">
+            <xs:element name="saveRegistry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="sscript" nillable="true" type="xs:string"></xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="saveRegistryRequest">
+        <wsdl:part name="parameters" element="ns:saveRegistry"></wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="SaveRegManagerPortType">
+        <wsdl:operation name="saveRegistry">
+            <wsdl:input message="ns:saveRegistryRequest" wsaw:Action="urn:saveRegistry"></wsdl:input>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SaveRegManagerSoap11Binding" type="ns:SaveRegManagerPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"></soap:binding>
+        <wsdl:operation name="saveRegistry">
+            <soap:operation soapAction="urn:saveRegistry" style="document"></soap:operation>
+            <wsdl:input>
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="SaveRegManagerSoap12Binding" type="ns:SaveRegManagerPortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"></soap12:binding>
+        <wsdl:operation name="saveRegistry">
+            <soap12:operation soapAction="urn:saveRegistry" style="document"></soap12:operation>
+            <wsdl:input>
+                <soap12:body use="literal"></soap12:body>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="SaveRegManagerHttpBinding" type="ns:SaveRegManagerPortType">
+        <http:binding verb="POST"></http:binding>
+        <wsdl:operation name="saveRegistry">
+            <http:operation location="saveRegistry"></http:operation>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"></mime:content>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="SaveRegManager">
+        <wsdl:port name="SaveRegManagerHttpsSoap11Endpoint" binding="ns:SaveRegManagerSoap11Binding">
+            <soap:address location="https://10.100.4.11:9443/services/SaveRegManager.SaveRegManagerHttpsSoap11Endpoint/"></soap:address>
+        </wsdl:port>
+        <wsdl:port name="SaveRegManagerHttpsSoap12Endpoint" binding="ns:SaveRegManagerSoap12Binding">
+            <soap12:address location="https://10.100.4.11:9443/services/SaveRegManager.SaveRegManagerHttpsSoap12Endpoint/"></soap12:address>
+        </wsdl:port>
+        <wsdl:port name="SaveRegManagerHttpsEndpoint" binding="ns:SaveRegManagerHttpBinding">
+            <http:address location="https://10.100.4.11:9443/services/SaveRegManager.SaveRegManagerHttpsEndpoint/"></http:address>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

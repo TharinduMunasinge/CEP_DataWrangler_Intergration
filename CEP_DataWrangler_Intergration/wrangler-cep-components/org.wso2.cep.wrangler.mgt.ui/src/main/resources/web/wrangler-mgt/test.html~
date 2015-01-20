@@ -1,0 +1,53 @@
+<script>
+	var string_val= ["sample text 1", "sample text 2", "sample text 3", "sample text 4", "sample text 5",
+			 "sample text 6", "sample text 7", "sample text 8", "sample text 9", "sample text 10"];
+	var int_val = [57, 23, 100, 12, 34, 91, 0, -1, 16, -25];
+	var float_val = [21.2, 10.0, 22.5, 101.4, 11.1, 9.8, 0.2, -23.5, 5.6, -0,7];
+	
+	function get(stream_def){
+		var text="";
+		var stri=0; var inti=0; var flti=0;
+		for(i=0; i<stream_def.length; i++){
+			if(stream_def[i]==="string"){
+				text += string_val[stri];
+				if(i != stream_def.length -1)
+					text += ", ";
+				stri++;
+				if(stri===10)
+					stri=0;
+			}
+
+			if(stream_def[i]==="int"){
+				text += string_val[inti];
+				if(i != stream_def.length -1)
+					text += ", ";
+				inti++;
+				if(inti===10)
+					inti=0;
+			}
+
+			if(stream_def[i]==="float"){
+				text += string_val[flti];
+				if(i != stream_def.length -1)
+					text += ", ";
+				flt++;
+				if(flti===10)
+					flti=0;
+			}
+		}
+		return text;
+	}
+</script>
+<Html>
+	<div>
+	<iframe id="pc" width="100%" height="500px" src="wrangler.html">
+	</iframe>
+	</div>
+
+	<div>
+  	<form action="getStream.jsp" method="post"  >
+      		<input type="text" hidden="true" name="nm" value="Nisla Niroshana Nanayakkara"> </input>
+     		<input type="submit" value="Save Script"> </input>
+  	</form>
+	</div>
+</html>
