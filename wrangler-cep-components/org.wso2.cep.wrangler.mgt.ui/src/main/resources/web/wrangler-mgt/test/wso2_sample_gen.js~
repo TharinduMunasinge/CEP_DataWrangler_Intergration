@@ -27,10 +27,10 @@ var long_val =  [57, 23, 100, 12, 34, 91, 0, -1, 16, -25,
 var bool_val = ["false", "true"]; 
 	
 var text="";
-var def_prompt="aaa";
+var def_prompt="";
 var inputArea = dw.jq('textArea').attr('id','wranglerInput');
 var single=true; // controlled by 'option' radio button on wrangler.html
-var stream=["INT", "STRING", "LONG"];
+var stream=["empty"];
 
 function getSample(stream_def){
 	text="";
@@ -48,74 +48,83 @@ function getSample(stream_def){
 		
 	for(k=0; k<events; k++){
 		if(k!=0)
-			text += "\n";
-		def_prompt="Event Stream Format: ( "	
+			text += "\n";	
 		for(i=0; i<stream_def.length; i++){
 			
 			rand=Math.floor(Math.random()*26)
 			if(stream_def[i]==="STRING"){
 				text += string_val[rand];
-				def_prompt += "string";
+				//def_prompt += "string";
 				if(i != stream_def.length -1){
 					text += ", ";
-					def_prompt += ", ";
+					//def_prompt += ", ";
 				}
 			}
 	
 			rand=Math.floor(Math.random()*30)
 			if(stream_def[i]==="INT"){
 				text += int_val[rand];
-				def_prompt += "int";
+				//def_prompt += "int";
 				if(i != stream_def.length -1){
 					text += ", ";
-					def_prompt += ", ";
+					//def_prompt += ", ";
 				}
 			}
 
 			rand=Math.floor(Math.random()*30)
 			if(stream_def[i]==="FLOAT"){
 				text += float_val[rand];
-				def_prompt += "float";
+				//def_prompt += "float";
 				if(i != stream_def.length -1){
 					text += ", ";
-					def_prompt += ", ";
+					//def_prompt += ", ";
 				}
 			}
 
 			rand=Math.floor(Math.random()*30)
 			if(stream_def[i]==="LONG"){
 				text += long_val[rand];
-				def_prompt += "long";
+				//def_prompt += "long";
 				if(i != stream_def.length -1){
 					text += ", ";
-					def_prompt += ", ";
+					//def_prompt += ", ";
 				}
 			}
 
 			rand=Math.floor(Math.random()*30)
 			if(stream_def[i]==="DOUBLE"){
 				text += double_val[rand];
-				def_prompt += "double";
+				//def_prompt += "double";
 				if(i != stream_def.length -1){
 					text += ", ";
-					def_prompt += ", ";
+					//def_prompt += ", ";
 				}
 			}
 
 			rand=Math.floor(Math.random()*2)
 			if(stream_def[i]==="BOOL"){
 				text += bool_val[rand];
-				def_prompt += "bool";
+				//def_prompt += "bool";
 				if(i != stream_def.length -1){
 					text += ", ";
-					def_prompt += ", ";
+					//def_prompt += ", ";
 				}
 			}
 		}
 
 		
 	}
-	def_prompt+=" )";
+	//def_prompt+=" )";
 	inputArea.attr('value', text);
 	return text;
+}
+
+function getStreamDef(list){
+	def_prompt = "Event Stream Format: ( ";
+	/*for(i=0; i<list.length; i++){
+		def_prompt += list[i];
+		if(i != list.length-1)
+			def_prompt += ", ";
+	}*/
+	def_prompt += " )";
 }

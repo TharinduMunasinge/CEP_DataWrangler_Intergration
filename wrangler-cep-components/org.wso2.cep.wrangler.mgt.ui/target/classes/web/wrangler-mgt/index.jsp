@@ -19,6 +19,14 @@
         var jsonStream = getAllStreamJSON();
         return jsonStream[index].version;
     }
+    function getPayloadNames(index){
+        var jsonStream = getAllStreamJSON();
+        var payloadNames = [];
+        for(var i = 0 ; i < jsonStream[index].payloadData.length ; i++ ){
+            payloadNames[i] = jsonStream[index].payloadData[i].name;
+        }
+        return payloadNames;
+    }
     function getDataTypes(index){
         var jsonStream = getAllStreamJSON();
         var dataTypes = [];
@@ -131,7 +139,7 @@
 
             saveScript=saveScript.slice(16,saveScript.length-16);
             var funcDef = "function myfunction(x){\n\nw = dw.wrangle()\n\ninitial_transforms = dw.raw_inference(x).transforms;\n\nvar data =dv.table(x);\n\nif(initial_transforms){\ninitial_transforms.forEach(function(t){\nw.add(t);\n})\nw.apply([data]);\n\n}";
-            var funcEnd = "w.apply([data])\n\nreturn dw.wrangler_export(data,{format:'rowjson'});\n}";
+            var funcEnd = "w.apply([data])\n\nreturn dw.wrangler_export(data,{});\n}";
 
             saveScript = funcDef + saveScript + funcEnd;
 

@@ -127,7 +127,8 @@
 			upload.append(selectPrompt).append(select)*/
 		
 			
-
+			/*upload.append(dw.jq('form').attr('id', 'frm').append(dw.jq('input').attr('name','option').attr('checked','true').attr('value','single').attr('id','single').attr('type','radio').append('aaaa')).append(dw.jq('input').attr('name','option').attr('value','multiple').attr('id','multiple').attr('type','radio')))*/
+			
 			upload.append(dw.jq('button').attr('id','wranglerInputSubmit').append('Wrangle'))
 
 
@@ -136,9 +137,12 @@
 			upload.append(inputArea)
 			//my code start
 			
-			getSample(["STRING", "INT", "FLOAT", "LONG", "DOUBLE", "BOOL"]);
+			//getSample(["STRING", "INT", "FLOAT", "LONG", "DOUBLE", "BOOL"]);
 			//my code end
 			//inputArea.attr('value', text); // moved to test/wso2_sample_gen.js
+			
+			//jQuery('#single').click(function(){single=true;getSample(stream);});
+			//jQuery('#multiple').click(function(){single=false;getSample(stream);});
 
 			jQuery('button').click(function(){
 				var val = inputArea.attr(
@@ -188,17 +192,21 @@
 				param=path.substring(path.indexOf("?selected=")+10,path.length);
 			else
 				param=0;
-			if(parent.checkStream()!=0)
+			if(parent.checkStream()!=0){
 				stream=parent.getDataTypes(param);
-			else
+				getStreamDef(parent.getStreamName(param));
+			}
+			else{
 				stream=["empty"];
+				def_prompt="please select a input stream."
+			}
 			getSample(stream);
 			document.getElementById("def").innerHTML=def_prompt;
 			
 		}
 	</script>
 	<style>
-	input { float: left; width: 100px; }
+	input { float: left; width: 50px; }
 	label { margin: 0px 0px 0px 10px; float: left; }
 
 	p {
@@ -242,14 +250,22 @@
 
 
 <div class="ui-layout-center" id='profilerCenterPanel'>
-	<form action=""><br>
+	<!--div id="options"></div-->
+	<!--form action=""><br>
 		<input type="radio" name="option" value="single" Checked 
 		       onClick="single=true;getSample(stream);">Single<br>
 		<input type="radio" name="option" value="multiple" 
 		       onClick="single=false;getSample(stream);">Multiple
-	</form>
+	</form-->
 
-	<div id="table"><p id="def" margin-left="5"></p></div>
+	<div id="table"><p id="def" margin-left="5"></p>
+		<form action=""><br>
+		<input type="radio" name="option" value="single" Checked 
+		       onClick="single=true;getSample(stream);">Single<br>
+		<input type="radio" name="option" value="multiple" 
+		       onClick="single=false;getSample(stream);">Multiple
+	</form>	
+	</div>
 		
 	<div id="preview"></div>
 	<div class="spacer"></div>
