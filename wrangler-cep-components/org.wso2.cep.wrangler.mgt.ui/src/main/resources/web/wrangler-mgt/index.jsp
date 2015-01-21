@@ -18,6 +18,14 @@
         var jsonStream = getAllStreamJSON();
         return jsonStream[index].version;
     }
+    function getPayloadNames(index){
+        var jsonStream = getAllStreamJSON();
+        var payloadNames = [];
+        for(var i = 0 ; i < jsonStream[index].payloadData.length ; i++ ){
+            payloadNames[i] = jsonStream[index].payloadData[i].name;
+        }
+        return payloadNames;
+    }
     function getDataTypes(index){
         var jsonStream = getAllStreamJSON();
         var dataTypes = [];
