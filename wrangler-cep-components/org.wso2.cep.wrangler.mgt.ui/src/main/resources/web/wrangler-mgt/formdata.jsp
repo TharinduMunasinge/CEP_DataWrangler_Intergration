@@ -10,13 +10,9 @@
 <%@ page import="org.wso2.cep.wrangler.mgt.ui.SaveRegClient" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://wso2.org/projects/carbon/taglibs/carbontags.jar" prefix="carbon" %>
-<html>
-<body>
-<script>console.log("gotHere")</script>
-</body>
-</html>
+
 <%
-    String s = request.getParameter("numParams");
+    String s = request.getParameter("pname");
     CarbonContext cCtx = CarbonContext.getCurrentContext();
     Registry registry = cCtx.getRegistry(RegistryType.SYSTEM_CONFIGURATION);
     String registryType = RegistryType.SYSTEM_GOVERNANCE.toString();
