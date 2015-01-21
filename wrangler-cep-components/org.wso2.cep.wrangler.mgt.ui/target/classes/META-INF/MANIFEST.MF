@@ -1,7 +1,11 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Bnd-LastModified: 1421821508713
+=======
+Bnd-LastModified: 1421815393628
+>>>>>>> 974d5a3ac5eb2ea6dcd7925376e435b2fcd42e9b
 Build-Jdk: 1.7.0_65
-Built-By: chathuranga
+Built-By: sameera
 Bundle-ManifestVersion: 2
 Bundle-Name: org.wso2.cep.wrangler.mgt.ui
 Bundle-SymbolicName: org.wso2.cep.wrangler.mgt.ui
