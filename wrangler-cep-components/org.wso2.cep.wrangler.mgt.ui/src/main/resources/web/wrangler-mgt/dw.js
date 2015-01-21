@@ -8029,431 +8029,280 @@ var submitBtn = dw.jq('button').attr('id','wranglerInputSubmit').append('Back to
 var saveScriptBtn = dw.jq('button').attr('id','saveScript').append('save script');
 
 dw.wrangler = function(options){
-	var tContainer = options.tableContainer, previewContainer = options.previewContainer, transformContainer = options.transformContainer, table = options.table, originalTable = table.slice(), temporaryTable, vtable, afterTable, transform,
-		engine, suggestions, editor, wrangler = {}, script, w = dw.wrangle(), tableSelection, scriptContainer = jQuery(document.createElement('div')).attr('id','scriptContainer'), editorContainer = jQuery(document.createElement('div')).attr('id','editorContainer'), dashboardContainer = options.dashboardContainer;
+    var tContainer = options.tableContainer, previewContainer = options.previewContainer, transformContainer = options.transformContainer, table = options.table, originalTable = table.slice(), temporaryTable, vtable, afterTable, transform,
+        engine, suggestions, editor, wrangler = {}, script, w = dw.wrangle(), tableSelection, scriptContainer = jQuery(document.createElement('div')).attr('id','scriptContainer'), editorContainer = jQuery(document.createElement('div')).attr('id','editorContainer'), dashboardContainer = options.dashboardContainer;
 
 
 
-	if(options.initial_transforms){
-		options.initial_transforms.forEach(function(t){
-			w.add(t);
-		})
-		w.apply([table]);
-	}
+    if(options.initial_transforms){
+        options.initial_transforms.forEach(function(t){
+            w.add(t);
+        })
+        w.apply([table]);
+    }
 
 
 
 
-	transformContainer.append(editorContainer).append(scriptContainer)
+    transformContainer.append(editorContainer).append(scriptContainer)
 
-	engine = dw.engine().table(table);
+    engine = dw.engine().table(table);
 
-	var transform_menu = dw.transform_menu(dashboardContainer, {interaction:interaction, onclear:clear_editor, onedit:interaction, table:undefined})
+    var transform_menu = dw.transform_menu(dashboardContainer, {interaction:interaction, onclear:clear_editor, onedit:interaction, table:undefined})
 
 
-	function interaction(params){
+    function interaction(params){
 
-		dw.log(params)
-		var selection = tableSelection.add(params);
+        dw.log(params)
+        var selection = tableSelection.add(params);
 
-		params.rows = selection.rows();
-		params.cols = selection.cols();
-		suggestions = engine.table(table).input(params).run(13);
-		transform = suggestions[0];
+        params.rows = selection.rows();
+        params.cols = selection.cols();
+        suggestions = engine.table(table).input(params).run(13);
+        transform = suggestions[0];
 
-		drawEditor();
+        drawEditor();
 
 
 
-		if (enable_proactive) {
+        if (enable_proactive) {
 
-			if(params.type==dw.engine.clear ||
-				 params.type==dw.engine.execute) {
+            if(params.type==dw.engine.clear ||
+                params.type==dw.engine.execute) {
 
 
-				drawTable();
-			}
-			else if(params.type === dw.engine.promote){
-				editor.working();
-			}
-			else{
+                drawTable();
+            }
+            else if(params.type === dw.engine.promote){
+                editor.working();
+            }
+            else{
 
-				if(params.type===dw.engine.param){
-					editor.working()
-				}
-				else{
-					editor.first_suggestion();
-				}
-			}
+                if(params.type===dw.engine.param){
+                    editor.working()
+                }
+                else{
+                    editor.first_suggestion();
+                }
+            }
 
-		}
-		else {
+        }
+        else {
 
-			if(params.type === dw.engine.promote){
-				editor.working();
-			}
-			else{
+            if(params.type === dw.engine.promote){
+                editor.working();
+            }
+            else{
 
-				if(params.type===dw.engine.param){
-					editor.working()
-				}
-				else{
-					editor.first_suggestion();
-				}
-			}
+                if(params.type===dw.engine.param){
+                    editor.working()
+                }
+                else{
+                    editor.first_suggestion();
+                }
+            }
 
-		}
-
-		transform_menu.update({transform:editor.transform() || transform})
-
-	}
-
-	function infer_schema(){
-		var typeTransforms = dw.infer_type_transforms(table);
-		typeTransforms.forEach(function(t){
-			t.sample_apply([table])
-		})
-	}
-
-	function table_change(){
-		transform = editor.transform()
-		drawTable();
-	}
-
-	var warned = false;
-	function confirmation(options){
-		if(!warned){
-			warned = true;
-			alert('Wrangler only supports up to 40 columns and 1000 rows.  We will preview only the first 40 columns and 1000 rows of data.')
-
-		}
-	}
-
-	vtable = dw.vtable(tContainer, {
-		interaction:interaction,
-		ontablechange:table_change,
-		onexecute:execute_transform,
-		onconfirm:confirmation,
-		wrangler:w
-	})
-
-
-	afterTable = dw.vtable(previewContainer, {
-		interaction:function(params){}
-	})
-
-	function highlight_suggestion(params){
-		preview(params.transform)
-
-		transform_menu.update({transform:params.transform})
-		dw.log({type:'highlight_suggestion', suggestion:params.transform})
-	}
-
-	function execute_transform(transform, params){
-		transform.sample_apply([table]);
-		dw.summary.clear_cache();
-		infer_schema()
-		w.add(transform)
-		tableSelection.clear()
-		interaction({type:dw.engine.execute, transform:transform})
-		drawScript()
-
-		var x = jQuery('#scriptTransformContainer')
-		x.scrollTop(100000);
-
-
-	}
-
-	function clear_editor(){
-		tableSelection.clear()
-		interaction({type:dw.engine.clear})
-	}
-
-
-	function promote_transform(transform, params){
-		tableSelection.clear()
-		interaction({type:dw.engine.promote, transform:transform})
-	}
-
-
-
-	tableSelection = dw.table_selection(vtable);
-
-	wrangler.draw = function(){
-		suggestions = engine.table(table).run();
-		drawTable();
-		drawEditor()
-		drawScript()
-	}
-
-
-
-	function drawTable(){
-		preview(transform);
-	}
-
-	function drawEditor(){
-		editorContainer.empty();
-
-		editor = dw.editor(editorContainer, suggestions, {onpromote:promote_transform, onhighlight:highlight_suggestion, onselect:execute_transform, onedit:interaction, table:table}).draw()
-	}
-
-	function exportTable(){
-		var select = dw.jq('select').addClass('exportOptions');
-
-	/*	var buttons = jQuery('<form>\
-		<input type="radio" name="exportType" value="script" /> Script\
-		</form>')
-
-		buttons.find(':radio').height(15).width(15).click(function(e){
-			select.empty()
-			add_export_options()
-		})
-*/
-
-	/*	var add_export_options = function(){
-			if(buttons.find(':radio:checked').val()=='data'){
-				add_export_option('csv', 'Comma-Separated Values (CSV)');
-				add_export_option('tsv', 'Tab-Separated Values (TSV)');
-				add_export_option('rowjson', 'Row-Oriented JSON (One object per row)');
-				add_export_option('columnjson', 'Column-Oriented JSON (One array per column)');
-				add_export_option('lookup_table', 'Lookup Table (currently supports 2 column table)');
-				inputArea.attr('value', dw.wrangler_export(table, {}))
-				inputArea.focus();
-				inputArea.select();
-				dw.log({type:'export', params:{type:'csv'}})
-			}
-			else{
-
-			add_export_option('python', 'Python');
-				add_export_option('javascript', 'JavaScript');
-				inputArea.attr('value', dw.wrangler_export(table, {format:'python', wrangler:w}))
-				inputArea.focus();
-				inputArea.select();
-				dw.log({type:'export', params:{type:'python'}})
-				instructions.empty();
-
-								instructions.append(python)
-
-
-			}
-		}*/
-
-		var add_export_option = function(type, name){
-
-
-			dw.add_select_option(select, name, type);
-
-
-		}
-		var python = 'To run python code, run <span class=\'terminal\'>easy_install datawrangler</span> or download the <a class=\'runtimeLink\' href=\'http://vis.stanford.edu/wrangler/files/python/DataWrangler-0.1.tar.gz\' target=\'_blank\'> python runtime.</a>'
-		var javascript = 'To run javascript code, download the <a class=\'runtimeLink\' href=\'http://vis.stanford.edu/wrangler/files/javascript/dwrt-r0.1.js\' target=\'_blank\'> javascript runtime</a>.'
-	
-/*
-	select.change(function(){
-			inputArea.attr('value', dw.wrangler_export(table, {format:select.val(), wrangler:w}))
-			jQuery('.exportHeader').removeClass('selectedExportHeader');
-			jQuery(this).addClass('selectedExportHeader')
-			inputArea.focus();
-			inputArea.select();
-			dw.log({type:'export', params:{type:select.val()}})
-			instructions.empty();
-		/*	if(select.val()==='python'){
-				instructions.append(python)
-			}
-		*/
-		//	if(select.val()==='javascript'){
-//				instructions.append(javascript)
-		//	}
-//		})
-
-
-		jQuery("#table").hide();
-		//var upload = dw.jq('div').attr('id', 'uploadContainer')
-
-
-//		upload.append(buttons)
-
-
-//		upload.append(select);
-
-		var instructions = dw.jq('div').attr('id', 'scriptInstructions')
-
-
-
-		jQuery('#profilerCenterPanel').prepend(upload)
-
-	/*	add_export_option('csv', 'Comma-Separated Values (CSV)');
-		add_export_option('tsv', 'Tab-Separated Values (TSV)');
-		add_export_option('rowjson', 'Row-Oriented JSON (One object per row)');
-		add_export_option('columnjson', 'Column-Oriented JSON (One array per column)');
-		add_export_option('lookup_table', 'Lookup Table (currently supports 2 column table)');
-
-*/
-        //var submitBtn = dw.jq('button').attr('id','wranglerInputSubmit').append('Back to Wrangling');
-        //var saveScriptBtn = dw.jq('button').attr('id','saveScript').append('save script');
-
-        if($.browser.mozilla){
-            submitBtn.attr('id','wranglerInputSubmitMf');
-            saveScriptBtn.attr('id','saveScriptMf');
         }
 
+        transform_menu.update({transform:editor.transform() || transform})
+
+    }
+
+    function infer_schema(){
+        var typeTransforms = dw.infer_type_transforms(table);
+        typeTransforms.forEach(function(t){
+            t.sample_apply([table])
+        })
+    }
+
+    function table_change(){
+        transform = editor.transform()
+        drawTable();
+    }
+
+    var warned = false;
+    function confirmation(options){
+        if(!warned){
+            warned = true;
+            alert('Wrangler only supports up to 40 columns and 1000 rows.  We will preview only the first 40 columns and 1000 rows of data.')
+
+        }
+    }
+
+    vtable = dw.vtable(tContainer, {
+        interaction:interaction,
+        ontablechange:table_change,
+        onexecute:execute_transform,
+        onconfirm:confirmation,
+        wrangler:w
+    })
 
 
-		upload.append(submitBtn.click(function(){
-							upload.remove();
-							jQuery("#table").show()
-						})
+    afterTable = dw.vtable(previewContainer, {
+        interaction:function(params){}
+    })
 
-		)
+    function highlight_suggestion(params){
+        preview(params.transform)
 
-// save script button
+        transform_menu.update({transform:params.transform})
+        dw.log({type:'highlight_suggestion', suggestion:params.transform})
+    }
 
-		upload.append(saveScriptBtn.mousedown(function(){
+    function execute_transform(transform, params){
+        transform.sample_apply([table]);
+        dw.summary.clear_cache();
+        infer_schema()
+        w.add(transform)
+        tableSelection.clear()
+        interaction({type:dw.engine.execute, transform:transform})
+        drawScript()
 
-						//	alert(select.val());
-						//	alert(dw.wrangler_export(table, {format:"javascript", wrangler:w}));
-                        var script=dw.wrangler_export(table, {format:"javascript", wrangler:w});
-						$.ajax({
-                            type:"POST",
-                            url: "save.jsp",
-                            data:{name:script},
-                            error:function(a,b,c){
-                                alert(a+"  "+b+" "+c);
-                            },
-                            success :function(s){
-                            //    alert("Success");
-                            }
-});
-						})
-
-		)
-
-		var saveScript= function(){
-			return dw.wrangler_export(table, {format:"javascript", wrangler:w});
-		}
+        var x = jQuery('#scriptTransformContainer')
+        x.scrollTop(100000);
 
 
-		var inputArea = dw.jq('textArea').attr('id','wranglerInput');
-		upload.append(inputArea)
-		inputArea.attr('value', dw.wrangler_export(table, {format:"javascript", wrangler:w}))
+    }
 
-		jQuery('.exportHeader:first').addClass('selectedExportHeader');
-
-		inputArea.focus();
-		inputArea.select();
-
-		upload.append(instructions)
+    function clear_editor(){
+        tableSelection.clear()
+        interaction({type:dw.engine.clear})
+    }
 
 
-			clear_editor();
-
-/*		upload.append(dw.jq('button').attr('id','saveScript').append('save script')
-						.click(function(){
-						//	alert(select.val());
-							alert(dw.wrangler_export(table, {format:"javascript", wrangler:w}));
-						})
-
-		) */
-		dw.log({type:'export', params:{type:'csv'}})
-	}
-
-	function script_interaction(params){
-		temporaryTable = originalTable.slice();
-
-
-
-
-		dw.progress_call(w.apply, w, [temporaryTable])
-		dw.log({type:'edit_script', params:params})
-		table = temporaryTable;
-		clear_editor();
-		wrangler.draw();
-
-	}
-
-	function drawScript(){
-		var scrollTop = jQuery('#scriptTransformContainer').scrollTop();
-		scriptContainer.empty();
-		script = dw.script(scriptContainer, w, {
-			edit:function(params){
-				script_interaction(params)
+    function promote_transform(transform, params){
+        tableSelection.clear()
+        interaction({type:dw.engine.promote, transform:transform})
+    }
 
 
 
+    tableSelection = dw.table_selection(vtable);
 
-			},
-			onexport:exportTable,
-			onedit:script_interaction,
-			table:table
-
-
-
-
-
-		}).draw()
-		jQuery('#scriptTransformContainer').scrollTop(scrollTop);
-	}
-
-	function preview(transform){
-		dw.preview(vtable, table, transform, afterTable, tableSelection);
-	}
+    wrangler.draw = function(){
+        suggestions = engine.table(table).run();
+        drawTable();
+        drawEditor()
+        drawScript()
+    }
 
 
-	jQuery(document).bind('keydown', function(event){
 
-		var type = event && event.srcElement && event.srcElement.type
+    function drawTable(){
+        preview(transform);
+    }
 
-		if(type!='text'){
-			switch(event.which){
-		          	case 8:
+    function drawEditor(){
+        editorContainer.empty();
 
-		           	break
-		        case 9:
-					editor.promote()
+        editor = dw.editor(editorContainer, suggestions, {onpromote:promote_transform, onhighlight:highlight_suggestion, onselect:execute_transform, onedit:interaction, table:table}).draw()
+    }
 
+    function exportTable(){
 
-					if(type!='textarea'){
-		                event.preventDefault()
-		            }
-		            break
-		        case 38:
+        exportedValue = dw.wrangler_export(table, {format:"javascript", wrangler:w});
+        parent.document.getElementById("paramArea").style.display='block';
+        clear_editor();
+        parent.setParams();
+        dw.log({type:'export', params:{type:'csv'}})
+    }
 
-					editor.prev()
-					event.preventDefault()
-		            break
-		        case 40:
-
-					editor.next()
-		            event.preventDefault()
-		            break
-		        case 13:
-
-					transform = editor.transform();
-					execute_transform(transform)
-					if(type!='textarea'){
-		                event.preventDefault()
-		            }
-		            break
-				case 27:
-					clear_editor();
-					break
-		    }
-
-		}
-	    if(type!='textarea'){
-
-	    }
-	})
-
-	infer_schema()
+    function script_interaction(params){
+        temporaryTable = originalTable.slice();
 
 
 
 
-	wrangler.draw();
+        dw.progress_call(w.apply, w, [temporaryTable])
+        dw.log({type:'edit_script', params:params})
+        table = temporaryTable;
+        clear_editor();
+        wrangler.draw();
+
+    }
+
+    function drawScript(){
+        var scrollTop = jQuery('#scriptTransformContainer').scrollTop();
+        scriptContainer.empty();
+        script = dw.script(scriptContainer, w, {
+            edit:function(params){
+                script_interaction(params)
 
 
 
-	return wrangler;
+
+            },
+            onexport:exportTable,
+            onedit:script_interaction,
+            table:table
+
+
+
+
+
+        }).draw()
+        jQuery('#scriptTransformContainer').scrollTop(scrollTop);
+    }
+
+    function preview(transform){
+        dw.preview(vtable, table, transform, afterTable, tableSelection);
+    }
+
+
+    jQuery(document).bind('keydown', function(event){
+
+        var type = event && event.srcElement && event.srcElement.type
+
+        if(type!='text'){
+            switch(event.which){
+                case 8:
+
+                    break
+                case 9:
+                    editor.promote()
+
+
+                    if(type!='textarea'){
+                        event.preventDefault()
+                    }
+                    break
+                case 38:
+
+                    editor.prev()
+                    event.preventDefault()
+                    break
+                case 40:
+
+                    editor.next()
+                    event.preventDefault()
+                    break
+                case 13:
+
+                    transform = editor.transform();
+                    execute_transform(transform)
+                    if(type!='textarea'){
+                        event.preventDefault()
+                    }
+                    break
+                case 27:
+                    clear_editor();
+                    break
+            }
+
+        }
+        if(type!='textarea'){
+
+        }
+    })
+
+    infer_schema()
+
+
+
+
+    wrangler.draw();
+
+
+
+    return wrangler;
 }

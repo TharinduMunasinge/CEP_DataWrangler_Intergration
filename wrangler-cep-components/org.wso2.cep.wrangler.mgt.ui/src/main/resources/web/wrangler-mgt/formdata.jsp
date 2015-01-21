@@ -13,6 +13,7 @@
 
 <%
     String s = request.getParameter("pname");
+    String param= request.getParameter("fileName");
     CarbonContext cCtx = CarbonContext.getCurrentContext();
     Registry registry = cCtx.getRegistry(RegistryType.SYSTEM_CONFIGURATION);
     String registryType = RegistryType.SYSTEM_GOVERNANCE.toString();
@@ -22,7 +23,7 @@
 
     Resource resource = registry.newResource();
     resource.setContent(s);
-    String resourcePath = "/_system/savedParams2";
+    String resourcePath = "/repository/components/org.wso2.cep.wrangler/"+param+"/config.json";
     registry.put(resourcePath, resource);
 
     String serverURL = CarbonUIUtil.getServerURL(config.getServletContext(), session);
@@ -49,48 +50,3 @@
         return;
     }
 %>
-
-
-
-<!--
-<script>alert("got Herrre")</script>
-<%--<%--%>
-    <%--String s = request.getParameter("numParams");--%>
-    <%--String result="";--%>
-    <%--int length = 0;--%>
-
-    <%--try {--%>
-        <%--length = Integer.parseInt(s);--%>
-    <%--}catch (Exception e){--%>
-
-    <%--}--%>
-<%--%>--%>
-
-
-   <%--<% for(int i=1;i<length;i++){%>--%>
-<%--<script type="text/javascript">--%>
-    <%--var paramsToJson;--%>
-    <%--var params;--%>
-           <%--<%String temp= "colInput"+i+"";%>--%>
-           <%--params={name:<%request.getParameter(temp);%>}--%>
-           <%--paramsToJson =JSON.stringify(params);--%>
-    <%--alert("got hereee2");--%>
-<%--</script>--%>
-   <%--<%--%>
-
-    <%--}--%>
-    <%--%>--%>
-<script type="text/javascript">
-    alert("got hereee3");
-        $.ajax({
-            type:"POST",
-            url: "saveParam.jsp",
-            data:{param:paramsToJson},
-            error:function(a,b,c){
-                  alert(a+"  "+b+" "+c);
-            },
-            success :function(s){
-                    alert("Success");
-            }
-        });
-    </script>
