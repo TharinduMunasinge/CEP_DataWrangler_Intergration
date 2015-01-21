@@ -136,6 +136,8 @@
 	<title>DataWrangler</title>
 	<script>
 		function loadFunction(){
+
+			window.scrollTo(92,316);
 			var path=window.location.href;
 			//alert(path);
 			//var path= "https://192.168.1.5:9443/carbon/wrangler-mgt/wrangler.html";
@@ -150,6 +152,7 @@
 				stream=["empty"];
 			getSample(stream);
 			document.getElementById("def").innerHTML=def_prompt;
+			window.scrollTo(92,316);
 
 		}
 	</script>

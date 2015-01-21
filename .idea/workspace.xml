@@ -2,25 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa5145f6-35a7-47c9-b0ff-1f7bb028fce2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt/target/org.wso2.cep.wrangler.mgt-1.0.jar" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt/target/org.wso2.cep.wrangler.mgt-1.0.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.stub/target/org.wso2.cep.wrangler.mgt.stub-1.0.jar" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.stub/target/org.wso2.cep.wrangler.mgt.stub-1.0.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/target/org.wso2.cep.wrangler.mgt.ui-1.0.jar" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/target/org.wso2.cep.wrangler.mgt.ui-1.0.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.stub/target/classes/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.stub/target/classes/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/target/classes/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/target/classes/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt/target/classes/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt/target/classes/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.stub/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.stub/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/formdata.jsp" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/formdata.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/target/classes/web/wrangler-mgt/formdata.jsp" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/target/classes/web/wrangler-mgt/formdata.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/index.jsp" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/target/classes/web/wrangler-mgt/index.jsp" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/target/classes/web/wrangler-mgt/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/save.jsp" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/save.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/target/classes/web/wrangler-mgt/save.jsp" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/target/classes/web/wrangler-mgt/save.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/test.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/test2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.stub/org.wso2.cep.wrangler.mgt.stub.iml" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.stub/org.wso2.cep.wrangler.mgt.stub.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/org.wso2.cep.wrangler.mgt.ui.iml" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/org.wso2.cep.wrangler.mgt.ui.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/wrangler.html" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/wrangler.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/target/classes/web/wrangler-mgt/wrangler.html" afterPath="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/target/classes/web/wrangler-mgt/wrangler.html" />
     </list>
     <ignored path="wrangler-cep.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,24 +45,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="wrangler.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wrangler.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/wrangler.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="720" max-vertical-offset="3495">
-              <caret line="59" column="24" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
-              <folding />
+            <state vertical-scroll-proportion="0.75628626" vertical-offset="1571" max-vertical-offset="4248">
+              <caret line="109" column="23" selection-start-line="109" selection-start-column="23" selection-end-line="109" selection-end-column="23" />
+              <folding>
+                <marker date="1421833267052" expanded="true" signature="3962:4004" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wso2_sample_gen.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/test/wso2_sample_gen.js">
+      <file leaf-file-name="test2.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/test2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="1905">
-              <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+            <state vertical-scroll-proportion="-4.0" vertical-offset="0" max-vertical-offset="360">
+              <caret line="6" column="37" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="37" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/test.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.6666665" vertical-offset="0" max-vertical-offset="360">
+              <caret line="10" column="49" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -83,12 +82,9 @@
       <file leaf-file-name="wrangler.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/style/wrangler.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="8550">
+            <state vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="10260">
               <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding>
-                <marker date="1421757343966" expanded="true" signature="417:450" placeholder="{...}" />
-                <marker date="1421757343966" expanded="true" signature="2010:2109" placeholder="{...}" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -96,12 +92,9 @@
       <file leaf-file-name="dw.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/dw.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.6666665" vertical-offset="124839" max-vertical-offset="126975">
-              <caret line="8331" column="22" selection-start-line="8331" selection-start-column="12" selection-end-line="8331" selection-end-column="22" />
-              <folding>
-                <marker date="1421757343878" expanded="true" signature="88072:88976" placeholder="{...}" />
-                <marker date="1421757343878" expanded="true" signature="167868:168817" placeholder="{...}" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="150426" max-vertical-offset="152370">
+              <caret line="8357" column="12" selection-start-line="8357" selection-start-column="12" selection-end-line="8357" selection-end-column="12" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -109,18 +102,18 @@
       <file leaf-file-name="getStream.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/getStream.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="1260">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+            <state vertical-scroll-proportion="-0.0" vertical-offset="558" max-vertical-offset="1512">
+              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3220339" vertical-offset="1131" max-vertical-offset="3855">
-              <caret line="83" column="87" selection-start-line="83" selection-start-column="87" selection-end-line="83" selection-end-column="87" />
+            <state vertical-scroll-proportion="-5.111111" vertical-offset="4056" max-vertical-offset="4626">
+              <caret line="233" column="33" selection-start-line="233" selection-start-column="33" selection-end-line="233" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -129,8 +122,8 @@
       <file leaf-file-name="saveParam.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/saveParam.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="825">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="-8.0" vertical-offset="0" max-vertical-offset="990">
+              <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -139,18 +132,8 @@
       <file leaf-file-name="formdata.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/formdata.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1530">
+            <state vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="1836">
               <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.stub/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="2340">
-              <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -159,9 +142,11 @@
       <file leaf-file-name="save.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/save.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="39" max-vertical-offset="855">
-              <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1026">
+              <caret line="25" column="41" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
+              <folding>
+                <marker date="1421819736153" expanded="true" signature="746:796" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -207,11 +192,12 @@
         <option value="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/java/org/wso2/cep/wrangler/mgt/ui/SaveRegClient.java" />
         <option value="$PROJECT_DIR$/wrangler-cep-components/pom.xml" />
         <option value="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.stub/pom.xml" />
-        <option value="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/test.html" />
-        <option value="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/wrangler.html" />
         <option value="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/formdata.jsp" />
         <option value="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/save.jsp" />
         <option value="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/index.jsp" />
+        <option value="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/test2.html" />
+        <option value="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/wrangler.html" />
+        <option value="$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/test.html" />
       </list>
     </option>
   </component>
@@ -260,10 +246,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1423" />
-    <option name="y" value="24" />
-    <option name="width" value="1309" />
-    <option name="height" value="744" />
+    <option name="x" value="-1" />
+    <option name="y" value="27" />
+    <option name="width" value="1368" />
+    <option name="height" value="742" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -309,7 +295,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -614,6 +599,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -663,9 +649,10 @@
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.3693901" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/servlet-api.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -684,12 +671,6 @@
       <setting name="passParentEnv" value="true" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <setting name="launchBrowser" value="false" />
-      <method />
-    </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
-      <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-      <option name="PROGRAM_PARAMETERS" />
       <method />
     </configuration>
     <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
@@ -971,11 +952,13 @@
       <workItem from="1421758091440" duration="9866000" />
       <workItem from="1421795949462" duration="7618000" />
       <workItem from="1421813883537" duration="3261000" />
+      <workItem from="1421819944387" duration="1290000" />
+      <workItem from="1421831888985" duration="2676000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154700000" />
+    <option name="totallyTimeSpent" value="158666000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -998,7 +981,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1423" y="24" width="1309" height="744" extended-state="6" />
+    <frame x="-1" y="27" width="1368" height="742" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1016,12 +999,13 @@
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924962" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924962" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16574585" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17045455" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25177586" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31852987" sideWeight="0.4988161" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25151515" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3176661" sideWeight="0.4988161" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="JavaEE:App" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1089,18 +1073,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="345">
-          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1158,7 +1134,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1208,7 +1183,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1356,7 +1330,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="369" max-vertical-offset="1230">
           <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1371,17 +1344,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
           <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/style/wrangler.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8550">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <marker date="1421757343966" expanded="true" signature="417:450" placeholder="{...}" />
-            <marker date="1421757343966" expanded="true" signature="2010:2109" placeholder="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1400,40 +1362,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/saveParam.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="825">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/getStream.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="1260">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/test/wso2_sample_gen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1905">
-          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/wrangler.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="720" max-vertical-offset="3495">
-          <caret line="59" column="24" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/formdata.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1530">
@@ -1444,28 +1372,79 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/save.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="39" max-vertical-offset="855">
-          <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1026">
+          <caret line="25" column="41" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
+          <folding>
+            <marker date="1421819736153" expanded="true" signature="746:796" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/dw.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.6666665" vertical-offset="124839" max-vertical-offset="126975">
-          <caret line="8331" column="22" selection-start-line="8331" selection-start-column="12" selection-end-line="8331" selection-end-column="22" />
-          <folding>
-            <marker date="1421757343878" expanded="true" signature="88072:88976" placeholder="{...}" />
-            <marker date="1421757343878" expanded="true" signature="167868:168817" placeholder="{...}" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="150426" max-vertical-offset="152370">
+          <caret line="8357" column="12" selection-start-line="8357" selection-start-column="12" selection-end-line="8357" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3220339" vertical-offset="1131" max-vertical-offset="3855">
-          <caret line="83" column="87" selection-start-line="83" selection-start-column="87" selection-end-line="83" selection-end-column="87" />
+        <state vertical-scroll-proportion="-5.111111" vertical-offset="4056" max-vertical-offset="4626">
+          <caret line="233" column="33" selection-start-line="233" selection-start-column="33" selection-end-line="233" selection-end-column="33" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/saveParam.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.0" vertical-offset="0" max-vertical-offset="990">
+          <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/getStream.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="558" max-vertical-offset="1512">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/style/wrangler.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8550">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/test2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.0" vertical-offset="0" max-vertical-offset="360">
+          <caret line="6" column="37" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="37" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.6666665" vertical-offset="0" max-vertical-offset="360">
+          <caret line="10" column="49" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wrangler-cep-components/org.wso2.cep.wrangler.mgt.ui/src/main/resources/web/wrangler-mgt/wrangler.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.75628626" vertical-offset="1571" max-vertical-offset="4248">
+          <caret line="109" column="23" selection-start-line="109" selection-start-column="23" selection-end-line="109" selection-end-column="23" />
+          <folding>
+            <marker date="1421833267052" expanded="true" signature="3962:4004" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
