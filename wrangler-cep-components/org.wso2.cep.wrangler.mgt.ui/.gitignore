@@ -2,3 +2,5 @@
 target
 target/*
 *.MF
+META-INF
+META-INF/*
