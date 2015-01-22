@@ -51,7 +51,10 @@
 }
 
 #wranglerInputSubmit{
-	float: right;
+<<<<<<< HEAD
+=======
+	float: left /*float: right;*/
+>>>>>>> c36c77f0d89b45c1a488443db9ce71c5bc238ec1
 	font-size: 20px;
 	margin-right: 10%;
 	margin-top: -2px;
@@ -119,7 +122,7 @@
 
 #uploadContainer{
 	border: 0px solid #919191;
-	height: 70%;/*90%*/
+	height: 50%;/*90%*/
 	margin-left: 5%;
 	margin-top: 5%;
 	width: 90%;

@@ -176,7 +176,7 @@
 				stream=["empty"];
 				set_def_prompt("please select a input stream.");
 			}
-			writeSample(stream);
+			getSample(stream);
 			document.getElementById("def").innerHTML=get_def_prompt();
 			window.scrollTo(92,316);
 
@@ -248,9 +248,9 @@
 				<form action="">
 					<p>Wrangle Type</p>
 					<input type="radio" name="option" value="single" Checked 
-		       		onClick="single=true;writeSample(stream);">Single Event<br>
+		       		onClick="single=true;getSample(stream);">Single Event<br>
 					<input type="radio" name="option" value="multiple" 
-		       		onClick="single=false;writeSample(stream);">Collection of Events
+		       		onClick="single=false;getSample(stream);">Collection of Events
 				</form>	
 				<!--stream format display here-->
 				<h4 id="def" margin-left="5"></h4>
