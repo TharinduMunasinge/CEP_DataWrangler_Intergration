@@ -49,7 +49,7 @@ function set_def_promt(str){
 function get_def_prompt(){
 	return def_prompt;
 }
-function getSample(stream_def){
+function writeSample(stream_def){
 	text="";
 	
 	if(stream[0]==="empty"){	//there is no any stream definition in CEP
@@ -77,13 +77,13 @@ function getSample(stream_def){
 			}
 	
 			if(stream_def[i]==="INT"){
-				rand=Math.floor(Math.random()*30);
-				text += int_val[rand];
+				rand=Math.floor(Math.random()*30);//generate a random integer(0-29)
+				text += int_val[rand];		// pick a random integer
 				if(i != stream_def.length -1){
 					text += ",";
 				}
 			}
-
+			//similar with above two if structure
 			if(stream_def[i]==="FLOAT"){
 				rand=Math.floor(Math.random()*30);
 				text += float_val[rand];
@@ -119,8 +119,7 @@ function getSample(stream_def){
 
 		
 	}
-	inputArea.attr('value', text);
-	return text;
+	inputArea.attr('value', text); //write to input area.
 }
 
 function setStreamDef(list){

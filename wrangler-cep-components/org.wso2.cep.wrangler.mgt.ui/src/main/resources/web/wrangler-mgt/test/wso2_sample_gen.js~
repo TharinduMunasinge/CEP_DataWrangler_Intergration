@@ -69,21 +69,21 @@ function getSample(stream_def){
 		for(i=0; i<stream_def.length; i++){
 			
 			if(stream_def[i]==="STRING"){
-				rand=Math.floor(Math.random()*26); // pick a random string
-				text += string_val[rand];
+				rand=Math.floor(Math.random()*26);//generate a random integer(0-25)
+				text += string_val[rand];	// pick a random string
 				if(i != stream_def.length -1){
 					text += ",";
 				}
 			}
 	
 			if(stream_def[i]==="INT"){
-				rand=Math.floor(Math.random()*30);
-				text += int_val[rand];
+				rand=Math.floor(Math.random()*30);//generate a random integer(0-29)
+				text += int_val[rand];		// pick a random integer
 				if(i != stream_def.length -1){
 					text += ",";
 				}
 			}
-
+			//similar with above two if structure
 			if(stream_def[i]==="FLOAT"){
 				rand=Math.floor(Math.random()*30);
 				text += float_val[rand];
@@ -119,7 +119,7 @@ function getSample(stream_def){
 
 		
 	}
-	inputArea.attr('value', text);
+	inputArea.attr('value', text); //write to input area.
 	return text;
 }
 

@@ -12,7 +12,9 @@
 <script type="text/javascript" src="lib/layout/jquery.layout.min.js"></script>
 <script type="text/javascript" src="lib/hoverIntent/hoverIntent.js"></script>
 
-<script type="text/javascript" language="javascript" src="lib/DataTable/media/js/jquery.dataTables.js"></script>
+<script type="text/javascript" language="javascript" 
+	src="lib/DataTable/media/js/jquery.dataTables.js">
+</script>
 <script type="text/javascript" src="lib/d3/d3.min.js">  </script>
 <script type="text/javascript" src="lib/datavore/datavore-r0.1.js">  </script>
 
@@ -32,7 +34,8 @@
 	$(document).ready(function() {
 		var browserName=navigator.appName;
 		var isSupported = navigator.userAgent.match(/Chrome|Safari|Firefox/);
-		if(isSupported===null) alert('Data Wrangler has only been tested in Chrome, Safari and Firefox.  For best performance, we recommend you use Chrome or Safari.')
+		if(isSupported===null) alert('Data Wrangler has only been tested in Chrome, '+
+	       'Safari and Firefox.  For best performance, we recommend you use Chrome or Safari.')
 		myLayout = $('body').layout({
 			north: {
 				spacing_open:			0
@@ -84,7 +87,8 @@
 					initial_transforms = [
 						dw.filter(dw.rowIndex([0,1]))
 						,
-						dw.fill().row(dw.row(dw.rowIndex([0]))).direction(dw.RIGHT)
+						dw.fill().row(dw.row(dw.rowIndex([0])))
+									.direction(dw.RIGHT)
 					]
 				}
 				initial_transforms = initial_transforms.slice(0, index)
@@ -98,26 +102,33 @@
 		else{
 			jQuery('#preview').hide()
 			var upload = dw.jq('div').attr('id', 'uploadContainer')
+
+/*
+*	commented code fragments are in original wrangler.html
+*	but those are removed from this integration.
+*/				
+
 			/*var select = dw.jq('select').addClass('wranglerExampleOptions');
 			var selectPrompt = dw.jq('span').append('Example Data:')
 				.addClass('wranglerPrompt');*/
 			jQuery('#table').append(upload)
 			/*var prompt = dw.jq('div').attr('id','uploadPrompt').append(
 				'Paste data below to begin wrangling').addClass('wranglerPrompt');
-			 upload.append(prompt)
-			 upload.append(selectPrompt).append(select)
+			upload.append(prompt)
+			upload.append(selectPrompt).append(select)
 
 			upload.append(selectPrompt).append(select)*/
 			
-			upload.append(dw.jq('button').attr('id','wranglerInputSubmit').append('Wrangle'))
+			upload.append(dw.jq('button').attr('id','wranglerInputSubmit')
+									.append('Wrangle'))
 			
-			/*inputArea is defined in test/wso2_sample_gen.js*/
-			//var inputArea = dw.jq('textArea').attr('id','wranglerInput'); 
+			//inputArea is defined in test/wso2_sample_gen.js
+			/*var inputArea = dw.jq('textArea').attr('id','wranglerInput'); 
 					// moved to test/wso2_sample_gen.js
-			//upload.append(inputArea)
+			*/upload.append(inputArea)
 			appendInputAreaTo(upload);
 			
-			//inputArea.attr('value', text); // moved to test/wso2_sample_gen.js
+			/*inputArea.attr('value', text);*/ // moved to test/wso2_sample_gen.js
 
 
 			jQuery('button').click(function(){
@@ -210,46 +221,49 @@
 
 
 
-<body id="dt_example" onload="loadFunction()">
+	<body id="dt_example" onload="loadFunction()">
 
-<div class="ui-layout-north" id='wranglerNorthPanel'>
+		<div class="ui-layout-north" id='wranglerNorthPanel'>
 
-	<div id='wranglerDashboard'>
+			<div id='wranglerDashboard'>
 
-	</div>
+			</div>
 
-</div>
+		</div>
 
 
-<div class="ui-layout-west" id='profilerWestPanel'>
+		<div class="ui-layout-west" id='profilerWestPanel'>
 
-	<div id="transformEditor" class='transformEditor'>
+			<div id="transformEditor" class='transformEditor'>
 
-	</div>
+			</div>
 
-</div>
+		</div>
 
-<div class="ui-layout-center" id='profilerCenterPanel'>
+		<div class="ui-layout-center" id='profilerCenterPanel'>
 
-	<div id="table">
-		<form action="">			<!--radio buttons for selecting collections of event-->
-			<p>Wrangle Type</p>
-			<input type="radio" name="option" value="single" Checked 
+			<div id="table">
+
+				<!--radio buttons for selecting collections of event-->
+				<form action="">
+					<p>Wrangle Type</p>
+					<input type="radio" name="option" value="single" Checked 
 		       		onClick="single=true;getSample(stream);">Single Event<br>
-			<input type="radio" name="option" value="multiple" 
+					<input type="radio" name="option" value="multiple" 
 		       		onClick="single=false;getSample(stream);">Collection of Events
-		</form>	
-		<h4 id="def" margin-left="5"></h4>	<!--stream format display here-->
-	</div>
+				</form>	
+				<!--stream format display here-->
+				<h4 id="def" margin-left="5"></h4>
+			</div>
 
-	<div id="preview"></div>
-	<div class="spacer"></div>
+			<div id="preview"></div>
+			<div class="spacer"></div>
 
-</div>
+		</div>
 
-<div class="ui-layout-south">
+		<div class="ui-layout-south">
 
-</div>
-</body>
+		</div>
+	</body>
 </html>
 
