@@ -7714,7 +7714,7 @@ dw.script = function(container, wrangler, options){
 		header = dw.jq('div').addClass('menu').attr('id', 'scriptBanner')
 		title = dw.jq('span').append('Script').attr('id', 'scriptTitle')
 		importScript = dw.jq('span').append('Import').attr('id', 'scriptImport').addClass('scriptIO')
-		exportScript = dw.jq('span').append('Export').attr('id', 'scriptExport').addClass('scriptIO')
+		exportScript = dw.jq('button').append('PROCEED').attr('id', 'scriptExport').addClass('scriptIO')
 		
 		exportScript.click(options.onexport)
 		

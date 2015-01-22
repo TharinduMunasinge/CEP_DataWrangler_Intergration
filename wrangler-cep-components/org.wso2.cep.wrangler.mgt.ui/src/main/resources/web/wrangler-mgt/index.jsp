@@ -61,25 +61,21 @@
             for (var i = 0; i < dataTypes.length; i++) {
                 data = data + " " + dataTypes[i];
             }
-            alert(data);
+            //    alert(data);
         }
         function onchangeMenu(index) {
+            document.getElementById("paramArea").style.display = 'none';
             document.getElementById("wranglerIframe").src = "wrangler.html?selected=" + index;
         }
     </script>
     <script type="text/javascript" src="dw.js"></script>
-    <%--<head>--%>
-
-    <%--<script type="text/javascript" src="dw.js"></script>--%>
-    <%--</head>--%>
-
 
     <h2>Data Wrangler</h2>
 
     <div>
         <div>
-            <div style="float: left;width: 410px;border: 0.5px solid #CCC;margin-left: 7px;margin: 3px;border-bottom-style: ridge;border-width: 2px;padding: 5px 5px;">
-                <h3 style="display: inline; color: #1c94c4">
+            <div style="float: left;width: 410px;border:1px solid #CCC;margin-left: 7px;margin: 0px;border-bottom-style: ridge;border-width: 2px;padding: 5px 5px;">
+                <h3 style="display: inline; color: #1c94c4;margin-right: 20px">
                     <small>Input Stream Definition</small>
                 </h3>
                 <select id="streamSelect" onchange="onchangeMenu(this.selectedIndex)">
@@ -93,7 +89,7 @@
                 </select>
 
                 <div>
-                    <ol>
+                    <ol style="list-style-position: inside; margin-top: 6px">
                         <li>Select the stream defintion you want to wrangle</li>
                         <li>Click the "Wrangle" button to wrangle sample data set</li>
                         <li>Do whatever the transformations you need in wrangler interface</li>
@@ -104,43 +100,45 @@
                 </div>
             </div>
             <div id="paramArea"
-                 style="border: 0.5px solid #CCC;padding: 5px 10px;float: right;width: 500px;display: none;border-bottom-style: ridge;border-width: 2px;">
+                 style="border: 0.5px solid #CCC;padding: 5px 10px;float: right;width: 530px;display: none;border-bottom-style: ridge;border-width: 2px;">
+                <h3 style="display: inline; color: #1c94c4">
+                    <small>Output Stream Definition</small>
+                </h3>
                 <form name="outparamForm" id="outputParams" method="post" action="formdata.jsp">
                     <table border="0">
                         <tr>
                             <td>
-                                Stream Name:
+                                Event Stream Name
                                 <span class="required">*</span>
                             </td>
                             <td>
-                                <input type="text" name="scrpitName" id="scriptId" class="initE">
+                                <input type="text" required='true' name="scrpitName" id="streamName" class="initE"
+                                       style="width:130px; margin-right: 12px">
 
                                 <div class="sectionHelp">
-                                    Name of the script
+                                    Stream Name
                                 </div>
 
                             </td>
-                        </tr>
-                        <td>
-                            Stream Version:
-                        </td>
-                        <td>
-                            <input type="text" name="streamVersion" id="streamVer" class="initE">
+                            <td>
+                                Event Stream Version:
+                            </td>
+                            <td>
+                                <input type="text" required='true' name="streamVersion" id="streamVer" class="initE"
+                                       style="width:70px">
 
-                            <div class="sectionHelp">
-                                Version of the Stream
-                            </div>
+                                <div class="sectionHelp">
+                                    (eg:1.0.0)
+                                </div>
 
-                        </td>
-
-                        <tr>
+                            </td>
 
                         </tr>
                     </table>
 
 
-                    <div id="workArea">
-                        <table id="paramTable" style="width:60%" id="paramTable" class="styledLeft">
+                    <div id="workArea" style="padding: 0px">
+                        <table id="paramTable" style="width:64%;margin-bottom: 7px" class="styledLeft">
                             <thead>
                             <tr>
                                 <th width="30%">Column Name</th>
@@ -148,12 +146,24 @@
                                 <th width="30%">Parameter Type</th>
                             </tr>
                             </thead>
+                            <%--</table>--%>
+                            <%--<div id="scrollTable" style="overflow-y: auto ; height: 100px">--%>
+                                <%--<table id="paramTable" class="styledLeft" style="width:64%">--%>
+                                    <%--<thead style="height: 0px">--%>
+                                    <%--<tr>--%>
+                                        <%--<th width="30%"></th>--%>
+                                        <%--<th width="30%"></th>--%>
+                                        <%--<th width="30%"></th>--%>
+                                    <%--</tr>--%>
+                                    <%--</thead>--%>
+                                    <tbody id="paramTableBody">
+                                    </tbody>
+                                </table>
+                            <%--</div>--%>
 
-                            <tbody id="paramTableBody">
-                            </tbody>
-                        </table>
-
-                        <input type="button" onclick="saveScriptParams()" value="Save">
+                            <input type="button" onclick="saveScriptParams()" value="Done"
+                                   style="margin-bottom: 3px;display: inline">
+                            <input type="button" onclick="" value="Back to Wrangling" style="margin-bottom: 3px">
 
                     </div>
                 </form>
@@ -174,15 +184,16 @@
 
 
         <script>
-
+            //function for saving form parameters
             function saveScriptParams() {
 
-                var streamName = document.getElementById("scriptId").value;
+                var streamName = document.getElementById("streamName").value;
                 var saveScript = "";
 
                 console.log(document.getElementById("wranglerIframe"));
                 saveScript = document.getElementById("wranglerIframe").contentWindow.exportedValue;
-                alert(saveScript);
+                // alert(saveScript);
+
                 saveScript = saveScript.slice(16, saveScript.length - 16);
                 var funcDef = "function myfunction(x){\n\nw = dw.wrangle()\n\ninitial_transforms = dw.raw_inference(x).transforms;\n\nvar data =dv.table(x);\n\nif(initial_transforms){\ninitial_transforms.forEach(function(t){\nw.add(t);\n})\nw.apply([data]);\n\n}";
                 var funcEnd = "w.apply([data])\n\nreturn dw.wrangler_export(data,{});\n}";
@@ -193,9 +204,12 @@
                     data: {name: saveScript, streamName: streamName},
                     error: function (a, b, c) {
                         //  alert(a+"  "+b+" "+c);
+                        CARBON.showErrorDialog("Error occured");
+
                     },
                     success: function (s) {
                         //    alert("Success");
+                        CARBON.showInfoDialog("script successfully saved into registry");
                     }
                 });
 
@@ -230,6 +244,7 @@
                     data: {pname: paramToJson, fileName: streamName},
                     error: function (a, b, c) {
                         //  alert(a+"  "+b+" "+c);
+
                     },
                     success: function (s) {
                         //    alert("Success");
@@ -242,6 +257,8 @@
 
 
         <script>
+
+            //function for tabulate the rows to get parameter data
             function setParams() {
 
                 //setting table parameters
@@ -251,12 +268,15 @@
                 var temp = [];
                 var arr = ["int", "long", "double", "float", "string", "bool"];
                 var input2 = document.createElement("input");
+
                 input2.setAttribute('id', "numParams");
                 input2.setAttribute('name', "numParams");
                 input2.setAttribute('hidden', "true");
                 temp = JSON.parse(localStorage["temp"]);
                 input2.setAttribute('value', temp.length + "");
+
                 for (var j = 1; j < temp.length; j++) {
+
                     var tableRow = document.createElement("TR");
                     var td = document.createElement('TD');
                     td.setAttribute('id', "colName" + j + "");
@@ -264,12 +284,14 @@
                     var tdList = document.createElement("TD");
                     var tdListElement = document.createElement("select");
                     var input = document.createElement("input");
+
                     td.setAttribute('class', 'leftCol-med');
                     input.setAttribute('id', "colInput" + j + "");
                     input.setAttribute('name', "colInput" + j + "");
                     input.setAttribute('type', 'text');
                     input.setAttribute('class', 'initE')
-                    input.setAttribute('style', 'width:30%');
+                    input.setAttribute('style', 'width:100%');
+                    input.setAttribute('required', 'true');
                     tdI.appendChild(input);
                     td.appendChild(document.createTextNode(temp[j]));
                     tdListElement.setAttribute('id', "optionSelect" + j + "");

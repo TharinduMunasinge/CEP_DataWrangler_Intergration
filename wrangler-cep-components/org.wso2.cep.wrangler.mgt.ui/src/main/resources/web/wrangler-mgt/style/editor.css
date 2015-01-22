@@ -6,7 +6,7 @@
 	color: white;
 	font-family: 'Lucida Grande', Helvetica, Arial;
 	font-size: 13px;
-	height: 19px;
+	height: 25px;
 	padding-left: 4px;
 }
 
@@ -42,17 +42,29 @@
 	float: right;
 	font-size: 10px;
 	visibility:hidden;
-	margin-right: 5px;
-	padding-top: 3px;
+	margin-right: 7px;
+	padding-top: 2px;
+	padding-right: 4px;
+	margin-top: 3px;
+	margin-bottom: 1px;
+	background: linear-gradient(#67AE55, #578843) repeat scroll 0% 0% #69A74E;
+	font-weight: bold;
+	color: #ffffff;
 }
 
 #scriptExport{
 	cursor: pointer;
 	float: right;
 	font-size: 10px;
-	margin-right: 3px;
-	padding-top: 3px;
-	padding-right:4px;
+	margin-right: 7px;
+	padding-top: 2px;
+	padding-right: 4px;
+	margin-top: 3px;
+	margin-bottom: 1px;
+	background: linear-gradient(#67AE55, #578843) repeat scroll 0% 0% #69A74E;
+	font-weight: bold;
+	color: #ffffff;
+
 }
 
 .menu{
