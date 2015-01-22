@@ -24,6 +24,7 @@
 <script type="text/javascript">
 	var exportedValue="notDefined";
 </script>
+<!---------------->
 
 <script type="text/javascript">
 	var w = dw.wrangle()
@@ -113,13 +114,14 @@
 			/*inputArea is defined in test/wso2_sample_gen.js*/
 			//var inputArea = dw.jq('textArea').attr('id','wranglerInput'); 
 					// moved to test/wso2_sample_gen.js
-			upload.append(inputArea)
+			//upload.append(inputArea)
+			appendInputAreaTo(upload);
 			
 			//inputArea.attr('value', text); // moved to test/wso2_sample_gen.js
 
 
 			jQuery('button').click(function(){
-				var val = inputArea.attr(
+				var val = getInputArea().attr(
 						'value');
 				var dt = dv.table(val)
 				initial_transforms = dw.raw_inference(val).transforms
@@ -157,36 +159,45 @@
 				param=0;
 			if(parent.checkStream()!=0){
 				stream=parent.getDataTypes(param);
-				getStreamDef(parent.getPayloadNames(param));
+				setStreamDef(parent.getPayloadNames(param));
 			}
 			else{
 				stream=["empty"];
-				def_prompt="please select a input stream."
+				set_def_prompt("please select a input stream.");
 			}
 			getSample(stream);
-			document.getElementById("def").innerHTML=def_prompt;
+			document.getElementById("def").innerHTML=get_def_prompt();
 			window.scrollTo(92,316);
 
 		}
 	</script>
-	<style>
+	<style>		/*this style for wrangle options and stream format*/
+		input { 
+			float: left; 
+			width: 50px;
+			margin-left: 35;
+		}
+		label { 
+			margin: 0px 0px 0px 10px; 
+			float: left;
+		}
 
-	input { float: left; width: 50px; }
-	label { margin-left: 35; float: left;}
-
-	p {
-    		display: block;
-    		margin-top: 1em;
-    		margin-bottom: 1em;
-    		margin-left: 35;
-    		margin-right: 0;
-
-		
-	}
+		p {
+    			display: block;
+    			margin-top: 1em;
+    			margin-bottom: 1em;
+    			margin-left: 35;
+    			margin-right: 0;
+		}
 	
-	h4{
-		margin-left: 35;
-	}
+		h4{
+			margin-left: 35;
+		}
+
+		body{
+			font-family:Charter;
+			font-size:15px;
+		}
 
 	</style>
 
@@ -199,7 +210,7 @@
 
 
 
-<body id="dt_example" onload="loadFunction()" style="font-family:Charter; font-size:15px;">
+<body id="dt_example" onload="loadFunction()">
 
 <div class="ui-layout-north" id='wranglerNorthPanel'>
 
@@ -228,7 +239,7 @@
 			<input type="radio" name="option" value="multiple" 
 		       		onClick="single=false;getSample(stream);">Collection of Events
 		</form>	
-		<h4 id="def" margin-left="5"></h4>
+		<h4 id="def" margin-left="5"></h4>	<!--stream format display here-->
 	</div>
 
 	<div id="preview"></div>
@@ -239,11 +250,6 @@
 <div class="ui-layout-south">
 
 </div>
-
-
-
-
-
-
 </body>
 </html>
+
