@@ -171,8 +171,8 @@
 	</script>
 	<style>
 
-	input { float: left; width: 50px; margin-left: 35;}
-	label { margin: 0px 0px 0px 10px; float: left;}
+	input { float: left; width: 50px; }
+	label { margin-left: 35; float: left;}
 
 	p {
     		display: block;
