@@ -66,7 +66,9 @@
 
     </script>
 
-    <script type="text/javascript" src="dw.js"></script>
+    <script type="text/javascript" src = "dw.js"></script>
+    <script type="text/javascript" src = "clipboard/ZeroClipboard.js"></script>
+    <script type="text/javascript" src = "clipboard/client.js"></script>
 
     <script>
         function regAccess(folderName) {
@@ -157,8 +159,10 @@
                 <textarea id="scriptTextArea" style="display: inline;height: 100px;margin-right: 6px;width: 50%">
                 </textarea>
 
-                <textarea id="configTextArea" style="height: 100px;width: 40%"></textarea>
-                <button onclick="">copy</button>
+                <textarea id="configTextArea" name= "configTextArea" style="height: 100px;width: 40%"></textarea>
+                <p id="targetCopyText" style="display: none">Text copied.</p>
+                <button id ="copyBtn" onclick="" data-clipboard-target="configTextArea">copy</button>
+
 
 
             </div>
@@ -201,7 +205,7 @@
                     <table border="0">
                         <tr>
                             <td>
-                                Event Stream Name
+                                Event Configuration Name:
                                 <span class="required">*</span>
                             </td>
                             <td>
@@ -216,15 +220,15 @@
                             <td>
                                 Event Stream Version:
                             </td>
-                            <td>
-                                <input type="text" required='true' name="streamVersion" id="streamVer" class="initE"
-                                       style="width:70px">
+                            <%--<td>--%>
+                                <%--<input type="text" required='true' name="streamVersion" id="streamVer" class="initE"--%>
+                                       <%--style="width:70px">--%>
 
-                                <div class="sectionHelp">
-                                    (eg:1.0.0)
-                                </div>
+                                <%--<div class="sectionHelp">--%>
+                                    <%--(eg:1.0.0)--%>
+                                <%--</div>--%>
 
-                            </td>
+                            <%--</td>--%>
 
                         </tr>
                     </table>
@@ -298,10 +302,12 @@
             //function for saving form parameters
 
             var isSaveToReg;
+            var errorMsg = "";
 
             function saveScriptParams(isPersist) {
 
                 isSaveToReg = false;
+                var isErrorInParams = false;
 
                 var streamName = document.getElementById("streamName").value;
                 var saveScript = "";
@@ -342,6 +348,11 @@
                     var name = document.getElementById("colInput" + j + "").value;
                     var type = document.getElementById("optionSelect" + j + "").value;
 
+                    if(name==""){
+                        isErrorInParams = true;
+                        break;
+                    }
+
                     paramString += name + " " + type + ",";
                 }
 
@@ -356,15 +367,20 @@
 //
 //                paramToJson = JSON.stringify(params);
 //                console.log(paramToJson);
+                if(validate(streamName,isErrorInParams)){
+                    if (isPersist) {
+                        CARBON.showConfirmationDialog("Do you want to save scripts in Registry?", function () {
+                            saveToRegistry(saveScript, streamName, paramString)
+                        }, null, null);
+                    } else {
+                        document.getElementById("scriptTextArea").value = saveScript;
+                        document.getElementById("configTextArea").value = paramString;
+                    }
+                }else{
 
-                if (isPersist) {
-                    CARBON.showConfirmationDialog("Do you want to save scripts in Registry?", function () {
-                        saveToRegistry(saveScript, streamName, paramString)
-                    }, null, null);
-                } else {
-                    document.getElementById("scriptTextArea").value = saveScript;
-                    document.getElementById("configTextArea").value = paramString;
                 }
+
+
 
             }
 
@@ -424,6 +440,21 @@
 //                var content = container.innerHTML;
 //                console.log(content);
 //                container.innerHTML = content;
+            }
+
+            function validate(streamName,isErrorInParams){
+
+                if(streamName==""){
+                    errorMsg = "stream name is not defined";
+                }
+                if(!isErrorInParams){
+                    errorMsg = "parameter definitions missing";
+                }
+                if(streamName=="" && !isErrorInParams){
+                    errorMsg = "stream name and parameter definitions are missing"
+                }
+
+                return false;
             }
 
         </script>
