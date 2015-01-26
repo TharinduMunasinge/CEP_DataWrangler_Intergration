@@ -3,13 +3,31 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>
-
+        this is a test
     </title>
 </head>
 <body>
 
-<iframe src="wrangler.html" width="600" height="500px">
+<script>
+function myFunc() {
+    $.ajax({
+        type: "POST",
+        url: "test.jsp",
+        data: {name: "test", streamName: "test"},
+        error: function (a, b, c) {
+            //  alert(a+"  "+b+" "+c);
 
-</iframe>
+
+        },
+        success: function (s) {
+                alert(s);
+  //          CARBON.showInfoDialog("script successfully saved into registry");
+        }
+    });
+}
+</script>
+
+
+<button onclick="myFunc()">test</button>
 </body>
 </html>

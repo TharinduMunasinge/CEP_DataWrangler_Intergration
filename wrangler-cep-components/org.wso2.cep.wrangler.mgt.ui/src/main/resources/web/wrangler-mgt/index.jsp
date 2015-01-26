@@ -74,6 +74,7 @@
 		}
 		document.getElementById("txtQuery").value=definition;
         }
+
 	
 	function onClickSubmit(definition){
 		document.getElementById("paramArea").style.display = 'none';
@@ -100,22 +101,123 @@
 		var regExp=/^define(\n|\s|\t)+stream(\n|\s|\t)+\w+(\n|\s|\t)*\(((\n|\s|\t)*\w+(\n|\s|\t)+(int|long|float|double|string|bool)(\n|\s|\t)*,)*((\n|\s|\t)*\w+(\n|\s|\t)+(int|long|float|double|string|bool)(\n|\s|\t)*)\)(\n|\s|\t)*;*(\n|\s|\t)*$/i;
 		return regExp.test(query);
 	}	
+
+
     </script>
+    <script>
+        $(document).ready(regAccess(document.getElementById('folderTree').value);
+    </script>
+
     <script type="text/javascript" src="dw.js"></script>
+
+    <script>
+        function regAccess(folderName) {
+            var resultHTML = "";
+            //alert(folderName);
+            $.ajax({
+                type: "POST",
+                url: "registryAccess.jsp",
+                data: {folderName: folderName},
+                error: function (a, b, c) {
+                    //  alert(a+"  "+b+" "+c);
+
+                },
+                success: function (s) {
+                    $val = s.toString();
+                    //           alert(s);
+                    console.log(s);
+
+                    var reg1 = /\<p[^>]*\>([^]*)\<\/p/m;
+                    var reg2 = /\<code[^>]*\>([^]*)\<\/code/m
+                    //             var result = $val.match( reg )[1];
+
+                    var scriptText = $val.match(reg1)[1];
+
+                    var configText = $val.match(reg2)[1];
+                    //         alert(result);
+                    console.log(scriptText);
+                    console.log(configText);
+                    document.getElementById("scriptTextArea").value = scriptText;
+                    document.getElementById("configTextArea").value = configText;
+
+
+//                    console.log(result);
+//                    var parser = new DOMParser();
+//                    var doc = parser.parseFromString(result,"text/xml");
+//                    console.log(doc);
+
+                }
+            });
+        }
+
+    </script>
 
     <h2>Data Wrangler</h2>
 
     <div>
         <div>
+            <div id="submit_form_div">
+                <form method="get" id="submit_form">
+                    <select id="folderTree" style="display: inline" name="folderName"
+                            onchange="regAccess(document.getElementById('folderTree').value)">
+                        <% String BASEURL = "/repository/components/org.wso2.cep.wrangler/";
+
+
+                            CarbonContext cntx = CarbonContext.getCurrentContext();
+                            Registry registry = cntx.getRegistry(RegistryType.SYSTEM_CONFIGURATION);
+                            String registryType = RegistryType.SYSTEM_GOVERNANCE.toString();
+                            if (registryType != null) {
+                                registry = cntx.getRegistry(RegistryType.valueOf(registryType));
+
+                                try {
+                                    Resource resp = (Resource) registry.get(BASEURL);
+                                    org.wso2.carbon.registry.api.Collection collection = (org.wso2.carbon.registry.api.Collection) resp;
+
+                                    //     response.setContentType("text/plain");
+
+                                    String[] resources;
+                                    resources = collection.getChildren();
+
+
+                                    for (String resrc : resources) {
+                                        resrc = resrc.replace(BASEURL, "");%>
+                        <option><%=resrc%>
+                        </option>
+
+                        <%
+                                    }
+                                } catch (Exception e) {
+
+                                }
+                            }
+                            ;%>
+                    </select>
+                </form>
+            </div>
+
+            <div>
+                <textarea id="scriptTextArea" style="display: inline;height: 100px;margin-right: 6px;width: 50%">
+                </textarea>
+
+                <textarea id="configTextArea" style="height: 100px;width: 40%"></textarea>
+                <button onclick="">copy</button>
+
+
+            </div>
+        </div>
+
+        <div>
 
             <div style="float: left;width: 410px;border: 0.5px solid #CCC;margin-left: 7px;
 		margin: 3px;border-bottom-style: ridge;border-width: 2px;padding: 5px 5px;">
+
                 <h4 style="display: inline; color: #1c94c4">
 
                     <small>Import Stream Definition:</small>
                 </h4>
                 <select id="streamSelect" onchange="onchangeMenu(this.selectedIndex-1)">
 			
+
                     <script>
 			document.write("<option>--select any stream--</option>");
                         for (var i = 0; i < getAllStreamJSON().length; i++) {
@@ -194,10 +296,9 @@
                     </table>
 
 
-
                     <div id="workArea" style="padding: 0px">
-                        <table id="paramTable" style="width:64%;margin-bottom: 7px" 
-				class="styledLeft">
+                        <table id="paramTable" style="width:64%;margin-bottom: 7px"
+                               class="styledLeft">
 
                             <thead>
                             <tr>
@@ -208,22 +309,23 @@
                             </thead>
                             <%--</table>--%>
                             <%--<div id="scrollTable" style="overflow-y: auto ; height: 100px">--%>
-                                <%--<table id="paramTable" class="styledLeft" style="width:64%">--%>
-                                    <%--<thead style="height: 0px">--%>
-                                    <%--<tr>--%>
-                                        <%--<th width="30%"></th>--%>
-                                        <%--<th width="30%"></th>--%>
-                                        <%--<th width="30%"></th>--%>
-                                    <%--</tr>--%>
-                                    <%--</thead>--%>
-                                    <tbody id="paramTableBody">
-                                    </tbody>
-                                </table>
-                            <%--</div>--%>
+                            <%--<table id="paramTable" class="styledLeft" style="width:64%">--%>
+                            <%--<thead style="height: 0px">--%>
+                            <%--<tr>--%>
+                            <%--<th width="30%"></th>--%>
+                            <%--<th width="30%"></th>--%>
+                            <%--<th width="30%"></th>--%>
+                            <%--</tr>--%>
+                            <%--</thead>--%>
+                            <tbody id="paramTableBody">
+                            </tbody>
+                        </table>
+                        <%--</div>--%>
 
-                            <input type="button" onclick="saveScriptParams()" value="Done"
-                                   style="margin-bottom: 3px;display: inline">
-                            <input type="button" onclick="" value="Back to Wrangling" style="margin-bottom: 3px">
+                        <input type="button" onclick="saveScriptParams(true)" value="Save to Registry"
+                               style="margin-bottom: 3px;display: inline">
+                        <input type="button" onclick="saveScriptParams(false)" value="copy to workspace"
+                               style="margin-bottom: 3px">
 
                     </div>
                 </form>
@@ -237,17 +339,36 @@
 
     </div>
 
-    <iframe id="wranglerIframe" width="100%" height="500px" src="wrangler.html" 
-		style="margin-top: 5px;">
+    <iframe id="wranglerIframe" width="100%" height="500px" src="wrangler.html"
+            style="margin-top: 5px;">
 
     </iframe>
 
     <div>
 
-
         <script>
+            //            function test(){
+            //                $.ajax({
+            //                    type: "POST",
+            //                    url: "registryAccess.jsp",
+            //                    data: {name: "test"},
+            //                    error: function (a, b, c) {
+            //                        alert(a+"  "+b+" "+c);
+            //
+            //                    },
+            //                    success: function (s) {
+            //                        alert(s);
+            //                    }
+            //                });
+            //            }
+
             //function for saving form parameters
-            function saveScriptParams() {
+
+            var isSaveToReg;
+
+            function saveScriptParams(isPersist) {
+
+                isSaveToReg = false;
 
                 var streamName = document.getElementById("streamName").value;
                 var saveScript = "";
@@ -257,72 +378,119 @@
                 // alert(saveScript);
 
                 saveScript = saveScript.slice(16, saveScript.length - 16);
-                var funcDef = "function myfunction(x){"+
-				"\n\nw = dw.wrangle()"+
-				"\n\ninitial_transforms = dw.raw_inference(x).transforms;"+
-				"\n\nvar data =dv.table(x);"+
-				"\n\nif(initial_transforms){"+
-					"\ninitial_transforms.forEach(function(t){"+
-						"\nw.add(t);"+
-					"\n})\nw.apply([data]);"+
-					"\n\n}";
-                var funcEnd = 	"w.apply([data])"+
-				"\n\nreturn dw.wrangler_export(data,{});"+
-			      "\n}";
+                var funcDef = "function myfunction(x){" +
+                        "\n\nw = dw.wrangle()" +
+                        "\n\ninitial_transforms = dw.raw_inference(x).transforms;" +
+                        "\n\nvar data =dv.table(x);" +
+                        "\n\nif(initial_transforms){" +
+                        "\ninitial_transforms.forEach(function(t){" +
+                        "\nw.add(t);" +
+                        "\n})\nw.apply([data]);" +
+                        "\n\n}";
+
+                var funcEnd = "w.apply([data])" +
+                        "\n\nreturn dw.wrangler_export(data,{});" +
+                        "\n}";
                 saveScript = funcDef + saveScript + funcEnd;
+
+
+                var numParams = parseInt(document.getElementById("numParams").value);
+                console.log(numParams);
+//                var data = [];
+//                var paramToJson;
+                var params;
+                var paramString = "define stream ";
+
+//define stream <nameOfTheStream> ( <attribute1Name> <attribute1Type>, <attribute1Name> <attribute1Type> .....)
+                paramString += streamName + "(";
+
+                for (var j = 1; j < numParams; j++) {
+
+                    var name = document.getElementById("colInput" + j + "").value;
+                    var type = document.getElementById("optionSelect" + j + "").value;
+
+                    paramString += name + " " + type + ",";
+                }
+
+                paramString = paramString.substring(0, paramString.length - 1);
+                paramString += ")";
+
+                //             var version = document.getElementById("streamVer").value;
+
+
+//                console.log(data);
+//                params = {name: streamName, version: version, data: data};
+//
+//                paramToJson = JSON.stringify(params);
+//                console.log(paramToJson);
+
+                if (isPersist) {
+                    CARBON.showConfirmationDialog("Do you want to save scripts in Registry?", function () {
+                        saveToRegistry(saveScript, streamName, paramString)
+                    }, null, null);
+                } else {
+                    document.getElementById("scriptTextArea").value = saveScript;
+                    document.getElementById("configTextArea").value = paramString;
+                }
+
+            }
+
+            function setSaveToReg(input) {
+                alert(input)
+            }
+
+
+            function saveToRegistry(saveScript, streamName, paramString) {
+
+                var isSuccess = false;
+
+                $.ajax({
+                    type: "POST",
+                    url: "formdata.jsp",
+                    data: {formdata: paramString, fileName: streamName},
+                    error: function (a, b, c) {
+                        //  alert(a+"  "+b+" "+c);
+                        isSuccess = false;
+
+                    },
+                    success: function (s) {
+                        //    alert("Success");
+                        isSuccess = true;
+                    }
+                });
+
+
                 $.ajax({
                     type: "POST",
                     url: "save.jsp",
                     data: {name: saveScript, streamName: streamName},
                     error: function (a, b, c) {
                         //  alert(a+"  "+b+" "+c);
-                        CARBON.showErrorDialog("Error occured");
+                        CARBON.showErrorDialog("Error occured in saving script");
 
                     },
                     success: function (s) {
                         //    alert("Success");
-                        CARBON.showInfoDialog("script successfully saved into registry");
+                        CARBON.showInfoDialog("script successfully saved into registry", function () {
+                            reloadOutputStreams();
+                        });
+
                     }
                 });
 
-
-                var numParams = parseInt(document.getElementById("numParams").value);
-                console.log(numParams);
-                var data = [];
-                var paramToJson;
-                var params;
+            }
 
 
-                for (var j = 1; j < numParams; j++) {
-                    data[j - 1] = {
-                        name: document.getElementById("colInput" + j + "").value,
-                        type: document.getElementById("optionSelect" + j + "").value
-                    };
+            function copyToClipboard() {
 
-                }
+            }
 
-                var version = document.getElementById("streamVer").value;
-
-
-                console.log(data);
-                params = {name: streamName, version: version, data: data};
-
-                paramToJson = JSON.stringify(params);
-                console.log(paramToJson);
-
-                $.ajax({
-                    type: "POST",
-                    url: "formdata.jsp",
-                    data: {pname: paramToJson, fileName: streamName},
-                    error: function (a, b, c) {
-                        //  alert(a+"  "+b+" "+c);
-
-                    },
-                    success: function (s) {
-                        //    alert("Success");
-                    }
-                });
-
+            function reloadOutputStreams() {
+                console.log("refreshed");
+                document.getElementById("submit_form").submit();
+//                var content = container.innerHTML;
+//                console.log(content);
+//                container.innerHTML = content;
             }
 
         </script>
@@ -338,7 +506,7 @@
                 var tableBody = document.createElement('tbody');
                 var oldTableBody = document.getElementById("paramTableBody");
                 var temp = [];
-                var arr = ["int", "long", "double", "float", "string", "bool"];
+
                 var input2 = document.createElement("input");
 
                 input2.setAttribute('id', "numParams");
@@ -368,10 +536,17 @@
                     td.appendChild(document.createTextNode(temp[j]));
                     tdListElement.setAttribute('id', "optionSelect" + j + "");
                     tdListElement.setAttribute('name', "optionSelect" + j + "");
-                    for (var k = 0; k < arr.length; k++) {
+
+                    var optionArr = [];
+                    optionArr = setColumnTypes(j - 1);
+                    console.log(optionArr);
+                    console.log(optionArr.length);
+
+
+                    for (var k = 0; k < optionArr.length; k++) {
                         var option = document.createElement("option");
-                        option.value = arr[k];
-                        option.text = arr[k];
+                        option.value = optionArr[k];
+                        option.text = optionArr[k];
                         tdListElement.appendChild(option);
                     }
                     tdList.appendChild(tdListElement);
@@ -385,6 +560,30 @@
                 table.replaceChild(tableBody, oldTableBody);
                 console.log(temp);
                 console.log("clicked");
+            }
+
+            function setColumnTypes(i) {
+
+                var colTypes = document.getElementById("wranglerIframe").contentWindow.colDataType;
+                var options;
+
+                if (colTypes[i] === "int") {
+                    options = ["int"];
+                    return options;
+                }
+                else if (colTypes[i] === "number") {
+                    options = ["int", "double", "float", "long"];
+                    return options;
+                }
+                else if (colTypes[i] === "string") {
+                    options = ["string", "bool"];
+                    return options;
+                }
+                else {
+                    options = ["string"];
+                    return options;
+
+                }
             }
         </script>
 
