@@ -163,20 +163,30 @@
 
 			window.scrollTo(92,316);
 			var path=window.location.href;
-			var param=0;
-			if(path.indexOf("?selected=")!=-1)
-				param=path.substring(path.indexOf("?selected=")+10,path.length);
-			else
+			//var param=-1;
+			var query="";
+			
+			/*if(path.indexOf("?selected=")!=-1)
+				param=path.substring(path.indexOf("?selected=")+10,path.length);*/
+			if(path.indexOf("?query=")!=-1){
+				query=parent.getQuery();
+				}
+			/*else
 				param=0;
-			if(parent.checkStream()!=0){
-				stream=parent.getDataTypes(param);
-				setStreamDef(parent.getPayloadNames(param));
+			if(param != -1){
+				if(parent.checkStream()!=0){
+					stream=parent.getDataTypes(param);
+					setStreamDef(parent.getPayloadNames(param));
+				}
+				else{
+					stream=["empty"];
+					set_def_prompt("please select a input stream.");
+				}
+				writeSample(stream);
 			}
-			else{
-				stream=["empty"];
-				set_def_prompt("please select a input stream.");
-			}
-			writeSample(stream);
+			else*/
+				writeSampleForQuery(query);
+				
 			document.getElementById("def").innerHTML=get_def_prompt();
 			window.scrollTo(92,316);
 

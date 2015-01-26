@@ -57,8 +57,49 @@
 
         function onchangeMenu(index) {
             document.getElementById("paramArea").style.display = 'none';
-            document.getElementById("wranglerIframe").src = "wrangler.html?selected=" + index;
+            //document.getElementById("wranglerIframe").src = "wrangler.html?selected=" + index;
+		var definition;
+		if(index===-1){
+			definition = "";
+		}
+		else{
+	   		definition = "define stream "+getStreamName(index)+" ( ";
+			for(var i=0; i<getPayloadNames(index).length; i++){
+				definition+=getPayloadNames(index)[i]+
+					" "+getDataTypes(index)[i];
+				if(i != getPayloadNames(index).length-1)
+					definition += ",";
+			}
+			definition += " );";
+		}
+		document.getElementById("txtQuery").value=definition;
         }
+	
+	function onClickSubmit(definition){
+		document.getElementById("paramArea").style.display = 'none';
+		if(isValidQuery(definition)){
+			document.getElementById("isValid").innerHTML="";
+			document.getElementById("wranglerIframe")
+			.src = "wrangler.html?query=" + definition;
+		}
+		else{
+			document.getElementById("isValid").innerHTML="*Invalid syntax";
+		}
+	}
+
+	function onChangeText(){
+		document.getElementById("streamSelect").selectedIndex=0;
+	}
+	
+	function getQuery(){
+		return document.getElementById("txtQuery").value;	
+	}
+
+	function isValidQuery(query){
+		/*regular expression for input stream definition*/
+		var regExp=/^define(\n|\s|\t)+stream(\n|\s|\t)+\w+(\n|\s|\t)*\(((\n|\s|\t)*\w+(\n|\s|\t)+(int|long|float|double|string|bool)(\n|\s|\t)*,)*((\n|\s|\t)*\w+(\n|\s|\t)+(int|long|float|double|string|bool)(\n|\s|\t)*)\)(\n|\s|\t)*;*(\n|\s|\t)*$/i;
+		return regExp.test(query);
+	}	
     </script>
     <script type="text/javascript" src="dw.js"></script>
 
@@ -69,13 +110,14 @@
 
             <div style="float: left;width: 410px;border: 0.5px solid #CCC;margin-left: 7px;
 		margin: 3px;border-bottom-style: ridge;border-width: 2px;padding: 5px 5px;">
-                <h3 style="display: inline; color: #1c94c4">
+                <h4 style="display: inline; color: #1c94c4">
 
-                    <small>Input Stream Definition</small>
-                </h3>
-                <select id="streamSelect" onchange="onchangeMenu(this.selectedIndex)">
+                    <small>Import Stream Definition:</small>
+                </h4>
+                <select id="streamSelect" onchange="onchangeMenu(this.selectedIndex-1)">
+			
                     <script>
-                        var i = 0;
+			document.write("<option>--select any stream--</option>");
                         for (var i = 0; i < getAllStreamJSON().length; i++) {
                             var streamNameV = getStreamName(i).concat(" ", getStreamVersion(i));
                             document.write("<option>" + streamNameV + "</option>");
@@ -83,7 +125,7 @@
                     </script>
                 </select>
 
-                <div>
+                <!--div>
                     <ol style="list-style-position: inside; margin-top: 6px">
                         <li>Select the stream defintion you want to wrangle</li>
                         <li>Click the "Wrangle" button to wrangle sample data set</li>
@@ -92,8 +134,28 @@
                         <li>Fill the output definition details</li>
                         <li>Click the "Done" button to save the configuration</li>
                     </ol>
-                </div>
+                </div-->
+		<br>
+		<h4 style="padding-left: 96px; margin-top: 10px; margin-bottom: 10px;">
+                    <small>or</small>
+                </h4>
+		<h4 style="display: inline; color: #1c94c4">
+
+                    <small>Type new Definition:</small>
+                </h4>
+
+		<div style="float: left;width: 390px;border: 0.5px solid #CCC;margin-left: 7px;
+		margin: 3px; padding: 5px 5px;">
+		<form>
+			<textarea id="txtQuery" style="margin: 3px; height: 58px; width: 375px;" onchange="onChangeText()"></textarea><br>
+			<button type="button" id="submit" style="margin: 3px;" onclick="onClickSubmit(document.getElementById('txtQuery').value);">Submit</button>
+			<label id="isValid" style="color:#FF0000; padding-left: 16px;"></label>
+		</form>
+		
+	    	</div>
+		
             </div>
+	    
             <div id="paramArea"
 
                  style="border: 0.5px solid #CCC;padding: 5px 10px;float: right;width: 500px;
@@ -167,6 +229,7 @@
                 </form>
             </div>
         </div>
+	
 
     </div>
 

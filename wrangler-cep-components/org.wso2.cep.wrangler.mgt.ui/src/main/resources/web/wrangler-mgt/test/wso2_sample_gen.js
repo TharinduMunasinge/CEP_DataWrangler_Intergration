@@ -49,24 +49,34 @@ function set_def_promt(str){
 function get_def_prompt(){
 	return def_prompt;
 }
+function writeSampleForQuery(query){
+	var insideBrackets=query.substring(query.indexOf("(")+1,query.indexOf(")")).trim();
+	var params = insideBrackets.split(",");
+	for(var i=0; i<params.length; i++){
+		var temp=params[i].trim();
+		params[i]=temp.substring(temp.lastIndexOf(" ")+1,temp.length).toUpperCase();
+	}
+	writeSample(params);
+	
+}
 function writeSample(stream_def){
 	text="";
-	
+	stream=stream_def;
 	if(stream[0]==="empty"){	//there is no any stream definition in CEP
 		inputArea.attr('value', "Not selcted a valid input stream");
 		return null;
 	}
 
-	stream=stream_def;
+	
 	var rand=0;
 	var events=1;	// Single event
 	if(!single)	//Collection of events
 		events=5;	// 5 events
 		
-	for(k=0; k<events; k++){
+	for(var k=0; k<events; k++){
 		if(k!=0)
 			text += "\n";	
-		for(i=0; i<stream_def.length; i++){
+		for(var i=0; i<stream_def.length; i++){
 			
 			if(stream_def[i]==="STRING"){
 				rand=Math.floor(Math.random()*26);//generate a random integer(0-25)
@@ -124,7 +134,7 @@ function writeSample(stream_def){
 
 function setStreamDef(list){
 	def_prompt = "Input Stream Format: [ ";
-	for(i=0; i<list.length; i++){
+	for(var i=0; i<list.length; i++){
 		def_prompt += list[i];
 		if(i != list.length-1)
 			def_prompt += " , ";
