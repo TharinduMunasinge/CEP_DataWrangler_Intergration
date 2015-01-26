@@ -568,7 +568,7 @@
                 var options;
 
                 if (colTypes[i] === "int") {
-                    options = ["int"];
+                    options = ["int","long"];
                     return options;
                 }
                 else if (colTypes[i] === "number") {
@@ -579,7 +579,7 @@
                     options = ["string", "bool"];
                     return options;
                 }
-                else {
+                else {				//country, cities, tags
                     options = ["string"];
                     return options;
 
