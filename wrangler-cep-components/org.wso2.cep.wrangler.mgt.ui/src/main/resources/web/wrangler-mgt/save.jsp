@@ -23,6 +23,7 @@
     Resource resource = registry.newResource();
     resource.setContent(s);
     String resourcePath ="/repository/components/org.wso2.cep.wrangler/"+streamName+"/script.js";
+
     registry.put(resourcePath, resource);
 
     String serverURL = CarbonUIUtil.getServerURL(config.getServletContext(), session);

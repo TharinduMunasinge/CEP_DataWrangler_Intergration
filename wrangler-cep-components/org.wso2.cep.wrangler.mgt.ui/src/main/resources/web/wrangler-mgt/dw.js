@@ -4790,10 +4790,12 @@ dw.vtable = function(container, options){
 
 	var draw_type_icons = function(){
 		var wt, wr, className;
+        var flag=0;
 		vtable.header_row().slice(1).each(function(x, i){
 			wr = table[x].wrangler_role
 			wt = table[x].wrangler_type || dw.string()
 			className = (wr && wr.name) ? wr.name : wt.name;
+            colDataType[flag++]=className;
 			jQuery(i).addClass(className).addClass('icon')
 		})
 	}

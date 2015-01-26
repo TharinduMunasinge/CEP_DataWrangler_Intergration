@@ -12,7 +12,7 @@
 <%@ taglib uri="http://wso2.org/projects/carbon/taglibs/carbontags.jar" prefix="carbon" %>
 
 <%
-    String s = request.getParameter("pname");
+    String s = request.getParameter("formdata");
     String param= request.getParameter("fileName");
     CarbonContext cCtx = CarbonContext.getCurrentContext();
     Registry registry = cCtx.getRegistry(RegistryType.SYSTEM_CONFIGURATION);
@@ -23,7 +23,7 @@
 
     Resource resource = registry.newResource();
     resource.setContent(s);
-    String resourcePath = "/repository/components/org.wso2.cep.wrangler/"+param+"/config.json";
+    String resourcePath = "/repository/components/org.wso2.cep.wrangler/"+param+"/config";
     registry.put(resourcePath, resource);
 
     String serverURL = CarbonUIUtil.getServerURL(config.getServletContext(), session);
