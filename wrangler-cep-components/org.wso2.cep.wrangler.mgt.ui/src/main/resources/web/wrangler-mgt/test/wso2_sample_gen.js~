@@ -49,15 +49,30 @@ function set_def_promt(str){
 function get_def_prompt(){
 	return def_prompt;
 }
-function getSample(stream_def){
-	text="";
+function writeSampleForQuery(query){
+	var insideBrackets=query.substring(query.indexOf("(")+1,query.indexOf(")")).trim();
+	console.log("before comma split <<<<<"+insideBrackets)+">>>>>>";
+	var params = insideBrackets.split(",");
+	for(i=0; i<params.length; i++){
+		console.log("after comma split ----"+params[i]+"-----")
+		console.log("after trim---"+params[i].trim()+"----");
+		var temp=params[i].trim();
+		params[i]=temp.substring(temp.lastIndexOf(" ")+1,temp.length).toUpperCase();
+		console.log("FF"+params[i]+"FF")
+	}
+	writeSample(params);
+	//writeSample(["STRING"]);
 	
+}
+function writeSample(stream_def){
+	text="";
+	stream=stream_def;
 	if(stream[0]==="empty"){	//there is no any stream definition in CEP
 		inputArea.attr('value', "Not selcted a valid input stream");
 		return null;
 	}
 
-	stream=stream_def;
+	
 	var rand=0;
 	var events=1;	// Single event
 	if(!single)	//Collection of events
@@ -120,7 +135,6 @@ function getSample(stream_def){
 		
 	}
 	inputArea.attr('value', text); //write to input area.
-	return text;
 }
 
 function setStreamDef(list){
