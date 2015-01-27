@@ -4431,16 +4431,18 @@ dw.vtable = function(container, options){
 
         console.log(columns.length);
         //for(var j=0;j<columns.length;j++){
-        //    temp+=columns[j].sTitle+",";
+        //    temp+=columns[j].scolDataTypeTitle+",";
         //}
+        colNamesDefault = [];
 
         for(var j=0;j<columns.length;j++){
-            temp[j]=columns[j].sTitle;
+            colNamesDefault[j]=columns[j].sTitle;
         }
 
-        localStorage["temp"] = JSON.stringify(temp);
-//////////////////////////////////////////////////////////////
+        console.log(colNamesDefault);
 
+        //localStorage["temp"] = JSON.stringify(temp);
+//////////////////////////////////////////////////////////////
 
 		return vtable;
 	}
@@ -8204,6 +8206,7 @@ dw.wrangler = function(options){
 
         exportedValue = dw.wrangler_export(table, {format:"javascript", wrangler:w});
         parent.document.getElementById("paramArea").style.display='block';
+        parent.window.scrollBy(0,-400);
         clear_editor();
         parent.setParams();
         dw.log({type:'export', params:{type:'csv'}})

@@ -78,20 +78,19 @@
             document.getElementById("txtQuery").value = definition;
         }
 
+<<<<<<< HEAD
 
-
-        function onClickSubmit(definition){
-		document.getElementById("paramArea").style.display = 'none';
-		if(isValidQuery(definition)){
-			document.getElementById("isValid").innerHTML="";
-            var iFrame = document.getElementById("wranglerIframe");
-            iFrame.src = "wrangler.html?query=" + definition;
-            window.scrollBy(0,400);
-		}
-		else{
-			document.getElementById("isValid").innerHTML="*Invalid syntax";
-		}
-	}
+        function onClickSubmit(definition) {
+            document.getElementById("paramArea").style.display = 'none';
+            if (isValidQuery(definition)) {
+                document.getElementById("isValid").innerHTML = "";
+                document.getElementById("wranglerIframe")
+                        .src = "wrangler.html?query=" + definition;
+            }
+            else {
+                document.getElementById("isValid").innerHTML = "*Invalid syntax";
+            }
+        }
 
         function onChangeText() {
             document.getElementById("streamSelect").selectedIndex = 0;
@@ -106,6 +105,36 @@
             var regExp = /^define(\n|\s|\t)+stream(\n|\s|\t)+\w(\.|\w)*\w(\n|\s|\t)*\(((\n|\s|\t)*\w+(\n|\s|\t)+(int|long|float|double|string|bool)(\n|\s|\t)*,)*((\n|\s|\t)*\w+(\n|\s|\t)+(int|long|float|double|string|bool)(\n|\s|\t)*)\)(\n|\s|\t)*;*(\n|\s|\t)*$/i;
             return regExp.test(query);
         }
+=======
+	
+	function onClickSubmit(definition){
+		document.getElementById("paramArea").style.display = 'none';
+		if(isValidQuery(definition)){
+			document.getElementById("isValid").innerHTML="";
+            var iFrame = document.getElementById("wranglerIframe");
+            iFrame.src = "wrangler.html?query=" + definition;
+            window.scrollBy(0,400);
+		}
+		else{
+			document.getElementById("isValid").innerHTML="*Invalid syntax";
+		}
+	}
+
+	function onChangeText(){
+		document.getElementById("streamSelect").selectedIndex=0;
+	}
+	
+	function getQuery(){
+		return document.getElementById("txtQuery").value;	
+	}
+
+	function isValidQuery(query){
+		/*regular expression for input stream definition*/
+		var regExp=/^define(\n|\s|\t)+stream(\n|\s|\t)+\w+(\n|\s|\t)*\(((\n|\s|\t)*\w+(\n|\s|\t)+(int|long|float|double|string|bool)(\n|\s|\t)*,)*((\n|\s|\t)*\w+(\n|\s|\t)+(int|long|float|double|string|bool)(\n|\s|\t)*)\)(\n|\s|\t)*;*(\n|\s|\t)*$/i;
+		return regExp.test(query);
+	}	
+>>>>>>> bbb5e99cba892bf9f0e6104c491597fa68584f87
+
 
     </script>
     <%--<script>--%>
@@ -217,14 +246,22 @@
             
 
             <div>
-
-                <textarea id="scriptTextArea" style="display: inline;height: 50px;margin-right: 6px;width: 42%" readonly>
+<<<<<<< HEAD
+                <textarea id="scriptTextArea" style="display: inline;height: 50px;margin-right: 6px;width: 42%">
                 </textarea>
 
-                <textarea id="configTextArea"  name= "configTextArea" style="height: 50px;width: 46%;margin-left: 76px;" readonly>
-		</textarea><br>
-		<p id="targetCopyText" style="display: none">Text copied.</p>
-                <button id ="copyBtn" onclick="" data-clipboard-target="configTextArea" style="float: right; margin-right: 20px;">copy</button>
+                <textarea id="configTextArea" style="height: 50px;width: 46%;margin-left: 76px;"></textarea><br>
+                <button onclick="" style="float: right; margin-right: 20px;">copy</button>
+=======
+                <textarea id="scriptTextArea" style="display: inline;height: 100px;margin-right: 6px;width: 50%" readonly>
+                </textarea>
+
+                <textarea id="configTextArea" name= "configTextArea" style="height: 100px;width: 40%" readonly></textarea>
+                <p id="targetCopyText" style="display: none">Text copied.</p>
+                <button id ="copyBtn" onclick="" data-clipboard-target="configTextArea">copy</button>
+
+>>>>>>> bbb5e99cba892bf9f0e6104c491597fa68584f87
+
 
             </div>
         </div>
@@ -294,6 +331,7 @@
              style="border: solid 1px #cccccc;padding: 5px 10px;float: right;width: 466px;
 			display: none;border-bottom-style: ridge;border-width: 1px;margin: 3px;">
 
+<<<<<<< HEAD
             <form name="outparamForm" id="outputParams" method="post" action="formdata.jsp">
                 <table border="0">
                     <tr>
@@ -308,7 +346,36 @@
                             <div class="sectionHelp">
                                 Stream Name
                             </div>
+=======
+                <form name="outparamForm" id="outputParams" method="post" action="formdata.jsp">
+                    <table border="0">
+                        <tr>
+                            <td>
+                                Event Configuration Name:
+                                <span class="required">*</span>
+                            </td>
+                            <td>
+                                <input type="text" required='true' name="scrpitName" id="streamName" class="initE"
+                                       style="width:130px; margin-right: 12px">
 
+                                <div class="sectionHelp">
+                                    Stream Name
+                                </div>
+
+                            </td>
+                            <%--<td>--%>
+                                <%--Event Stream Version:--%>
+                            <%--</td>--%>
+                            <%--<td>--%>
+                                <%--<input type="text" required='true' name="streamVersion" id="streamVer" class="initE"--%>
+                                       <%--style="width:70px">--%>
+
+                                <%--<div class="sectionHelp">--%>
+                                    <%--(eg:1.0.0)--%>
+                                <%--</div>--%>
+
+                            <%--</td>--%>
+>>>>>>> bbb5e99cba892bf9f0e6104c491597fa68584f87
 
                         </td>
                        
@@ -348,9 +415,45 @@
                     <input type="button" onclick="saveScriptParams(false)" value="copy to workspace"
                            style="margin-bottom: 3px;margin-left: 48px;">
 
+<<<<<<< HEAD
                 </div>
             </form>
+=======
+                    <div id="workArea" style="padding: 0px">
+                        <table id="paramTable" style="width:100%;margin-bottom: 7px"
+                               class="styledLeft">
 
+                            <thead style="display: block">
+                            <tr>
+                                <th width="30%">Column Name</th>
+                                <th width="30%">Parameter name</th>
+                                <th width="30%">Parameter Type</th>
+                            </tr>
+                            </thead>
+                            <%--</table>--%>
+                            <%--<div id="scrollTable" style="overflow-y: auto ; height: 100px">--%>
+                            <%--<table id="paramTable" class="styledLeft" style="width:64%">--%>
+                            <%--<thead style="height: 0px">--%>
+                            <%--<tr>--%>
+                            <%--<th width="30%"></th>--%>
+                            <%--<th width="30%"></th>--%>
+                            <%--<th width="30%"></th>--%>
+                            <%--</tr>--%>
+                            <%--</thead>--%>
+                            <tbody id="paramTableBody">
+                            </tbody>
+                        </table>
+                        <%--</div>--%>
+
+                        <input type="button" onclick="saveScriptParams(true)" value="Save to Registry"
+                               style="margin-bottom: 3px;display: inline">
+                        <input type="button" onclick="saveScriptParams(false)" value="copy to workspace"
+                               style="margin-bottom: 3px">
+
+                    </div>
+                </form>
+            </div>
+>>>>>>> bbb5e99cba892bf9f0e6104c491597fa68584f87
         </div>
     </div> <!-- new config section end -->
 
