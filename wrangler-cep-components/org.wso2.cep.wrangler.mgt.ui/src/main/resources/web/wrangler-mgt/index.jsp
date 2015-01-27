@@ -3,7 +3,7 @@
 <%@ taglib uri="http://wso2.org/projects/carbon/taglibs/carbontags.jar" prefix="carbon" %>
 
 <script type="text/javascript" src = "dw.js"></script>
-<%--<script type="text/javascript" src="wranglerUIHandler.js"></script>--%>
+<script type="text/javascript" src="wranglerUIHandler.js"></script>
 
 <div id="middle">
 
@@ -31,7 +31,7 @@
             }
             return payloadNames;
         }
-        function getDataTypes(index) {
+        function getDataTypes(index) { // INT, LONG, BOOL STRING, FLOAT, DOUBLE
             var jsonStream = getAllStreamJSON();
             var dataTypes = [];
             for (var i = 0; i < jsonStream[index].payloadData.length; i++) {
@@ -59,13 +59,13 @@
         }
 
         function onchangeMenu(index) {
-            document.getElementById("paramArea").style.display = 'none';
-            //document.getElementById("wranglerIframe").src = "wrangler.html?selected=" + index;
+            document.getElementById("paramArea").style.display = 'none'; //hide output table 
+           
             var definition;
-            if (index === -1) {
+            if (index === -1) { 	// --select any stream--
                 definition = "";
             }
-            else {
+            else {		// generate the definition
                 definition = "define stream " + getStreamName(index) + " ( ";
                 for (var i = 0; i < getPayloadNames(index).length; i++) {
                     definition += getPayloadNames(index)[i] +
@@ -81,7 +81,7 @@
 
 
         function onClickSubmit(definition){
-		document.getElementById("paramArea").style.display = 'none';
+		document.getElementById("paramArea").style.display = 'none'; // hide output table
 		if(isValidQuery(definition)){
 			document.getElementById("isValid").innerHTML="";
             var iFrame = document.getElementById("wranglerIframe");
@@ -108,55 +108,9 @@
         }
 
     </script>
-    <%--<script>--%>
-        <%--$(document).ready(regAccess(document.getElementById('folderTree').value));--%>
-    <%--</script>--%>
+    
 
 
-    <%--<script type="text/javascript" src = "clipboard/ZeroClipboard.js"></script>--%>
-    <%--<script type="text/javascript" src = "clipboard/client.js"></script>--%>
-
-    <script>
-        function regAccess(folderName) {
-            var resultHTML = "";
-            //alert(folderName);
-            $.ajax({
-                type: "POST",
-                url: "registryAccess.jsp",
-                data: {folderName: folderName},
-                error: function (a, b, c) {
-                    //  alert(a+"  "+b+" "+c);
-
-                },
-                success: function (s) {
-                    $val = s.toString();
-                    //           alert(s);
-                    console.log(s);
-
-                    var reg1 = /\<p[^>]*\>([^]*)\<\/p/m;
-                    var reg2 = /\<code[^>]*\>([^]*)\<\/code/m
-                    //             var result = $val.match( reg )[1];
-
-                    var scriptText = $val.match(reg1)[1];
-
-                    var configText = $val.match(reg2)[1];
-                    //         alert(result);
-                    console.log(scriptText);
-                    console.log(configText);
-                    document.getElementById("scriptTextArea").value = scriptText;
-                    document.getElementById("configTextArea").value = configText;
-
-
-//                    console.log(result);
-//                    var parser = new DOMParser();
-//                    var doc = parser.parseFromString(result,"text/xml");
-//                    console.log(doc);
-
-                }
-            });
-        }
-
-    </script>
 
     <h2>Data Wrangler</h2>
 
@@ -175,8 +129,9 @@
                         <small>Load Configuration:</small>
                     </h4>
 			
+		 <!--directory structure at org.wso2.cep.wrangler-->
                     <select id="folderTree" style="display: inline" name="folderName"
-                            onchange="regAccess(document.getElementById('folderTree').value)">
+                            onchange="regAccess(document.getElementById('folderTree').value)"> 
                         <% String BASEURL = "/repository/components/org.wso2.cep.wrangler/";
 
 
@@ -188,7 +143,8 @@
 
                                 try {
                                     Resource resp = (Resource) registry.get(BASEURL);
-                                    org.wso2.carbon.registry.api.Collection collection = (org.wso2.carbon.registry.api.Collection) resp;
+                                    org.wso2.carbon.registry.api.Collection collection = 
+						(org.wso2.carbon.registry.api.Collection) resp;
 
                                     //     response.setContentType("text/plain");
 
@@ -204,7 +160,7 @@
 
                         <%
                                     }
-                                } catch (Exception e) {
+                                } catch (RegistryException e) {
 
                                 }
                             }
@@ -217,14 +173,17 @@
             
 
             <div>
-
-                <textarea id="scriptTextArea" style="display: inline;height: 50px;margin-right: 6px;width: 42%" readonly>
+		<!--Script area -->
+                <textarea id="scriptTextArea" style="display: inline;height: 50px;margin-right: 
+		6px;width: 42%" readonly>
                 </textarea>
-
-                <textarea id="configTextArea"  name= "configTextArea" style="height: 50px;width: 46%;margin-left: 76px;" readonly>
+		<!--Definition area-->
+                <textarea id="configTextArea"  name= "configTextArea" style="height: 50px;width:
+		 46%;margin-left: 76px;" readonly>
 		</textarea><br>
 		<p id="targetCopyText" style="display: none">Text copied.</p>
-                <button id ="copyBtn" onclick="" data-clipboard-target="configTextArea" style="float: right; margin-right: 20px;">copy</button>
+                <button id ="copyBtn" onclick="" data-clipboard-target="configTextArea"
+		 style="float: right; margin-right: 20px;">copy</button>
 
             </div>
         </div>
@@ -245,8 +204,8 @@
                 </h4>
                 <select id="streamSelect" onchange="onchangeMenu(this.selectedIndex-1)">
 
-
-                    <script>
+ 			<!--generate stream name for the drop down list-->
+                    <script> 
                         document.write("<option>--select any stream--</option>");
                         for (var i = 0; i < getAllStreamJSON().length; i++) {
                             var streamNameV = getStreamName(i).concat(" ", getStreamVersion(i));
@@ -255,16 +214,7 @@
                     </script>
                 </select>
 
-                <!--div>
-                    <ol style="list-style-position: inside; margin-top: 6px">
-                        <li>Select the stream defintion you want to wrangle</li>
-                        <li>Click the "Wrangle" button to wrangle sample data set</li>
-                        <li>Do whatever the transformations you need in wrangler interface</li>
-                        <li>Click the "PROCEED" button in wrangle interface</li>
-                        <li>Fill the output definition details</li>
-                        <li>Click the "Done" button to save the configuration</li>
-                    </ol>
-                </div-->
+               
                 <br>
                 <h4 style="padding-left: 96px; margin-top: 10px; margin-bottom: 10px;">
                     <small>or</small>
@@ -280,7 +230,8 @@
                         <textarea id="txtQuery" style="margin: 3px; height: 58px; width: 375px;"
                                   onchange="onChangeText()"></textarea><br>
                         <button type="button" id="submit" style="margin: 3px;"
-                                onclick="onClickSubmit(document.getElementById('txtQuery').value);">Submit
+                                onclick="onClickSubmit(document.getElementById('txtQuery').value);">
+				Submit
                         </button>
                         <label id="isValid" style="color:#FF0000; padding-left: 16px;"></label>
                     </form>
@@ -289,6 +240,8 @@
 
             </div>
         </div>
+
+	<!--output stream table area-->
         <div id="paramArea"
 
              style="border: solid 1px #cccccc;padding: 5px 10px;float: right;width: 466px;
@@ -302,8 +255,8 @@
                             <span class="required">*</span>
                         </td>
                         <td>
-                            <input type="text" required='true' name="scrpitName" id="streamName" class="initE"
-                                   style="width:130px; margin-right: 12px">
+                            <input type="text" required='true' name="scrpitName" id="streamName" 
+				class="initE" style="width:130px; margin-right: 12px">
 
                             <div class="sectionHelp">
                                 Stream Name
@@ -362,282 +315,6 @@
     </iframe>
 
     <div>
-
-        <script>
-            //            function test(){
-            //                $.ajax({
-            //                    type: "POST",
-            //                    url: "registryAccess.jsp",
-            //                    data: {name: "test"},
-            //                    error: function (a, b, c) {
-            //                        alert(a+"  "+b+" "+c);
-            //
-            //                    },
-            //                    success: function (s) {
-            //                        alert(s);
-            //                    }
-            //                });
-            //            }
-
-            //function for saving form parameters -commented-
-
-            var isSaveToReg;
-            var errorMsg = "";
-
-            function saveScriptParams(isPersist) {
-
-                isSaveToReg = false;
-                var isErrorInParams = false;
-
-                var streamName = document.getElementById("streamName").value;
-                var saveScript = "";
-
-                console.log(document.getElementById("wranglerIframe"));
-                saveScript = document.getElementById("wranglerIframe").contentWindow.exportedValue;
-                // alert(saveScript);
-
-                saveScript = saveScript.slice(16, saveScript.length - 16);
-                var funcDef = "function myfunction(x){" +
-                        "\n\nw = dw.wrangle()" +
-                        "\n\ninitial_transforms = dw.raw_inference(x).transforms;" +
-                        "\n\nvar data =dv.table(x);" +
-                        "\n\nif(initial_transforms){" +
-                        "\ninitial_transforms.forEach(function(t){" +
-                        "\nw.add(t);" +
-                        "\n})\nw.apply([data]);" +
-                        "\n\n}";
-
-                var funcEnd = "w.apply([data])" +
-                        "\n\nreturn dw.wrangler_export(data,{});" +
-                        "\n}";
-                saveScript = funcDef + saveScript + funcEnd;
-
-
-                var numParams = parseInt(document.getElementById("numParams").value);
-                console.log(numParams);
-//                var data = [];
-//                var paramToJson;
-                var params;
-                var paramString = "define stream ";
-
-//define stream <nameOfTheStream> ( <attribute1Name> <attribute1Type>, <attribute1Name> <attribute1Type> .....)
-                paramString += streamName + "(";
-
-                for (var j = 1; j < numParams; j++) {
-
-                    var name = document.getElementById("colInput" + j + "").value;
-                    var type = document.getElementById("optionSelect" + j + "").value;
-
-                    if(name==""){
-                        isErrorInParams = true;
-                        break;
-                    }
-
-                    paramString += name + " " + type + ",";
-                }
-
-                paramString = paramString.substring(0, paramString.length - 1);
-                paramString += ")";
-
-                //             var version = document.getElementById("streamVer").value;
-
-
-//                console.log(data);
-//                params = {name: streamName, version: version, data: data};
-//
-//                paramToJson = JSON.stringify(params);
-//                console.log(paramToJson);
-                if(validate(streamName,isErrorInParams)){
-                    if (isPersist) {
-                        CARBON.showConfirmationDialog("Do you want to save scripts in Registry?", function () {
-                            saveToRegistry(saveScript, streamName, paramString)
-                        }, null, null);
-                    } else {
-                        document.getElementById("scriptTextArea").value = saveScript;
-                        document.getElementById("configTextArea").value = paramString;
-                    }
-                }else{
-                    CARBON.showErrorDialog(errorMsg);
-                }
-
-
-
-            }
-
-            function setSaveToReg(input) {
-                alert(input)
-            }
-
-
-            function saveToRegistry(saveScript, streamName, paramString) {
-
-                var isSuccess = false;
-
-                $.ajax({
-                    type: "POST",
-                    url: "formdata.jsp",
-                    data: {formdata: paramString, fileName: streamName},
-                    error: function (a, b, c) {
-                        //  alert(a+"  "+b+" "+c);
-                        isSuccess = false;
-
-                    },
-                    success: function (s) {
-                        //    alert("Success");
-                        isSuccess = true;
-                    }
-                });
-
-
-                $.ajax({
-                    type: "POST",
-                    url: "save.jsp",
-                    data: {name: saveScript, streamName: streamName},
-                    error: function (a, b, c) {
-                        //  alert(a+"  "+b+" "+c);
-                        CARBON.showErrorDialog("Error occured in saving script");
-
-                    },
-                    success: function (s) {
-                        //    alert("Success");
-                        CARBON.showInfoDialog("script successfully saved into registry", function () {
-                            reloadOutputStreams();
-                        });
-
-                    }
-                });
-
-            }
-
-
-            function copyToClipboard() {
-
-            }
-
-            function reloadOutputStreams() {
-                console.log("refreshed");
-                document.getElementById("submit_form").submit();
-//                var content = container.innerHTML;
-//                console.log(content);
-//                container.innerHTML = content;
-            }
-
-            function validate(streamName,isErrorInParams){
-
-                if(streamName=="" && isErrorInParams){
-                    errorMsg = "stream name and parameter definitions are missing"
-                    return false;
-                }
-                if(streamName==""){
-                    errorMsg = "stream name is not defined";
-                    return false;
-                }
-                if(isErrorInParams) {
-                    errorMsg = "parameter definitions missing";
-                    return false;
-                }
-
-                return true;
-            }
-
-        </script>
-
-
-        <script>//-commented-
-
-            //function for tabulate the rows to get parameter data
-            function setParams() {
-
-                //setting table parameters
-                var table = document.getElementById("paramTable");
-                var tableBody = document.createElement('tbody');
-                var oldTableBody = document.getElementById("paramTableBody");
-//                var temp = [];
-
-                var input2 = document.createElement("input");
-
-                input2.setAttribute('id', "numParams");
-                input2.setAttribute('name', "numParams");
-                input2.setAttribute('hidden', "true");
-                var temp = document.getElementById("wranglerIframe").contentWindow.colNamesDefault;
-                input2.setAttribute('value', temp.length + "");
-
-                for (var j = 1; j < temp.length; j++) {
-
-                    var tableRow = document.createElement("TR");
-                    var td = document.createElement('TD');
-                    td.setAttribute('id', "colName" + j + "");
-                    var tdI = document.createElement("TD");
-                    var tdList = document.createElement("TD");
-                    var tdListElement = document.createElement("select");
-                    var input = document.createElement("input");
-
-                    td.setAttribute('class', 'leftCol-med');
-                    input.setAttribute('id', "colInput" + j + "");
-                    input.setAttribute('name', "colInput" + j + "");
-                    input.setAttribute('type', 'text');
-                    input.setAttribute('class', 'initE')
-                    input.setAttribute('style', 'width:100%');
-                    input.setAttribute('required', 'true');
-                    tdI.appendChild(input);
-                    td.appendChild(document.createTextNode(temp[j]));
-                    tdListElement.setAttribute('id', "optionSelect" + j + "");
-                    tdListElement.setAttribute('name', "optionSelect" + j + "");
-
-                    var optionArr = [];
-                    optionArr = setColumnTypes(j - 1);
-                    console.log(optionArr);
-                    console.log(optionArr.length);
-
-
-                    for (var k = 0; k < optionArr.length; k++) {
-                        var option = document.createElement("option");
-                        option.value = optionArr[k];
-                        option.text = optionArr[k];
-                        tdListElement.appendChild(option);
-                    }
-//                    td.setAttribute('style','width:30%');
-//                    tdI.setAttribute('style','width:30%');
-//                    tdListElement.setAttribute('style','width:30%');
-
-                    tdList.appendChild(tdListElement);
-                    tableRow.appendChild(td);
-                    tableRow.appendChild(tdI);
-                    tableRow.appendChild(tdList);
-                    tableBody.setAttribute('id', 'paramTableBody');
-                    tableBody.appendChild(tableRow);
-                }
-                tableBody.appendChild(input2);
-                table.replaceChild(tableBody, oldTableBody);
-                console.log(temp);
-                console.log("clicked");
-            }
-
-            function setColumnTypes(i) {
-
-                var colTypes = document.getElementById("wranglerIframe").contentWindow.colDataType;
-                var options;
-
-                if (colTypes[i] === "int") {
-                    options = ["int", "long", "string"];
-                    return options;
-                }
-                else if (colTypes[i] === "number") {
-                    options = ["double", "float", "string"];
-                    return options;
-                }
-                else if (colTypes[i] === "string") {
-                    options = ["string", "bool"];
-                    return options;
-                }
-                else {				//country, cities, tags
-                    options = ["string"];
-                    return options;
-
-                }
-            }
-        </script>
-
 
     </div>
 </div>
