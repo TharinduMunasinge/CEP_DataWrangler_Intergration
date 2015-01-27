@@ -83,8 +83,9 @@
 		document.getElementById("paramArea").style.display = 'none';
 		if(isValidQuery(definition)){
 			document.getElementById("isValid").innerHTML="";
-			document.getElementById("wranglerIframe")
-			.src = "wrangler.html?query=" + definition;
+            var iFrame = document.getElementById("wranglerIframe");
+            iFrame.src = "wrangler.html?query=" + definition;
+            window.scrollBy(0,400);
 		}
 		else{
 			document.getElementById("isValid").innerHTML="*Invalid syntax";
@@ -304,7 +305,7 @@
 
 
                     <div id="workArea" style="padding: 0px">
-                        <table id="paramTable" style="width:64%;margin-bottom: 7px"
+                        <table id="paramTable" style="width:100%;margin-bottom: 7px"
                                class="styledLeft">
 
                             <thead style="display: block">
@@ -324,7 +325,7 @@
                             <%--<th width="30%"></th>--%>
                             <%--</tr>--%>
                             <%--</thead>--%>
-                            <tbody id="paramTableBody" style="height: 100px;display: block;overflow: auto" >
+                            <tbody id="paramTableBody">
                             </tbody>
                         </table>
                         <%--</div>--%>
@@ -586,9 +587,9 @@
                         option.text = optionArr[k];
                         tdListElement.appendChild(option);
                     }
-                    td.setAttribute('style','width:30%');
-                    tdI.setAttribute('style','width:30%');
-                    tdListElement.setAttribute('style','width:30%');
+//                    td.setAttribute('style','width:30%');
+//                    tdI.setAttribute('style','width:30%');
+//                    tdListElement.setAttribute('style','width:30%');
 
                     tdList.appendChild(tdListElement);
                     tableRow.appendChild(td);

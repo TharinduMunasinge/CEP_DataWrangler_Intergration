@@ -21,7 +21,7 @@
 
     Resource resource = registry.newResource();
     resource.setContent(s);
-    String resourcePath ="/repository/components/org.wso2.cep.wrangler/"+streamName+"/config.json";
+    String resourcePath ="/repository/components/org.wso2.cep.wrangler/"+streamName+"/config";
     registry.put(resourcePath, resource);
 
     String serverURL = CarbonUIUtil.getServerURL(config.getServletContext(), session);
