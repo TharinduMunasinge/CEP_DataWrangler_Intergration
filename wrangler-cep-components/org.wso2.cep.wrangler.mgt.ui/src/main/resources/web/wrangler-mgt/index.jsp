@@ -619,11 +619,11 @@
                 var options;
 
                 if (colTypes[i] === "int") {
-                    options = ["int", "long"];
+                    options = ["int", "long", "string"];
                     return options;
                 }
                 else if (colTypes[i] === "number") {
-                    options = ["int", "double", "float", "long"];
+                    options = ["double", "float", "string"];
                     return options;
                 }
                 else if (colTypes[i] === "string") {
