@@ -2,6 +2,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://wso2.org/projects/carbon/taglibs/carbontags.jar" prefix="carbon" %>
 
+<script type="text/javascript" src = "dw.js"></script>
+<%--<script type="text/javascript" src="wranglerUIHandler.js"></script>--%>
+
 <div id="middle">
 
     <script>
@@ -104,13 +107,13 @@
 
 
     </script>
-    <script>
-        $(document).ready(regAccess(document.getElementById('folderTree').value);
-    </script>
+    <%--<script>--%>
+        <%--$(document).ready(regAccess(document.getElementById('folderTree').value));--%>
+    <%--</script>--%>
 
-    <script type="text/javascript" src = "dw.js"></script>
-    <script type="text/javascript" src = "clipboard/ZeroClipboard.js"></script>
-    <script type="text/javascript" src = "clipboard/client.js"></script>
+
+    <%--<script type="text/javascript" src = "clipboard/ZeroClipboard.js"></script>--%>
+    <%--<script type="text/javascript" src = "clipboard/client.js"></script>--%>
 
     <script>
         function regAccess(folderName) {
@@ -198,10 +201,10 @@
             </div>
 
             <div>
-                <textarea id="scriptTextArea" style="display: inline;height: 100px;margin-right: 6px;width: 50%">
+                <textarea id="scriptTextArea" style="display: inline;height: 100px;margin-right: 6px;width: 50%" readonly>
                 </textarea>
 
-                <textarea id="configTextArea" name= "configTextArea" style="height: 100px;width: 40%"></textarea>
+                <textarea id="configTextArea" name= "configTextArea" style="height: 100px;width: 40%" readonly></textarea>
                 <p id="targetCopyText" style="display: none">Text copied.</p>
                 <button id ="copyBtn" onclick="" data-clipboard-target="configTextArea">copy</button>
 
@@ -283,9 +286,9 @@
                                 </div>
 
                             </td>
-                            <td>
-                                Event Stream Version:
-                            </td>
+                            <%--<td>--%>
+                                <%--Event Stream Version:--%>
+                            <%--</td>--%>
                             <%--<td>--%>
                                 <%--<input type="text" required='true' name="streamVersion" id="streamVer" class="initE"--%>
                                        <%--style="width:70px">--%>
@@ -304,7 +307,7 @@
                         <table id="paramTable" style="width:64%;margin-bottom: 7px"
                                class="styledLeft">
 
-                            <thead>
+                            <thead style="display: block">
                             <tr>
                                 <th width="30%">Column Name</th>
                                 <th width="30%">Parameter name</th>
@@ -321,7 +324,7 @@
                             <%--<th width="30%"></th>--%>
                             <%--</tr>--%>
                             <%--</thead>--%>
-                            <tbody id="paramTableBody">
+                            <tbody id="paramTableBody" style="height: 100px;display: block;overflow: auto" >
                             </tbody>
                         </table>
                         <%--</div>--%>
@@ -366,7 +369,7 @@
             //                });
             //            }
 
-            //function for saving form parameters
+            //function for saving form parameters -commented-
 
             var isSaveToReg;
             var errorMsg = "";
@@ -444,7 +447,7 @@
                         document.getElementById("configTextArea").value = paramString;
                     }
                 }else{
-
+                    CARBON.showErrorDialog(errorMsg);
                 }
 
 
@@ -511,23 +514,26 @@
 
             function validate(streamName,isErrorInParams){
 
+                if(streamName=="" && isErrorInParams){
+                    errorMsg = "stream name and parameter definitions are missing"
+                    return false;
+                }
                 if(streamName==""){
                     errorMsg = "stream name is not defined";
+                    return false;
                 }
-                if(!isErrorInParams){
+                if(isErrorInParams) {
                     errorMsg = "parameter definitions missing";
-                }
-                if(streamName=="" && !isErrorInParams){
-                    errorMsg = "stream name and parameter definitions are missing"
+                    return false;
                 }
 
-                return false;
+                return true;
             }
 
         </script>
 
 
-        <script>
+        <script>//-commented-
 
             //function for tabulate the rows to get parameter data
             function setParams() {
@@ -536,14 +542,14 @@
                 var table = document.getElementById("paramTable");
                 var tableBody = document.createElement('tbody');
                 var oldTableBody = document.getElementById("paramTableBody");
-                var temp = [];
+//                var temp = [];
 
                 var input2 = document.createElement("input");
 
                 input2.setAttribute('id', "numParams");
                 input2.setAttribute('name', "numParams");
                 input2.setAttribute('hidden', "true");
-                temp = JSON.parse(localStorage["temp"]);
+                var temp = document.getElementById("wranglerIframe").contentWindow.colNamesDefault;
                 input2.setAttribute('value', temp.length + "");
 
                 for (var j = 1; j < temp.length; j++) {
@@ -580,6 +586,10 @@
                         option.text = optionArr[k];
                         tdListElement.appendChild(option);
                     }
+                    td.setAttribute('style','width:30%');
+                    tdI.setAttribute('style','width:30%');
+                    tdListElement.setAttribute('style','width:30%');
+
                     tdList.appendChild(tdListElement);
                     tableRow.appendChild(td);
                     tableRow.appendChild(tdI);

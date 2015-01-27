@@ -18,15 +18,19 @@
 <script type="text/javascript" src="lib/d3/d3.min.js">  </script>
 <script type="text/javascript" src="lib/datavore/datavore-r0.1.js">  </script>
 
+<script type="text/javascript">
+	var exportedValue="notDefined";
+	var colDataType=[];
+	var colNamesDefault = [];
+
+</script>
+
 <script type="text/javascript" src="dw.js">  </script>
 <script type="text/javascript" src="test/crime.js">  </script>
 
 <!--WSO2 scripts-->
 <script type="text/javascript" src="test/wso2_sample_gen.js">  </script>
-<script type="text/javascript">
-	var exportedValue="notDefined";
-	var colDataType=[];
-</script>
+
 <!---------------->
 
 <script type="text/javascript">
@@ -186,6 +190,7 @@
 				writeSample(stream);
 			}
 			else*/
+			console.log(query);
 				writeSampleForQuery(query);
 				
 			document.getElementById("def").innerHTML=get_def_prompt();
@@ -197,7 +202,7 @@
 		input { 
 			float: left; 
 			width: 50px;
-			margin-left: 35;
+			margin-left: 35px;
 		}
 		label { 
 			margin: 0px 0px 0px 10px; 
@@ -208,12 +213,12 @@
     			display: block;
     			margin-top: 1em;
     			margin-bottom: 1em;
-    			margin-left: 35;
-    			margin-right: 0;
+    			margin-left: 35px;
+    			margin-right: 0px;
 		}
 	
 		h4{
-			margin-left: 35;
+			margin-left: 35px;
 		}
 
 		body{

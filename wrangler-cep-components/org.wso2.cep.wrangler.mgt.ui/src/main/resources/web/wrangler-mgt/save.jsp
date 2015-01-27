@@ -7,7 +7,6 @@
 <%@ page import="org.wso2.carbon.ui.CarbonUIUtil" %>
 <%@ page import="org.wso2.carbon.utils.ServerConstants" %>
 <%@ page import="org.wso2.carbon.ui.CarbonUIMessage" %>
-<%@ page import="org.wso2.cep.wrangler.mgt.ui.SaveRegClient" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://wso2.org/projects/carbon/taglibs/carbontags.jar" prefix="carbon" %>
 <%
@@ -23,21 +22,12 @@
     Resource resource = registry.newResource();
     resource.setContent(s);
     String resourcePath ="/repository/components/org.wso2.cep.wrangler/"+streamName+"/script.js";
-
     registry.put(resourcePath, resource);
 
     String serverURL = CarbonUIUtil.getServerURL(config.getServletContext(), session);
     ConfigurationContext configContext =
             (ConfigurationContext) config.getServletContext().getAttribute(CarbonConstants.CONFIGURATION_CONTEXT);
     String cookie = (String) session.getAttribute(ServerConstants.ADMIN_SERVICE_COOKIE);
-
-    SaveRegClient client;
-
-    try {
-        client = new SaveRegClient(configContext, serverURL, cookie);
-        client.saveReg(s);
-    } catch (Exception e) {
-        CarbonUIMessage.sendCarbonUIMessage(e.getMessage(), CarbonUIMessage.ERROR, request, e);
 
 
 
@@ -47,6 +37,6 @@
     location.href = "../admin/error.jsp";
 </script>
 <%
-        return;
-    }
+    return;
+
 %>

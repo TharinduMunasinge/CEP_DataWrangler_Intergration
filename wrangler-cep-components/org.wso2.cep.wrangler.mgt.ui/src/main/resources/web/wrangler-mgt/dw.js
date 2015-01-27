@@ -4431,16 +4431,17 @@ dw.vtable = function(container, options){
 
         console.log(columns.length);
         //for(var j=0;j<columns.length;j++){
-        //    temp+=columns[j].sTitle+",";
+        //    temp+=columns[j].scolDataTypeTitle+",";
         //}
 
         for(var j=0;j<columns.length;j++){
-            temp[j]=columns[j].sTitle;
+            colNamesDefault[j]=columns[j].sTitle;
         }
 
-        localStorage["temp"] = JSON.stringify(temp);
-//////////////////////////////////////////////////////////////
+        console.log(colNamesDefault);
 
+        //localStorage["temp"] = JSON.stringify(temp);
+//////////////////////////////////////////////////////////////
 
 		return vtable;
 	}
