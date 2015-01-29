@@ -37,6 +37,10 @@
 	var w = dw.wrangle()
 	var myLayout;
 	$(document).ready(function() {
+		var str =window.location.href;
+		var dataForWrangler=decodeURIComponent(str.substr(str.indexOf("=")+1))
+
+
 		var browserName=navigator.appName;
 		var isSupported = navigator.userAgent.match(/Chrome|Safari|Firefox/);
 		if(isSupported===null) alert('Data Wrangler has only been tested in Chrome, '+
@@ -128,21 +132,27 @@
 									.append('Wrangle'))
 			
 			//inputArea is defined in test/wso2_sample_gen.js
-			/*var inputArea = dw.jq('textArea').attr('id','wranglerInput'); 
+			var inputArea = dw.jq('textArea').attr('id','wranglerInput');
 					// moved to test/wso2_sample_gen.js
-			*/upload.append(inputArea)
-			appendInputAreaTo(upload);
+			upload.append(inputArea)
+			//appendInputAreaTo(upload);
 			
 			/*inputArea.attr('value', text);*/ // moved to test/wso2_sample_gen.js
+			var val = dataForWrangler;
 
+			var dt = dv.table(val)
+			initial_transforms = dw.raw_inference(val).transforms
+			startWrangler(dt)
 
-			jQuery('button').click(function(){
-				var val = getInputArea().attr(
-						'value');
+			/*jQuery('button').click(function(){
+				//var val = inputArea.attr(
+						//'value');
+				var val = parent.data;
+				alert(parent.data)
 				var dt = dv.table(val)
 				initial_transforms = dw.raw_inference(val).transforms
 				startWrangler(dt)
-			})
+			})*/
 		}
 		/*var add_export_option = function(type, name){
 		 dw.add_select_option(select, name, type);
@@ -165,8 +175,12 @@
 	<title>DataWrangler</title>
 	<script>
 		function loadFunction(){
-
-			window.scrollTo(92,316);
+			//
+			/*var val = parent.data;
+			var dt = dv.table(val)
+			initial_transforms = dw.raw_inference(val).transforms
+			startWrangler(dt)*/
+			//window.scrollTo(92,316);
 			var path=window.location.href;
 			//var param=-1;
 			var query="";
@@ -194,7 +208,7 @@
 				writeSampleForQuery(query);
 				
 			document.getElementById("def").innerHTML=get_def_prompt();
-			window.scrollTo(92,316);
+			//window.scrollTo(92,316);
 
 		}
 	</script>

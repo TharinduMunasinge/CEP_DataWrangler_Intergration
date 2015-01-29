@@ -8205,11 +8205,10 @@ dw.wrangler = function(options){
     function exportTable(){
 
         exportedValue = dw.wrangler_export(table, {format:"javascript", wrangler:w});
-        parent.document.getElementById("paramArea").style.display='block';
-        parent.window.scrollBy(0,-400);
         clear_editor();
         parent.setParams();
         dw.log({type:'export', params:{type:'csv'}})
+
     }
 
     function script_interaction(params){

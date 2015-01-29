@@ -1,5 +1,103 @@
 var isSaveToReg;
 var errorMsg = "";
+////////////////////////////////////////
+function checkStream() {	//checks whether there streams in registry 
+            return getAllStreamJSON().length;
+        }
+        function getStreamName(index) {
+            var jsonStream = getAllStreamJSON();
+            return jsonStream[index].name;
+        }
+        function getStreamVersion(index) {
+            var jsonStream = getAllStreamJSON();
+            return jsonStream[index].version;
+        }
+        function getPayloadNames(index) {
+            var jsonStream = getAllStreamJSON();
+            var payloadNames = [];
+            for (var i = 0; i < jsonStream[index].payloadData.length; i++) {
+                payloadNames[i] = jsonStream[index].payloadData[i].name;
+            }
+            return payloadNames;
+        }
+        function getDataTypes(index) { // INT, LONG, BOOL STRING, FLOAT, DOUBLE
+            var jsonStream = getAllStreamJSON();
+            var dataTypes = [];
+            for (var i = 0; i < jsonStream[index].payloadData.length; i++) {
+                dataTypes[i] = jsonStream[index].payloadData[i].type;
+            }
+        }
+        function checkStream() {	//if there is no defined stream in CEP, 0 will return
+            return getAllStreamJSON().length;
+        }
+        function getStreamName(index) {
+            var jsonStream = getAllStreamJSON();
+            return jsonStream[index].name;
+        }
+        function getStreamVersion(index) {
+            var jsonStream = getAllStreamJSON();
+            return jsonStream[index].version;
+        }
+        function getDataTypes(index) {	//string array of (STRING, INT, FLOAT, LONG, DOUBLE, BOOL)
+            var jsonStream = getAllStreamJSON();
+            var dataTypes = [];
+            for (var i = 0; i < jsonStream[index].payloadData.length; i++) {
+                dataTypes[i] = jsonStream[index].payloadData[i].type;
+            }
+            return dataTypes;
+        }
+
+        function onchangeMenu(index) {
+           // document.getElementById("paramArea").style.display = 'none'; //hide output table
+           
+            var definition;
+            if (index === -1) { 	// --select any stream--
+                definition = "";
+            }
+            else {		// generate the definition
+                definition = "define stream " + getStreamName(index) + " ( ";
+                for (var i = 0; i < getPayloadNames(index).length; i++) {
+                    definition += getPayloadNames(index)[i] +
+                    " " + getDataTypes(index)[i];
+                    if (i != getPayloadNames(index).length - 1)
+                        definition += ",";
+                }
+                definition += " );";
+            }
+            document.getElementById("txtQuery").value = definition;
+        }
+
+
+
+        function onClickPushToWrangler(definition){
+            //document.getElementById("wrangler").style.display="block";
+		//document.getElementById("paramArea").style.display = 'none'; // hide output table
+		if(isValidQuery(definition)){
+			document.getElementById("isValid").innerHTML="";
+            //var iFrame = document.getElementById("wranglerIframe");
+            //iFrame.src = "wrangler.html?query=" + definition;
+           // window.scrollBy(0,400);
+            document.getElementById("dataPopulatedArea").value=writeSampleForQuery(definition);
+		}
+		else{
+			document.getElementById("isValid").innerHTML="*Invalid syntax";
+		}
+	}
+
+        function onChangeText() {
+            document.getElementById("streamSelect").selectedIndex = 0;
+        }
+
+        function getQuery() {
+            return document.getElementById("txtQuery").value;
+        }
+
+        function isValidQuery(query) {
+            /*regular expression for input stream definition*/
+            var regExp = /^define(\n|\s|\t)+stream(\n|\s|\t)+\w(\.|\w)*\w(\n|\s|\t)*\(((\n|\s|\t)*\w+(\n|\s|\t)+(int|long|float|double|string|bool)(\n|\s|\t)*,)*((\n|\s|\t)*\w+(\n|\s|\t)+(int|long|float|double|string|bool)(\n|\s|\t)*)\)(\n|\s|\t)*;*(\n|\s|\t)*$/i;
+            return regExp.test(query);
+        }
+////////////////////////////////////////
 
 function saveScriptParams(isPersist) {
 
@@ -60,9 +158,15 @@ function saveScriptParams(isPersist) {
                 saveToRegistry(saveScript, streamName, paramString)
             }, null, null);
         } else {
-            document.getElementById("scriptTextArea").value = saveScript;
-            document.getElementById("configTextArea").value = paramString;
+            document.getElementById("wranglingScriptTextArea").value = saveScript;
+            document.getElementById("outputDefTextArea").value = paramString;
         }
+        //document.getElementById("preview_div").style.display="none";
+        //
+        $('#preview_div').slideToggle(500, function () {
+
+        });
+         //
     }else{
         CARBON.showErrorDialog(errorMsg);
     }
@@ -229,6 +333,7 @@ function setParams() {
     table.replaceChild(tableBody, oldTableBody);
     console.log(temp);
     console.log("clicked");
+    $("#wrangler_div").slideUp(500,function(){});
 }
 
 function setColumnTypes(i) {

@@ -4,9 +4,9 @@
             <id>studentmgt_menu</id>
             <i18n-key>Data Wrangler</i18n-key>
             <i18n-bundle>org.wso2.cep.wrangler.mgt.ui.i18n.Resources</i18n-bundle>
-            <parent-menu>manage_menu</parent-menu>
-            <link>../wrangler-mgt/index.jsp</link>
-            <region>region1</region>
+            <parent-menu>tools_menu</parent-menu>
+            <link>../wrangler-mgt/config_data_for_wrangler.jsp</link>
+            <region>region5</region>
             <order>50</order>
             <style-class>manage</style-class>
             <icon>../wrangler-mgt/images/students.png</icon>

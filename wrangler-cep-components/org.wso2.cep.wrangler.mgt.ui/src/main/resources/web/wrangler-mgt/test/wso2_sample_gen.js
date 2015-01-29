@@ -30,17 +30,17 @@ var bool_val = ["false", "true"]; // 2 bool values
 	
 var text=""; // text for inputArea
 var def_prompt="";	// stream format definition prompt
-var inputArea = dw.jq('textArea').attr('id','wranglerInput');
+//var inputArea = dw.jq('textArea').attr('id','wranglerInput');
 var single=true; // controlled by 'option' radio button on wrangler.html
 var stream=["empty"];
 
-function appendInputAreaTo(container){
+/*function appendInputAreaTo(container){
 	container.append(inputArea);
-}
+}*/
 
-function getInputArea(){
+/*function getInputArea(){
 	return inputArea;
-}
+}*/
 
 function set_def_promt(str){
 	def_prompt=str;
@@ -50,20 +50,21 @@ function get_def_prompt(){
 	return def_prompt;
 }
 function writeSampleForQuery(query){
+	console.log(query);
 	var insideBrackets=query.substring(query.indexOf("(")+1,query.indexOf(")")).trim();
 	var params = insideBrackets.split(",");
 	for(var i=0; i<params.length; i++){
 		var temp=params[i].trim();
 		params[i]=temp.substring(temp.lastIndexOf(" ")+1,temp.length).toUpperCase();
 	}
-	writeSample(params);
+	return writeSample(params);
 	
 }
 function writeSample(stream_def){
 	text="";
 	stream=stream_def;
 	if(stream[0]==="empty"){	//there is no any stream definition in CEP
-		inputArea.attr('value', "Not selcted a valid input stream");
+		//inputArea.attr('value', "Not selcted a valid input stream");
 		return null;
 	}
 
@@ -129,7 +130,8 @@ function writeSample(stream_def){
 
 		
 	}
-	inputArea.attr('value', text); //write to input area.
+	//inputArea.attr('value', text); //write to input area.
+	return text;
 }
 
 function setStreamDef(list){
