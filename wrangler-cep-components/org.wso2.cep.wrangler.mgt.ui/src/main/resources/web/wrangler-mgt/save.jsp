@@ -10,6 +10,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://wso2.org/projects/carbon/taglibs/carbontags.jar" prefix="carbon" %>
 <%
+        /**
+         * takes the javascript code related to transform and save it in the resgistry as script.js
+         */
     String s = request.getParameter("name");
     String streamName = request.getParameter("streamName");
     CarbonContext cCtx = CarbonContext.getCurrentContext();
@@ -21,7 +24,7 @@
 
     Resource resource = registry.newResource();
     resource.setContent(s);
-    String resourcePath ="/repository/components/org.wso2.cep.wrangler/"+streamName+"/script.js";
+    String resourcePath ="/repository/components/org.wso2.cep.wrangler/"+streamName+"/script.js";                   //create a new path using stream name to save the script.js file
     registry.put(resourcePath, resource);
 
     String serverURL = CarbonUIUtil.getServerURL(config.getServletContext(), session);

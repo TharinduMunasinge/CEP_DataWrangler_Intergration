@@ -17,9 +17,9 @@
 
 <div id="middle">
     <h2>Data Wrangler</h2>
-
+    <!--start of workArea div-->
     <div id="workArea">
-
+        <!--Start of Existing Configuration Preview-->
         <table id="previewTable" class="styledLeft" width="100%">
             <thead>
             <tr>
@@ -119,11 +119,15 @@
             </tr>
             </tbody>
         </table>
+        <!--End of Existing Configuration Preview-->
 
+        <!--Link to add New Configuration-->
         <div class="icon-link-ouside registryWriteOperation">
             <a href="#" class="icon-link" style="background-image:url(../wrangler-mgt/images/add.gif);" onclick="">Add New Configuration</a>
             <div style="clear:both"></div>
         </div>
+
+        <!--start of creating new configuration-->
         <div id="newConfigDiv">
             <form method="post" action="wrangler.jsp">
                 <table cellpadding="0" cellspacing="0" border="0" class="styledLeft noBorders">
@@ -197,7 +201,8 @@
                 </table>
             </form>
         </div>
-
+        <!--end of creating new configuration-->
     </div>
+    <!--end of workArea div-->
 
 </div>

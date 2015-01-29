@@ -15,62 +15,62 @@
 <%@ page import="com.google.gson.JsonObject" %>
 <%@ page import="com.google.gson.JsonElement" %>
 <%@ page import="com.google.gson.JsonPrimitive" %>
+<%@ page import="org.wso2.carbon.databridge.streamdefn.registry.datastore.RegistryStreamDefinitionStore" %>
+<%@ page import="org.apache.log4j.Logger" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://wso2.org/projects/carbon/taglibs/carbontags.jar" prefix="carbon" %>
 
 
-
 <%
-        ConcurrentHashMap<String, StreamDefinition> map = new ConcurrentHashMap<String, StreamDefinition>();
-        CarbonContext cCtx = CarbonContext.getCurrentContext();
-        int tenantId = cCtx.getTenantId();
+    /**
+     *Get all the input stream definitions from the registry as a json
+     **/
+    Logger logger = Logger.getLogger(RegistryStreamDefinitionStore.class);
+    ConcurrentHashMap<String, StreamDefinition> map = new ConcurrentHashMap<String, StreamDefinition>();
+    CarbonContext cCtx = CarbonContext.getCurrentContext();
+    int tenantId = cCtx.getTenantId();
 
-        try {
-            Registry registry = cCtx.getRegistry(RegistryType.SYSTEM_GOVERNANCE);
+    try {
+        Registry registry = cCtx.getRegistry(RegistryType.SYSTEM_GOVERNANCE);
 
-            if (!registry.resourceExists(RegistryStreamDefinitionStoreUtil.getStreamDefinitionStorePath())) {
-                registry.put(RegistryStreamDefinitionStoreUtil.getStreamDefinitionStorePath(), registry.newCollection());
-            } else {
-                org.wso2.carbon.registry.core.Collection collection =
-                        (org.wso2.carbon.registry.core.Collection) registry.get(RegistryStreamDefinitionStoreUtil.
-                                getStreamDefinitionStorePath());
-                for (String streamNameCollection : collection.getChildren()) {
+        if (!registry.resourceExists(RegistryStreamDefinitionStoreUtil.getStreamDefinitionStorePath())) {
+            registry.put(RegistryStreamDefinitionStoreUtil.getStreamDefinitionStorePath(), registry.newCollection());
+        } else {
+            org.wso2.carbon.registry.core.Collection collection =
+                    (org.wso2.carbon.registry.core.Collection) registry.get(RegistryStreamDefinitionStoreUtil.
+                            getStreamDefinitionStorePath());
+            for (String streamNameCollection : collection.getChildren()) {
 
-                    org.wso2.carbon.registry.core.Collection innerCollection =
-                            (org.wso2.carbon.registry.core.Collection) registry.get(streamNameCollection);
-                    for (String streamVersionCollection : innerCollection.getChildren()) {
+                org.wso2.carbon.registry.core.Collection innerCollection =
+                        (org.wso2.carbon.registry.core.Collection) registry.get(streamNameCollection);
+                for (String streamVersionCollection : innerCollection.getChildren()) {
 
-                        Resource resource = (Resource) registry.get(streamVersionCollection);
-                        try {
-                            StreamDefinition streamDefinition = EventDefinitionConverterUtils
-                                    .convertFromJson(RegistryUtils.decodeBytes((byte[]) resource.getContent()));
-                            map.put(streamDefinition.getStreamId(), streamDefinition);
+                    Resource resource = (Resource) registry.get(streamVersionCollection);
+                    try {
+                        StreamDefinition streamDefinition = EventDefinitionConverterUtils
+                                .convertFromJson(RegistryUtils.decodeBytes((byte[]) resource.getContent()));
+                        map.put(streamDefinition.getStreamId(), streamDefinition);
 
-                        } catch (Throwable e) {
-//log.error("Error in retrieving streamDefinition from the resource at "+ resource.getPath(), e);
-                        }
+                    } catch (Throwable e) {
+                        logger.error("Error in retrieving streamDefinition from the resource at " + resource.getPath(), e);
                     }
                 }
             }
-
-        } catch (RegistryException e) {
-//log.error("Error in retrieving streamDefinitions from the registry", e);
         }
 
-//return map.values();
-        Object[] array = map.values().toArray();
-    String res="[";
-    for(int i = 0 ; i < array.length ; i++){
-        res = res+""+array[i].toString()+",";
+    } catch (RegistryException e) {
+        logger.error("Error in retrieving streamDefinitions from the registry", e);
     }
-    res =res + "]";
-   // String res = "["+array[0].toString()+","+array[1].toString()+"]";
-//    response.setContentType("application/json");
-//        PrintWriter res =   response.getWriter();
-//    JsonObject obj =  new JsonObject();
-//    JsonElement el = new JsonPrimitive(array[0].toString());
-//    obj.add("ress",el);
-//    res.print(obj);
+
+        /**
+         * takes the values of map into array and generate a json string
+         */
+    Object[] array = map.values().toArray();
+    String res = "[";
+    for (int i = 0; i < array.length; i++) {
+        res = res + "" + array[i].toString() + ",";
+    }
+    res = res + "]";
 
 
 %>
