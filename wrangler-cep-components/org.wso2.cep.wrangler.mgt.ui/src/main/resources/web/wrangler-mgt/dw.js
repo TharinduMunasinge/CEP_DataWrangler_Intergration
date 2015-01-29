@@ -8203,7 +8203,7 @@ dw.wrangler = function(options){
     }
 
     function exportTable(){
-
+        //parent.document.getElementById("output_div").style.display="block";
         exportedValue = dw.wrangler_export(table, {format:"javascript", wrangler:w});
         clear_editor();
         parent.setParams();

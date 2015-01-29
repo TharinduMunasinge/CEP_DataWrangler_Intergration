@@ -207,7 +207,7 @@
 			console.log(query);
 				writeSampleForQuery(query);
 				
-			document.getElementById("def").innerHTML=get_def_prompt();
+			//document.getElementById("def").innerHTML=get_def_prompt();
 			//window.scrollTo(92,316);
 
 		}
@@ -274,16 +274,6 @@
 
 			<div id="table">
 
-				<!--radio buttons for selecting collections of event-->
-				<form action="">
-					<p>Wrangle Type</p>
-					<input type="radio" name="option" value="single" Checked 
-		       		onClick="single=true;writeSample(stream);">Single Event<br>
-					<input type="radio" name="option" value="multiple" 
-		       		onClick="single=false;writeSample(stream);">Collection of Events
-				</form>	
-				<!--stream format display here-->
-				<h4 id="def" margin-left="5"></h4>
 			</div>
 
 			<div id="preview"></div>

@@ -49,7 +49,7 @@ function checkStream() {	//checks whether there streams in registry
 
         function onchangeMenu(index) {
            // document.getElementById("paramArea").style.display = 'none'; //hide output table
-           
+
             var definition;
             if (index === -1) { 	// --select any stream--
                 definition = "";
@@ -65,9 +65,17 @@ function checkStream() {	//checks whether there streams in registry
                 definition += " );";
             }
             document.getElementById("txtQuery").value = definition;
+            document.getElementById("dataPopulatedArea").value="";
+            document.getElementById("isValid").innerHTML="";
+            document.getElementById("1").checked=false;
+            document.getElementById("2").checked=false;
+            window.scrollTo(0,document.body.scrollHeight);
         }
 
-
+        function onClickAddNewConfig(){
+            $("#newConfigDiv").slideToggle(500,null);
+            window.scrollTo(0,document.body.scrollHeight);
+        }
 
         function onClickPushToWrangler(definition){
             //document.getElementById("wrangler").style.display="block";
@@ -155,17 +163,22 @@ function saveScriptParams(isPersist) {
     if(validate(streamName,isErrorInParams)){
         if (isPersist) {
             CARBON.showConfirmationDialog("Do you want to save scripts in Registry?", function () {
-                saveToRegistry(saveScript, streamName, paramString)
+                saveToRegistry(saveScript, streamName, paramString);
+
             }, null, null);
-        } else {
+
+        }
+        else {
             document.getElementById("wranglingScriptTextArea").value = saveScript;
             document.getElementById("outputDefTextArea").value = paramString;
+            $('#preview_div').slideToggle(500, function () {
+
+            });
+            window.scrollTo(0,document.body.scrollHeight);
         }
         //document.getElementById("preview_div").style.display="none";
         //
-        $('#preview_div').slideToggle(500, function () {
 
-        });
          //
     }else{
         CARBON.showErrorDialog(errorMsg);
@@ -231,7 +244,7 @@ function saveToRegistry(saveScript, streamName, paramString) {
         },
         success: function (s) {
             CARBON.showInfoDialog("script successfully saved into registry", function () {
-                reloadOutputStreams();
+                    window.location="config_data_for_wrangler.jsp";
             });
 
         }
@@ -333,7 +346,10 @@ function setParams() {
     table.replaceChild(tableBody, oldTableBody);
     console.log(temp);
     console.log("clicked");
-    $("#wrangler_div").slideUp(500,function(){});
+
+    $("#wrangler_div").slideUp(500,null);
+    document.getElementById("output_div").style.display ="block"
+    $("#output_div").slideDown(500,null);
 }
 
 function setColumnTypes(i) {

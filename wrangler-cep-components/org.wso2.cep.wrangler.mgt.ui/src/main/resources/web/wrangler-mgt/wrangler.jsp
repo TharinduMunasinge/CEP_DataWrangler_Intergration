@@ -37,9 +37,9 @@
                 });
             </script>
             <h2 class="active trigger">
-                <a href="#"> - Data Wrangler -</a>
+                <a href="#">  Data Wrangler  </a>
             </h2>
-            <p>&nbsp</p>
+
 
             <div id="wrangler_div">
                 <table id="wranglerTable">
@@ -56,9 +56,10 @@
             </div>
             <!--Wrangler section end-->
 
-
+            <p>&nbsp</p>
 
             <!--Output config begin-->
+            <div id="output_div" style="display: none">
             <div class="sectionSeperator">Output Configuration</div>
             <div class="sectionSub">
                 <table>
@@ -94,6 +95,7 @@
                     <input class="buttonRow" type="button" onclick="saveScriptParams(false)"
                            value="Preview">
                 </div>
+            </div>
             </div>
             <!--Output config end-->
 

@@ -50,7 +50,6 @@ function get_def_prompt(){
 	return def_prompt;
 }
 function writeSampleForQuery(query){
-	console.log(query);
 	var insideBrackets=query.substring(query.indexOf("(")+1,query.indexOf(")")).trim();
 	var params = insideBrackets.split(",");
 	for(var i=0; i<params.length; i++){

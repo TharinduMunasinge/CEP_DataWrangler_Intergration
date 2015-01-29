@@ -24,7 +24,7 @@
             <thead>
             <tr>
                 <th>
-                    Existing Configurations-
+                    Existing Configurations
                 </th>
             </tr>
             </thead>
@@ -121,11 +121,11 @@
         </table>
 
         <div class="icon-link-ouside registryWriteOperation">
-            <a href="#" class="icon-link" style="background-image:url(../wrangler-mgt/images/add.gif);" onclick="">Add New Configuration</a>
+            <a href="#" class="icon-link" style="background-image:url(../wrangler-mgt/images/add.gif);" onclick="onClickAddNewConfig();">Add New Configuration</a>
             <div style="clear:both"></div>
         </div>
-        <div id="newConfigDiv">
-            <form method="post" action="wrangler.jsp">
+        <div id="newConfigDiv" style="display: none">
+            <form id="form_config" method="post" action="wrangler.jsp">
                 <table cellpadding="0" cellspacing="0" border="0" class="styledLeft noBorders">
                     <thead>
                         <tr>
@@ -174,14 +174,14 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2" class="buttonRow">
-                                                <input type="radio" name="populateTypeBtn" value="real-time data" onclick=""><label>Populate Real Time Data</label>
-                                                <input type="radio" name="populateTypeBtn" value="sample data" onclick="onClickPushToWrangler(document.getElementById('txtQuery').value);"><label>Populate Sample Data</label>
+                                                <input id="1" type="radio" name="populateTypeBtn" value="real-time data" onclick="document.getElementById('dataPopulatedArea').readOnly=false;document.getElementById('dataPopulatedArea').focus();"><label>Populate Real Time Data</label>
+                                                <input id="2" type="radio" name="populateTypeBtn" value="sample data" onclick="onClickPushToWrangler(document.getElementById('txtQuery').value);"><label>Populate Sample Data</label>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="leftcol-small"></td>
                                             <td>
-                                                <textarea id="dataPopulatedArea" value="ttt" name="dataArea"class="expandedTextarea" cols="80"
+                                                <textarea id="dataPopulatedArea" value="ttt" name="dataArea"class="expandedTextarea" readonly cols="80"
                                                            style="height: 90px"></textarea></td>
                                         </tr>
                                         <tr>
