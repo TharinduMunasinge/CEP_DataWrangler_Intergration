@@ -10,7 +10,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://wso2.org/projects/carbon/taglibs/carbontags.jar" prefix="carbon" %>
 <%
-    String s = request.getParameter("formdata");
+        /**
+         * get the Output Configuration details and save it in the registry
+         */
+
+    String s = request.getParameter("formdata");                                                                    //get form data form the request
     String streamName = request.getParameter("fileName");
     CarbonContext cCtx = CarbonContext.getCurrentContext();
     Registry registry = cCtx.getRegistry(RegistryType.SYSTEM_CONFIGURATION);
@@ -21,7 +25,7 @@
 
     Resource resource = registry.newResource();
     resource.setContent(s);
-    String resourcePath ="/repository/components/org.wso2.cep.wrangler/"+streamName+"/config";
+    String resourcePath ="/repository/components/org.wso2.cep.wrangler/"+streamName+"/config";                      //create a path using stream name to save the file
     registry.put(resourcePath, resource);
 
     String serverURL = CarbonUIUtil.getServerURL(config.getServletContext(), session);

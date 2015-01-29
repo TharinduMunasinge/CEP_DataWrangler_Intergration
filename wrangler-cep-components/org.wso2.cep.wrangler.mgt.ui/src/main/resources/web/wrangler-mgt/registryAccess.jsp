@@ -6,10 +6,14 @@
 <%@ page import="org.wso2.carbon.registry.api.Resource" %>
 <%@ page import="org.wso2.carbon.registry.api.Collection" %>
 <%@ page import="org.wso2.carbon.registry.api.RegistryException" %>
+<%@ page import="org.apache.log4j.Logger" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://wso2.org/projects/carbon/taglibs/carbontags.jar" prefix="carbon" %>
 <%
-
+        /**
+         * access to the registry and get the files 'config' and 'script.js' to preview the existing configuration
+         */
+    Logger logger = Logger.getLogger("");
     String BASEURL = "/repository/components/org.wso2.cep.wrangler";
 
     CarbonContext cCtx = CarbonContext.getCurrentContext();
@@ -26,7 +30,6 @@
     String config_content = "";
 
     try {
-        //           logger.error("Retriveing path :" + BASEURL + folderName + "/" + fileName);
         if (folderName != null || folderName != "") {
             script_file = (Resource) registry.get(BASEURL + "/" + folderName + "/script.js");
             config_file = (Resource) registry.get(BASEURL + "/" + folderName + "/config");
@@ -36,12 +39,10 @@
 <p><%=script_content%></p>
 <code><%=config_content%></code>
 
-<%--<p><%=config_content%>--%>
-<%--</p>--%>
 
 <%   } catch (RegistryException e) {
-    //      logger.error("Error in Registry client" + e.getMessage());
+          logger.error("Error in Registry client" + e.getMessage());
 } catch (Exception e) {
-    //    logger.error(e.getMessage());
+        logger.error(e.getMessage());
 }
 %>
