@@ -348,8 +348,9 @@ function setParams() {
     console.log("clicked");
 
     $("#wrangler_div").slideUp(500,null);
-    document.getElementById("output_div").style.display ="block"
-    $("#output_div").slideDown(500,null);
+    document.getElementById("output_div").style.display = "block"
+    $("#output_div").slideDown(500, null);
+
 }
 
 function setColumnTypes(i) {

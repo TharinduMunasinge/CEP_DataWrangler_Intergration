@@ -56,9 +56,9 @@
 
                                     %>
                                     <option>--select any configuration--</option>
-                                    <% for (String resrc : resources) {
-                                        resrc = resrc.replace(BASEURL, "");%>
-                                    <option><%=resrc%>
+                                    <%for (int i=0; i<resources.length; i++) {
+                                            resources[i] = resources[i].replace(BASEURL, "");%>
+                                    <option><%=resources[i]%>
                                     </option>
 
                                     <%
@@ -73,7 +73,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="leftcol-small">Output config Definition</td>
+                            <td class="leftcol-small">Output Stream Definition</td>
                             <td>
                                 <textarea id="configTextArea" class="expandedTextarea" cols="80"
                                           readonly="true" style="height: 60px"></textarea>
@@ -144,7 +144,7 @@
                                     <tbody>
                                         <tr>
                                             <td class="leftcol-small">
-                                                Import Stream Definition
+                                                Import Input Stream Definition
                                             </td>
                                             <td>
                                                 <select id="streamSelect" onchange="onchangeMenu(this.selectedIndex-1)">
@@ -166,7 +166,7 @@
                                         </tr>
                                         <tr>
                                             <td class="leftcol-small">
-                                                Type New Definition
+                                                Type New Input Stream Definition
                                             </td>
                                             <td>
                                                 <textarea id="txtQuery" class="expandedTextarea" cols="80"
@@ -179,8 +179,12 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2" class="buttonRow">
-                                                <input id="1" type="radio" name="populateTypeBtn" value="real-time data" onclick="document.getElementById('dataPopulatedArea').readOnly=false;document.getElementById('dataPopulatedArea').focus();"><label>Populate Real Time Data</label>
-                                                <input id="2" type="radio" name="populateTypeBtn" value="sample data" onclick="onClickPushToWrangler(document.getElementById('txtQuery').value);"><label>Populate Sample Data</label>
+                                                <input id="1" type="radio" name="populateTypeBtn" value="real data" onclick=
+                                                        "document.getElementById('dataPopulatedArea').readOnly=false;document.getElementById('dataPopulatedArea').focus();">
+                                                <label>Real Data</label>
+                                                <input id="2" type="radio" name="populateTypeBtn" value="sample data" onclick=
+                                                        "onClickPushToWrangler(document.getElementById('txtQuery').value);document.getElementById('dataPopulatedArea').readOnly=true;">
+                                                <label>Populate Sample Data</label>
                                             </td>
                                         </tr>
                                         <tr>
