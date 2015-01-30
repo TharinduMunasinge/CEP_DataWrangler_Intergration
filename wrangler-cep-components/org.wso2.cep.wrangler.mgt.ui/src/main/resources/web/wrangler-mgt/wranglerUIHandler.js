@@ -48,7 +48,7 @@ function checkStream() {	//checks whether there streams in registry
         }
 
         function onchangeMenu(index) {
-           // document.getElementById("paramArea").style.display = 'none'; //hide output table
+
 
             var definition;
             if (index === -1) { 	// --select any stream--
@@ -80,13 +80,9 @@ function checkStream() {	//checks whether there streams in registry
         }
 
         function onClickPushToWrangler(definition){
-            //document.getElementById("wrangler").style.display="block";
-		//document.getElementById("paramArea").style.display = 'none'; // hide output table
+
 		if(isValidQuery(definition)){
 			document.getElementById("isValid").innerHTML="";
-            //var iFrame = document.getElementById("wranglerIframe");
-            //iFrame.src = "wrangler.html?query=" + definition;
-           // window.scrollBy(0,400);
             document.getElementById("dataPopulatedArea").value=writeSampleForQuery(definition);
 		}
 		else{
@@ -117,9 +113,9 @@ function saveScriptParams(isPersist) {
     var streamName = document.getElementById("streamName").value;
     var saveScript = "";
 
-    console.log(document.getElementById("wranglerIframe"));
+
     saveScript = document.getElementById("wranglerIframe").contentWindow.exportedValue;
-    // alert(saveScript);
+
 
     saveScript = saveScript.slice(16, saveScript.length - 16);
     var funcDef = "function myfunction(x){" +
@@ -139,7 +135,7 @@ function saveScriptParams(isPersist) {
 
 
     var numParams = parseInt(document.getElementById("numParams").value);
-    console.log(numParams);
+
     var params;
     var paramString = "define stream ";
 
@@ -179,10 +175,7 @@ function saveScriptParams(isPersist) {
             });
             window.scrollTo(0,document.body.scrollHeight);
         }
-        //document.getElementById("preview_div").style.display="none";
-        //
 
-         //
     }else{
         CARBON.showErrorDialog(errorMsg);
     }
@@ -219,9 +212,7 @@ function regAccess(folderName) {
 function saveToRegistry(saveScript, streamName, paramString) {
 
     var isSuccess = false;
-    console.log("got here");
-    console.log(saveScript);
-    console.log(streamName);
+
 
     $.ajax({
         type: "POST",
@@ -261,7 +252,7 @@ function copyToClipboard() {
 }
 
 function reloadOutputStreams() {
-    console.log("refreshed");
+
     document.getElementById("submit_form").submit();
 }
 
@@ -290,7 +281,7 @@ function setParams() {
     var table = document.getElementById("paramTable");
     var tableBody = document.createElement('tbody');
     var oldTableBody = document.getElementById("paramTableBody");
-//                var temp = [];
+
 
     var input2 = document.createElement("input");
 
@@ -325,8 +316,7 @@ function setParams() {
 
         var optionArr = [];
         optionArr = setColumnTypes(j - 1);
-        console.log(optionArr);
-        console.log(optionArr.length);
+
 
 
         for (var k = 0; k < optionArr.length; k++) {

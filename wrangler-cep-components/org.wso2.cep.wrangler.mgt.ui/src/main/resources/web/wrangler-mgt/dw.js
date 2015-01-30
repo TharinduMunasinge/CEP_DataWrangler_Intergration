@@ -589,7 +589,7 @@ dw.wrangle = function(){
 		if(typeOf(tables)!='array'){
 			tables = [tables]	
 		}
-		console.log("tables"+tables);
+
 		w.forEach(function(t){
 			
 			if(t.active() || t.invalid()){
@@ -601,7 +601,6 @@ dw.wrangle = function(){
 					var typeTransforms = dw.infer_type_transforms(tables[0]);
 					typeTransforms.forEach(function(tt){
 						tt.sample_apply([tables[0]])
-	//					console.log(tt);
 					})
 						
 					t.validate();		
@@ -614,7 +613,6 @@ dw.wrangle = function(){
 
 		})
 		dw.summary.clear_cache();
-	//	console.log(w);
 		return w;
 	}
 	
@@ -749,7 +747,6 @@ dw.regex = function(){
 
 	r.parse = function(str, startCursor, endCursor, o){
 		str = ''+str
-	//	console.log(str);
 		var token = /([a-zA-Z]+)|([0-9]+)|([^a-zA-Z0-9])/g;
 
 		var match = (str.substring(0, startCursor).match(token) || [])
@@ -1181,7 +1178,7 @@ dw.drop = function(column){
 
 		var table = t.getTable(tables),
 			columns = t.columns(table);
-		console.log(table);
+
 
 		if(t._drop){
 			columns.forEach(function(col){
@@ -4429,7 +4426,7 @@ dw.vtable = function(container, options){
 ///////////////////////////////////////////////////////////		
 	var temp=[];
 
-        console.log(columns.length);
+
         //for(var j=0;j<columns.length;j++){
         //    temp+=columns[j].scolDataTypeTitle+",";
         //}
@@ -4439,7 +4436,7 @@ dw.vtable = function(container, options){
             colNamesDefault[j]=columns[j].sTitle;
         }
 
-        console.log(colNamesDefault);
+
 
         //localStorage["temp"] = JSON.stringify(temp);
 //////////////////////////////////////////////////////////////
@@ -4466,7 +4463,7 @@ dw.vtable = function(container, options){
 
 
 
-		console.log(data)
+
 
 		container.html( '<table cellpadding="0" cellspacing="0" border="0" class="display" id="'  + containerID + '"></table>' );
 		otable = $('#'+containerID).dataTable( {
