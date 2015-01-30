@@ -115,7 +115,7 @@ function saveScriptParams(isPersist) {
     var streamName = document.getElementById("streamName").value;
     var saveScript = "";
 
-    console.log(document.getElementById("wranglerIframe"));
+
     saveScript = document.getElementById("wranglerIframe").contentWindow.exportedValue;
     // alert(saveScript);
 
@@ -137,7 +137,7 @@ function saveScriptParams(isPersist) {
 
 
     var numParams = parseInt(document.getElementById("numParams").value);
-    console.log(numParams);
+
     var params;
     var paramString = "define stream ";
 
@@ -216,9 +216,7 @@ function regAccess(folderName) {
 function saveToRegistry(saveScript, streamName, paramString) {
 
     var isSuccess = false;
-    console.log("got here");
-    console.log(saveScript);
-    console.log(streamName);
+
 
     $.ajax({
         type: "POST",
@@ -258,7 +256,7 @@ function copyToClipboard() {
 }
 
 function reloadOutputStreams() {
-    console.log("refreshed");
+
     document.getElementById("submit_form").submit();
 }
 
@@ -321,8 +319,7 @@ function setParams() {
 
         var optionArr = [];
         optionArr = setColumnTypes(j - 1);
-        console.log(optionArr);
-        console.log(optionArr.length);
+
 
 
         for (var k = 0; k < optionArr.length; k++) {
@@ -344,8 +341,7 @@ function setParams() {
     }
     tableBody.appendChild(input2);
     table.replaceChild(tableBody, oldTableBody);
-    console.log(temp);
-    console.log("clicked");
+
 
     $("#wrangler_div").slideUp(500,null);
     document.getElementById("output_div").style.display = "block"
