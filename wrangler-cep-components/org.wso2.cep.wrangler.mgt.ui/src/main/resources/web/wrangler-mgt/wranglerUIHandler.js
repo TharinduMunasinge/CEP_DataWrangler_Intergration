@@ -48,7 +48,7 @@ function checkStream() {	//checks whether there streams in registry
         }
 
         function onchangeMenu(index) {
-           // document.getElementById("paramArea").style.display = 'none'; //hide output table
+
 
             var definition;
             if (index === -1) { 	// --select any stream--
@@ -78,13 +78,9 @@ function checkStream() {	//checks whether there streams in registry
         }
 
         function onClickPushToWrangler(definition){
-            //document.getElementById("wrangler").style.display="block";
-		//document.getElementById("paramArea").style.display = 'none'; // hide output table
+
 		if(isValidQuery(definition)){
 			document.getElementById("isValid").innerHTML="";
-            //var iFrame = document.getElementById("wranglerIframe");
-            //iFrame.src = "wrangler.html?query=" + definition;
-           // window.scrollBy(0,400);
             document.getElementById("dataPopulatedArea").value=writeSampleForQuery(definition);
 		}
 		else{
@@ -117,7 +113,7 @@ function saveScriptParams(isPersist) {
 
 
     saveScript = document.getElementById("wranglerIframe").contentWindow.exportedValue;
-    // alert(saveScript);
+
 
     saveScript = saveScript.slice(16, saveScript.length - 16);
     var funcDef = "function myfunction(x){" +
@@ -176,10 +172,7 @@ function saveScriptParams(isPersist) {
             });
             window.scrollTo(0,document.body.scrollHeight);
         }
-        //document.getElementById("preview_div").style.display="none";
-        //
 
-         //
     }else{
         CARBON.showErrorDialog(errorMsg);
     }
@@ -285,7 +278,7 @@ function setParams() {
     var table = document.getElementById("paramTable");
     var tableBody = document.createElement('tbody');
     var oldTableBody = document.getElementById("paramTableBody");
-//                var temp = [];
+
 
     var input2 = document.createElement("input");
 

@@ -88,31 +88,7 @@
                                           readonly="true" style="height: 90px"></textarea>
                             </td>
                         </tr>
-                        <%--<tr>--%>
-                            <%--<td colspan="3" class="middle-header">Create new Configuration</td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td>Import Stream Definition</td>--%>
-                            <%--<td>--%>
-                                <%--<select id="streamSelect" onchange="onchangeMenu(this.selectedIndex-1)">--%>
 
-                                    <%--<!--generate stream name for the drop down list-->--%>
-                                    <%--<script>--%>
-                                        <%--document.write("<option>--select any stream--</option>");--%>
-                                        <%--for (var i = 0; i < getAllStreamJSON().length; i++) {--%>
-                                            <%--var streamNameV = getStreamName(i).concat(" ", getStreamVersion(i));--%>
-                                            <%--document.write("<option>" + streamNameV + "</option>");--%>
-                                        <%--}--%>
-                                    <%--</script>--%>
-                                <%--</select>--%>
-                            <%--</td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td>--%>
-                                <%--Type new Definition:--%>
-                            <%--</td>--%>
-                            <%--<td></td>--%>
-                        <%--</tr>--%>
                         </tbody>
                     </table>
                 </td>
