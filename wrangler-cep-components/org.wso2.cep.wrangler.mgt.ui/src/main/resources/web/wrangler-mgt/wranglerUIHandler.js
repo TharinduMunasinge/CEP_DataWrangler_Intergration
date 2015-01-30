@@ -73,8 +73,10 @@ function checkStream() {	//checks whether there streams in registry
         }
 
         function onClickAddNewConfig(){
+            $("#previewTable").slideUp(500,null);
             $("#newConfigDiv").slideToggle(500,null);
             window.scrollTo(0,document.body.scrollHeight);
+
         }
 
         function onClickPushToWrangler(definition){
@@ -150,6 +152,7 @@ function saveScriptParams(isPersist) {
         var type = document.getElementById("optionSelect" + j + "").value;
 
         if(name==""){
+       //     CARBON.showConfirmationDialog("Default column names will be saved as parameters!!",function(){},null,null);
             isErrorInParams = true;
             break;
         }
@@ -314,6 +317,7 @@ function setParams() {
         input.setAttribute('class', 'initE')
         input.setAttribute('style', 'width:100%');
         input.setAttribute('required', 'true');
+        input.setAttribute('placeholder',temp[j]);
         tdI.appendChild(input);
         td.appendChild(document.createTextNode(temp[j]));
         tdListElement.setAttribute('id', "optionSelect" + j + "");
@@ -344,8 +348,7 @@ function setParams() {
     }
     tableBody.appendChild(input2);
     table.replaceChild(tableBody, oldTableBody);
-    console.log(temp);
-    console.log("clicked");
+
 
     $("#wrangler_div").slideUp(500,null);
     document.getElementById("output_div").style.display = "block"

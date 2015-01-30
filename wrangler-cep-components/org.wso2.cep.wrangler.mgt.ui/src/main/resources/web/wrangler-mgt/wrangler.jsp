@@ -16,12 +16,48 @@
     <h2>Data Wrangler</h2>
 
     <div id="workArea">
+        <div class="sectionSeperator">Input Stream Definition</div>
+        <div class="sectionSub">
+            <table>
+                <tbody>
+                 <tr>
+                     <td>
+                         input format:
+                     </td>
+                     <td>
+                         <label id="input_format">
+                             <script>
+                                 document.getElementById("input_format").innerHTML='<%=request.getParameter("format")%>'
+                             </script>
+                         </label>
+                     </td>
+                 </tr>
+                <tr>
+                    <td>
+                        Data Set:
+                    </td>
+                    <td>
+                        <label id="input_data">
+                            <script>
+                                document.getElementById("input_data").innerHTML='<%=request.getParameter("dataArea")%>'
+                            </script>
+                        </label>
+                    </td>
+                </tr>
 
+                </tbody>
+            </table>
+
+        </div>
+
+        <br>
         <form id="dataForm" name="dataForm" method="post">
+
 
 
             <!--Wrangler section begin-->
             <script>
+
                 jQuery(document).ready(function () {
                     jQuery("#optionalPropertyRow").hide();
                     /*Hide (Collapse) the toggle containers on load use show() instead of hide() 	in the 			above code if you want to keep the content section expanded. */

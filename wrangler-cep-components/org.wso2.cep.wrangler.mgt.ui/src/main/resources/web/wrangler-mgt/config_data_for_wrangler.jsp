@@ -20,11 +20,29 @@
     <!--start of workArea div-->
     <div id="workArea">
         <!--Start of Existing Configuration Preview-->
+        <script>
+            jQuery(document).ready(function () {
+                jQuery("#optionalPropertyRow").hide();
+                /*Hide (Collapse) the toggle containers on load use show() instead of hide() 	in the 			above code if you want to keep the content section expanded. */
+                jQuery("h2.trigger").click(function () {
+                    if (jQuery(this).next().is(":visible")) {
+                        this.className = "active trigger";
+                    } else {
+                        this.className = "trigger";
+                    }
+                    jQuery(this).next().slideToggle("fast");
+                    return false; //Prevent the browser jump to the link anchor
+                });
+            });
+        </script>
+        <h2 class="active trigger">
+            <a href="#">  Existing Configurations  </a>
+        </h2>
         <table id="previewTable" class="styledLeft" width="100%">
             <thead>
             <tr>
                 <th>
-                    Existing Configurations
+                    Existing Input Streams
                 </th>
             </tr>
             </thead>
@@ -120,7 +138,7 @@
             </tbody>
         </table>
         <!--End of Existing Configuration Preview-->
-
+        <p>&nbsp</p>
         <!--Link to add New Configuration-->
         <div class="icon-link-ouside registryWriteOperation">
             <a href="#" class="icon-link" style="background-image:url(../wrangler-mgt/images/add.gif);" onclick="onClickAddNewConfig();">Add New Configuration</a>
@@ -169,7 +187,7 @@
                                                 Type New Input Stream Definition
                                             </td>
                                             <td>
-                                                <textarea id="txtQuery" class="expandedTextarea" cols="80"
+                                                <textarea id="txtQuery" class="expandedTextarea" cols="80" name="format"
                                                            style="height: 60px" onchange="onChangeText()"></textarea>
                                             </td>
                                         </tr>
