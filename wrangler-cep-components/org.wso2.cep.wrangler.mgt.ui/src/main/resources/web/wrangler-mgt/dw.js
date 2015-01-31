@@ -6007,7 +6007,7 @@ dw.engine = function(options){
 				t[p](param[p]);
 			}
 			catch(e){
-				console.error(e)
+//				console.error(e)
 			}
 
 		}

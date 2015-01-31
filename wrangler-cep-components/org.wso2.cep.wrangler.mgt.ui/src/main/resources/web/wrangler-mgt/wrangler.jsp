@@ -18,12 +18,16 @@
     <div id="workArea">
         <div class="sectionSeperator">Input Stream Definition</div>
         <div class="sectionSub">
-            <table>
+            <table class="styledLeft" style="width:100%">
+
+                <thead>
+                <tr>
+                    <th width="50%">input format</th>
+                    <th width="50%">Data Set</th>
+                </tr>
+                </thead>
                 <tbody>
                  <tr>
-                     <td>
-                         input format:
-                     </td>
                      <td>
                          <label id="input_format">
                              <script>
@@ -31,19 +35,14 @@
                              </script>
                          </label>
                      </td>
+                     <td>
+                         <label id="input_data">
+                             <script>
+                                 document.getElementById("input_data").innerHTML='<%=request.getParameter("dataArea")%>'
+                             </script>
+                         </label>
+                     </td>
                  </tr>
-                <tr>
-                    <td>
-                        Data Set:
-                    </td>
-                    <td>
-                        <label id="input_data">
-                            <script>
-                                document.getElementById("input_data").innerHTML='<%=request.getParameter("dataArea")%>'
-                            </script>
-                        </label>
-                    </td>
-                </tr>
 
                 </tbody>
             </table>
@@ -126,10 +125,12 @@
                         <tbody id="paramTableBody">
                         </tbody>
                     </table>
-                    <input class="buttonRow" type="button" onclick="saveScriptParams(true)"
+                    <div class="buttonRow" style="margin-left: 0px">
+                    <input type="button" onclick="saveScriptParams(true)"
                            value="Save to Registry">
-                    <input class="buttonRow" type="button" onclick="saveScriptParams(false)"
+                    <input type="button" onclick="saveScriptParams(false)"
                            value="Preview">
+                    </div>
                 </div>
             </div>
             </div>

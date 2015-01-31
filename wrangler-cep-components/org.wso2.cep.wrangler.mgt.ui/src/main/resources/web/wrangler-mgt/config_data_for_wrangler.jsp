@@ -107,6 +107,16 @@
                             </td>
                         </tr>
 
+                        <tr>
+
+                            <td colspan="2" class="buttonRow">
+                                <button  id="copyToClipboardBtn" value="copy to clipboard" data-clipboard-target="configTextArea">copy to clipboard</button>
+                                <script src="clipboard/dist/ZeroClipboard.js"></script>
+                                <script src="clipboard/main.js"></script>
+                            </td>
+
+                        </tr>
+
                         </tbody>
                     </table>
                 </td>
@@ -189,7 +199,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2" class="buttonRow">
-                                                <input type="submit" value="wrangle">
+                                                <input type="button" value="wrangle" onclick="formSubmit()">
                                             </td>
                                         </tr>
                                     </tbody>

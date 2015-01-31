@@ -1,5 +1,7 @@
 var isSaveToReg;
+var isSaveDefault= false;
 var errorMsg = "";
+var savingParamDef = "";
 ////////////////////////////////////////
 function checkStream() {	//checks whether there streams in registry 
             return getAllStreamJSON().length;
@@ -73,9 +75,10 @@ function checkStream() {	//checks whether there streams in registry
         }
 
         function onClickAddNewConfig(){
-            $("#previewTable").slideUp(500,null);
+//            $("#previewTable").slideUp("fast",null);
+            document.getElementById("previewTable").style.display = "none";
             $("#newConfigDiv").slideToggle(500,null);
-            window.scrollTo(0,document.body.scrollHeight);
+//            window.scrollTo(0,document.body.scrollHeight);
 
         }
 
@@ -103,7 +106,26 @@ function checkStream() {	//checks whether there streams in registry
             var regExp = /^define(\n|\s|\t)+stream(\n|\s|\t)+\w(\.|\w)*\w(\n|\s|\t)*\(((\n|\s|\t)*\w+(\n|\s|\t)+(int|long|float|double|string|bool)(\n|\s|\t)*,)*((\n|\s|\t)*\w+(\n|\s|\t)+(int|long|float|double|string|bool)(\n|\s|\t)*)\)(\n|\s|\t)*;*(\n|\s|\t)*$/i;
             return regExp.test(query);
         }
-////////////////////////////////////////
+
+
+function formSubmit(){
+    var definition = document.getElementById("txtQuery").value;
+    var data = document.getElementById("dataPopulatedArea").value;
+    var form = document.getElementById("form_config");
+
+    if(definition=="" && data ==""){
+        CARBON.showErrorDialog("configuration definition and no data set added");
+        return;
+    }else if(definition == ""){
+        CARBON.showErrorDialog("configuration definition not added");
+        return;
+    }else if(data == ""){
+        CARBON.showErrorDialog(" dataset not added");
+        return;
+    }
+
+    form.submit();
+}
 
 function saveScriptParams(isPersist) {
 
@@ -138,6 +160,7 @@ function saveScriptParams(isPersist) {
 
     var params;
     var paramString = "define stream ";
+    var paramStringWtPlaceholder = "define stream ";
 
 //define stream <nameOfTheStream> ( <attribute1Name> <attribute1Type>, <attribute1Name> <attribute1Type> .....)
     paramString += streamName + "(";
@@ -146,18 +169,23 @@ function saveScriptParams(isPersist) {
 
         var name = document.getElementById("colInput" + j + "").value;
         var type = document.getElementById("optionSelect" + j + "").value;
+        var placeholder = document.getElementById("colInput" + j + "").getAttribute("placeholder");
 
         if(name==""){
-       //     CARBON.showConfirmationDialog("Default column names will be saved as parameters!!",function(){},null,null);
+       //CARBON.showConfirmationDialog("Default column names will be saved as parameters!!",function(){},null,null);
             isErrorInParams = true;
-            break;
         }
 
         paramString += name + " " + type + ",";
+        paramStringWtPlaceholder += placeholder + " " + type + ",";
     }
 
     paramString = paramString.substring(0, paramString.length - 1);
     paramString += ")";
+
+    paramStringWtPlaceholder = paramStringWtPlaceholder.substring(0, paramStringWtPlaceholder.length - 1);
+    paramStringWtPlaceholder += ")";
+
 
     if(validate(streamName,isErrorInParams)){
         if (isPersist) {
@@ -176,8 +204,29 @@ function saveScriptParams(isPersist) {
             window.scrollTo(0,document.body.scrollHeight);
         }
 
+    }else if(streamName!=""){
+        CARBON.showConfirmationDialog("Do you want to keep parameter names as default values",
+            function(){
+                if (isPersist) {
+                    CARBON.showConfirmationDialog("Do you want to save scripts in Registry?", function () {
+                        saveToRegistry(saveScript, streamName, paramStringWtPlaceholder);
+
+                    }, null, null);
+
+                }
+                else {
+                    document.getElementById("wranglingScriptTextArea").value = saveScript;
+                    document.getElementById("outputDefTextArea").value = paramStringWtPlaceholder;
+                    $('#preview_div').slideToggle(500, function () {
+
+                    });
+                    window.scrollTo(0,document.body.scrollHeight);
+                }
+
+            },function(){CARBON.showErrorDialog(errorMsg);},null);
+
     }else{
-        CARBON.showErrorDialog(errorMsg);
+       CARBON.showErrorDialog(errorMsg);
     }
 
 
@@ -269,6 +318,7 @@ function validate(streamName,isErrorInParams){
     if(isErrorInParams) {
         errorMsg = "parameter definitions missing";
         return false;
+
     }
 
     return true;
